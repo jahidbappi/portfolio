@@ -2,6 +2,8 @@
 
 Live portfolio for **Md. Jahidul Islam** — Full-Stack Developer and AI/ML enthusiast.
 
+**Live site:** [new-portfolio-indol-omega.vercel.app](https://new-portfolio-indol-omega.vercel.app)
+
 Built with HTML, CSS, and vanilla JavaScript. Projects and GitHub stats are loaded live from the [jahidbappi](https://github.com/jahidbappi) GitHub account.
 
 ## Features
