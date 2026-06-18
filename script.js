@@ -1,855 +1,487 @@
+'use strict';
+
 const DATA = window.PORTFOLIO_DATA || {};
 const GITHUB_API_URL = `https://api.github.com/users/${DATA.githubUsername || 'jahidbappi'}/repos`;
-const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 let allProjects = [];
 let statsAnimated = false;
 
 const LANGUAGE_CATEGORY_MAP = {
-    Python: 'ai',
-    'Jupyter Notebook': 'ai',
-    TypeScript: 'web',
-    JavaScript: 'web',
-    HTML: 'web',
-    CSS: 'web',
-    React: 'web',
-    Vue: 'web',
-    PHP: 'web',
-    Java: 'mobile',
-    'C++': 'web',
-    C: 'web',
+  Python: 'ai',
+  'Jupyter Notebook': 'ai',
+  TypeScript: 'web',
+  JavaScript: 'web',
+  HTML: 'web',
+  CSS: 'web',
+  React: 'web',
+  Vue: 'web',
+  PHP: 'web',
+  Java: 'mobile',
+  'C++': 'web',
+  C: 'web',
 };
 
-const CATEGORY_LABELS = { web: 'WEB', ai: 'AI', mobile: 'MOBILE' };
-const CATEGORY_ICONS = { web: 'fa-globe', ai: 'fa-brain', mobile: 'fa-mobile-screen' };
-
-const DEVICON_MAP = {
-    Python: 'devicon-python-plain colored',
-    JavaScript: 'devicon-javascript-plain colored',
-    TypeScript: 'devicon-typescript-plain colored',
-    'C++': 'devicon-cplusplus-plain colored',
-    'C#': 'devicon-csharp-plain colored',
-    Java: 'devicon-java-plain colored',
-    Swift: 'devicon-swift-plain colored',
-    PHP: 'devicon-php-plain colored',
-    Oracle: 'devicon-oracle-original colored',
-    MySQL: 'devicon-mysql-plain colored',
-    PostgreSQL: 'devicon-postgresql-plain colored',
-    MongoDB: 'devicon-mongodb-plain colored',
-    React: 'devicon-react-original colored',
-    'Node.js': 'devicon-nodejs-plain colored',
-    Django: 'devicon-django-plain',
-    Flask: 'devicon-flask-original',
-    'HTML & CSS': 'devicon-html5-plain colored',
-    TensorFlow: 'devicon-tensorflow-original colored',
-    PyTorch: 'devicon-pytorch-original colored',
-    'scikit-learn': 'devicon-scikitlearn-plain colored',
-    Pandas: 'devicon-pandas-original colored',
-    NumPy: 'devicon-numpy-original colored',
-    AWS: 'devicon-amazonwebservices-original colored',
-    Azure: 'devicon-azure-plain colored',
-    Docker: 'devicon-docker-plain colored',
-    Kubernetes: 'devicon-kubernetes-plain colored',
-    Git: 'devicon-git-plain colored',
-    'VS Code': 'devicon-vscode-plain colored',
-    Jupyter: 'devicon-jupyter-plain colored',
-    Postman: 'devicon-postman-plain colored',
-    'Android Studio': 'devicon-androidstudio-plain colored',
+const VCARD_CATEGORY = {
+  web: 'web development',
+  ai: 'applications',
+  mobile: 'web design',
 };
 
-const FA_FALLBACK = {
-    'Entity Framework': 'fas fa-diagram-project',
-    'REST APIs': 'fas fa-plug',
-    Cursor: 'fas fa-arrow-pointer',
-    Vercel: 'fas fa-bolt',
-};
+const SERVICES = [
+  {
+    icon: 'assets/images/icon-dev.svg',
+    title: 'Full-Stack Development',
+    text: 'React, Node.js, Django, and Flask — from API design to polished frontends and live Vercel deployments.',
+  },
+  {
+    icon: 'assets/images/icon-design.svg',
+    title: 'AI & Machine Learning',
+    text: 'TensorFlow, PyTorch, and practical AI tools like code-reviewer-ai with multi-language support.',
+  },
+  {
+    icon: 'assets/images/icon-app.svg',
+    title: 'Database Architecture',
+    text: 'Oracle, MySQL, PostgreSQL, and MongoDB — schema design, optimization, and production data layers.',
+  },
+  {
+    icon: 'assets/images/icon-photo.svg',
+    title: 'DevOps & Cloud',
+    text: 'AWS, Azure, Docker, Kubernetes, and CI/CD workflows for reliable, scalable infrastructure.',
+  },
+];
 
-const MARQUEE_TECH = [
-    'Python', 'JavaScript', 'TypeScript', 'React', 'Node.js', 'Django', 'Flask',
-    'TensorFlow', 'PyTorch', 'PostgreSQL', 'MongoDB', 'MySQL', 'Docker',
-    'Kubernetes', 'AWS', 'Azure', 'Git', 'HTML & CSS',
+const SKILL_BARS = [
+  { name: 'Full-Stack Web', value: 90 },
+  { name: 'Python & AI/ML', value: 85 },
+  { name: 'Database Systems', value: 88 },
+  { name: 'DevOps & Cloud', value: 75 },
+  { name: 'TypeScript / React', value: 87 },
 ];
 
 document.addEventListener('DOMContentLoaded', () => {
-    setupNavigation();
-    renderHeroStats();
-    setupHeroRoleRotator();
-    renderAboutMetrics();
-    renderSkills();
-    buildMarquee();
-    renderTimeline();
-    renderCertifications();
-    fetchAndDisplayProjects();
-    fetchGitHubStats();
-    setupFormHandling();
-    setupScrollSpy();
-    setupNavbarScroll();
-    setupScrollAnimations();
-    setupScrollProgress();
-    setupCursorGlow();
-    setupParticles();
-    setupTilt();
-    setupMagnetic();
-    setupBackToTop();
-    setTimeout(hideLoader, 2200);
+  renderAboutContent();
+  renderServices();
+  renderFocusTags();
+  renderCertifications();
+  renderExperience();
+  renderSkillBars();
+  initVcardUI();
+  fetchAndDisplayProjects();
+  fetchGitHubStats();
+  setupContactForm();
 });
 
-window.addEventListener('load', () => setTimeout(hideLoader, 300));
-
-function hideLoader() {
-    const loader = document.getElementById('pageLoader');
-    if (loader) loader.classList.add('done');
-}
-
 function escapeHtml(text) {
-    const div = document.createElement('div');
-    div.textContent = text;
-    return div.innerHTML;
+  const div = document.createElement('div');
+  div.textContent = text;
+  return div.innerHTML;
 }
 
-function techIconHtml(name) {
-    const dev = DEVICON_MAP[name];
-    if (dev) return `<i class="${dev}" aria-hidden="true"></i>`;
-    const fa = FA_FALLBACK[name] || 'fas fa-code';
-    return `<i class="${fa}" style="color:var(--accent)" aria-hidden="true"></i>`;
+/* ---- Content from data.js ---- */
+
+function renderAboutContent() {
+  const lead = document.getElementById('aboutLead');
+  const body = document.getElementById('aboutBody');
+  if (lead) {
+    lead.textContent = `I'm ${DATA.fullName || 'Md. Jahidul Islam'} — ${DATA.title || 'AI Engineer and Full Stack Developer'}. ${DATA.tagline || ''}`;
+  }
+  if (body) {
+    body.textContent = DATA.description || '';
+  }
 }
 
-/* Hero */
-function renderHeroStats() {
-    const container = document.getElementById('heroStats');
-    const stats = DATA.heroStats || [];
-    if (!container || !stats.length) return;
-
-    container.innerHTML = stats
-        .map((stat) => {
-            const value = String(stat.value).replace('+', '<span class="plus">+</span>');
-            return `
-        <div class="hero-stat">
-            <span class="hero-stat-value">${value}</span>
-            <span class="hero-stat-label">${escapeHtml(stat.label)}</span>
-        </div>`;
-        })
-        .join('');
+function renderServices() {
+  const list = document.getElementById('serviceList');
+  if (!list) return;
+  list.innerHTML = SERVICES.map(
+    (s) => `
+    <li class="service-item">
+      <div class="service-icon-box">
+        <img src="${s.icon}" alt="" width="40">
+      </div>
+      <div class="service-content-box">
+        <h4 class="h4 service-item-title">${escapeHtml(s.title)}</h4>
+        <p class="service-item-text">${escapeHtml(s.text)}</p>
+      </div>
+    </li>`
+  ).join('');
 }
 
-function setupHeroRoleRotator() {
-    const el = document.getElementById('heroRole');
-    const roles = DATA.heroRoles || [];
-    if (!el || roles.length <= 1) return;
-
-    let index = 0;
-    el.textContent = roles[0];
-
-    setInterval(() => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(8px)';
-        setTimeout(() => {
-            index = (index + 1) % roles.length;
-            el.textContent = roles[index];
-            el.style.opacity = '1';
-            el.style.transform = 'translateY(0)';
-        }, 300);
-    }, 3600);
+function renderFocusTags() {
+  const container = document.getElementById('focusTags');
+  const items = DATA.focusingOn || [];
+  if (!container || !items.length) return;
+  container.innerHTML = items.map((item) => `<li>${escapeHtml(item)}</li>`).join('');
 }
 
-/* About metrics */
-function renderAboutMetrics() {
-    const container = document.getElementById('aboutMetrics');
-    if (!container) return;
-
-    const metrics = [
-        { icon: 'fa-folder', value: '13+', label: 'Open-source repos', highlight: false },
-        { icon: 'fa-rocket', value: '5+', label: 'Live deployed apps', highlight: true },
-        { icon: 'fa-microchip', value: '10+', label: 'Technologies', highlight: false },
-        { icon: 'fa-award', value: '4+', label: 'Certifications', highlight: false },
-    ];
-
-    container.innerHTML = metrics
-        .map(
-            (m) => `
-        <article class="metric-card${m.highlight ? ' highlight' : ''} reveal">
-            <div class="metric-icon"><i class="fas ${m.icon}"></i></div>
-            <span class="metric-value">${escapeHtml(m.value)}</span>
-            <span class="metric-label">${escapeHtml(m.label)}</span>
-        </article>`
-        )
-        .join('');
-}
-
-/* Skills */
-function renderSkills() {
-    const grid = document.getElementById('skillsGrid');
-    const focus = document.getElementById('skillsFocus');
-    const groups = DATA.skillGroups || [];
-
-    if (grid && groups.length) {
-        grid.innerHTML = groups
-            .map((group, index) => {
-                const num = String(index + 1).padStart(2, '0');
-                const chips = group.skills
-                    .map((skill) => `<span class="skill-chip">${techIconHtml(skill)}${escapeHtml(skill)}</span>`)
-                    .join('');
-
-                return `
-                <article class="skill-card${group.featured ? ' skill-card--featured' : ''} reveal">
-                    <div class="skill-card-top">
-                        <span class="skill-card-num">${num}</span>
-                        <span class="skill-card-icon"><i class="fas ${group.icon}"></i></span>
-                    </div>
-                    <h3 class="skill-card-title">${escapeHtml(group.title)}</h3>
-                    <p class="skill-card-count">${group.skills.length} technologies</p>
-                    <div class="skill-chip-list">${chips}</div>
-                </article>`;
-            })
-            .join('');
-
-        grid.querySelectorAll('.skill-card').forEach((card, i) => {
-            card.style.transitionDelay = `${i * 60}ms`;
-            observeReveal(card);
-            card.addEventListener('mousemove', (e) => {
-                const r = card.getBoundingClientRect();
-                card.style.setProperty('--mx', `${e.clientX - r.left}px`);
-                card.style.setProperty('--my', `${e.clientY - r.top}px`);
-            });
-        });
-    }
-
-    const focusing = DATA.focusingOn || [];
-    if (focus && focusing.length) {
-        focus.innerHTML = `
-            <div class="skills-focus-inner reveal">
-                <span class="skills-focus-label"><i class="fas fa-seedling"></i> Currently exploring</span>
-                <div class="skills-focus-chips">
-                    ${focusing.map((item) => `<span class="focus-chip">${escapeHtml(item)}</span>`).join('')}
-                </div>
-            </div>`;
-        observeReveal(focus.querySelector('.skills-focus-inner'));
-    }
-}
-
-/* Marquee */
-function buildMarquee() {
-    const track = document.getElementById('marqueeTrack');
-    if (!track) return;
-
-    const itemsHtml = MARQUEE_TECH
-        .map((tech) => `<span class="marquee-item">${techIconHtml(tech)}${escapeHtml(tech)}</span>`)
-        .join('');
-
-    track.innerHTML = itemsHtml + itemsHtml;
-}
-
-/* Timeline */
-function renderTimeline() {
-    const container = document.getElementById('timeline');
-    const items = DATA.experience || [];
-    if (!container || !items.length) return;
-
-    container.innerHTML = items
-        .map(
-            (item) => `
-        <article class="timeline-item reveal">
-            <div class="timeline-dot"></div>
-            <div class="timeline-body">
-                ${item.period ? `<time>${escapeHtml(item.period)}</time>` : ''}
-                <h3>${escapeHtml(item.title)}${item.subtitle ? ` · ${escapeHtml(item.subtitle)}` : ''}</h3>
-                <p>${escapeHtml(item.description)}</p>
-                <div class="pill-row">${(item.tags || [])
-                    .map((t) => `<span>${escapeHtml(t)}</span>`)
-                    .join('')}</div>
-            </div>
-        </article>`
-        )
-        .join('');
-
-    container.querySelectorAll('.timeline-item').forEach((el, i) => {
-        el.style.transitionDelay = `${i * 80}ms`;
-        observeReveal(el);
-    });
-}
-
-/* Certifications */
 function renderCertifications() {
-    const grid = document.getElementById('certGrid');
-    const certs = DATA.certifications || [];
-    if (!grid || !certs.length) return;
+  const list = document.getElementById('certTimeline');
+  const certs = DATA.certifications || [];
+  if (!list) return;
+  list.innerHTML = certs
+    .map(
+      (c) => `
+    <li class="timeline-item">
+      <h4 class="h4 timeline-item-title">${escapeHtml(c.title)}</h4>
+      <span>${escapeHtml(c.year)}</span>
+      <p class="timeline-text">${escapeHtml(c.provider)}</p>
+    </li>`
+    )
+    .join('');
+}
 
-    grid.innerHTML = certs
-        .map(
-            (cert) => `
-        <article class="cert-card tilt reveal">
-            <div class="cert-icon"><i class="fas fa-award"></i></div>
-            <h3 class="cert-title">${escapeHtml(cert.title)}</h3>
-            <p class="cert-provider">${escapeHtml(cert.provider)}</p>
-            <span class="cert-year">${escapeHtml(cert.year)}</span>
-        </article>`
-        )
-        .join('');
+function renderExperience() {
+  const list = document.getElementById('experienceTimeline');
+  const items = DATA.experience || [];
+  if (!list) return;
+  list.innerHTML = items
+    .map(
+      (item) => `
+    <li class="timeline-item">
+      <h4 class="h4 timeline-item-title">${escapeHtml(item.title)}${item.subtitle ? ` · ${escapeHtml(item.subtitle)}` : ''}</h4>
+      <span>${escapeHtml(item.period || '')}</span>
+      <p class="timeline-text">${escapeHtml(item.description)}</p>
+    </li>`
+    )
+    .join('');
+}
 
-    grid.querySelectorAll('.cert-card').forEach((card, i) => {
-        card.style.transitionDelay = `${i * 80}ms`;
-        observeReveal(card);
+function renderSkillBars() {
+  const list = document.getElementById('skillsBars');
+  if (!list) return;
+  list.innerHTML = SKILL_BARS.map(
+    (skill) => `
+    <li class="skills-item">
+      <div class="title-wrapper">
+        <h5 class="h5">${escapeHtml(skill.name)}</h5>
+        <data value="${skill.value}">${skill.value}%</data>
+      </div>
+      <div class="skill-progress-bg">
+        <div class="skill-progress-fill" style="width: ${skill.value}%;"></div>
+      </div>
+    </li>`
+  ).join('');
+}
+
+/* ---- vCard UI (sidebar, nav, filters) ---- */
+
+function initVcardUI() {
+  const elementToggleFunc = (elem) => elem.classList.toggle('active');
+
+  const sidebar = document.querySelector('[data-sidebar]');
+  const sidebarBtn = document.querySelector('[data-sidebar-btn]');
+  if (sidebarBtn && sidebar) {
+    sidebarBtn.addEventListener('click', () => elementToggleFunc(sidebar));
+  }
+
+  const select = document.querySelector('[data-select]');
+  const selectItems = document.querySelectorAll('[data-select-item]');
+  const selectValue = document.querySelector('[data-selecct-value]');
+  const filterBtns = document.querySelectorAll('[data-filter-btn]');
+
+  if (select) {
+    select.addEventListener('click', () => elementToggleFunc(select));
+  }
+
+  selectItems.forEach((item) => {
+    item.addEventListener('click', function () {
+      const label = this.textContent.trim();
+      const filter = this.dataset.filter || 'all';
+      if (selectValue) selectValue.textContent = label;
+      if (select) elementToggleFunc(select);
+      filterProjects(filter);
+      syncFilterButtons(filter);
     });
-}
+  });
 
-/* Navigation */
-function setupNavigation() {
-    const hamburger = document.querySelector('.hamburger');
-    const navMenu = document.querySelector('.nav-menu');
-    const backdrop = document.querySelector('.nav-backdrop');
-    if (!hamburger || !navMenu) return;
-
-    function closeMenu() {
-        navMenu.classList.remove('active');
-        hamburger.classList.remove('active');
-        hamburger.setAttribute('aria-expanded', 'false');
-        if (backdrop) backdrop.classList.remove('active');
-        document.body.style.overflow = '';
-    }
-
-    function openMenu() {
-        navMenu.classList.add('active');
-        hamburger.classList.add('active');
-        hamburger.setAttribute('aria-expanded', 'true');
-        if (backdrop) backdrop.classList.add('active');
-        document.body.style.overflow = 'hidden';
-    }
-
-    hamburger.addEventListener('click', () => {
-        navMenu.classList.contains('active') ? closeMenu() : openMenu();
+  let lastClickedBtn = filterBtns[0];
+  filterBtns.forEach((btn) => {
+    btn.addEventListener('click', function () {
+      const filter = this.dataset.filter || 'all';
+      if (selectValue) selectValue.textContent = this.textContent.trim();
+      filterProjects(filter);
+      if (lastClickedBtn) lastClickedBtn.classList.remove('active');
+      this.classList.add('active');
+      lastClickedBtn = this;
     });
+  });
 
-    if (backdrop) backdrop.addEventListener('click', closeMenu);
-    document.querySelectorAll('.nav-menu a').forEach((link) => link.addEventListener('click', closeMenu));
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && navMenu.classList.contains('active')) closeMenu();
+  const navigationLinks = document.querySelectorAll('[data-nav-link]');
+  const pages = document.querySelectorAll('[data-page]');
+
+  navigationLinks.forEach((link) => {
+    link.addEventListener('click', function () {
+      const pageName = this.textContent.trim().toLowerCase();
+      pages.forEach((page) => {
+        const match = page.dataset.page === pageName;
+        page.classList.toggle('active', match);
+      });
+      navigationLinks.forEach((navLink) => {
+        navLink.classList.toggle('active', navLink === this);
+      });
+      window.scrollTo(0, 0);
     });
-}
+  });
 
-function setupNavbarScroll() {
-    const navbar = document.querySelector('.navbar');
-    if (!navbar) return;
-    window.addEventListener('scroll', () => {
-        navbar.classList.toggle('scrolled', window.scrollY > 40);
-    }, { passive: true });
-}
+  const form = document.querySelector('[data-form]');
+  const formInputs = document.querySelectorAll('[data-form-input]');
+  const formBtn = document.querySelector('[data-form-btn]');
 
-function setupScrollSpy() {
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('.nav-menu a');
-    if (!sections.length || !navLinks.length) return;
-
-    const observer = new IntersectionObserver(
-        (entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    const id = entry.target.getAttribute('id');
-                    navLinks.forEach((link) => {
-                        link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
-                    });
-                }
-            });
-        },
-        { rootMargin: '-25% 0px -65% 0px', threshold: 0 }
-    );
-    sections.forEach((section) => observer.observe(section));
-}
-
-/* Scroll progress */
-function setupScrollProgress() {
-    const bar = document.getElementById('scrollProgress');
-    if (!bar) return;
-    const update = () => {
-        const h = document.documentElement;
-        const scrolled = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
-        bar.style.width = `${scrolled}%`;
-    };
-    window.addEventListener('scroll', update, { passive: true });
-    update();
-}
-
-/* Back to top */
-function setupBackToTop() {
-    const btn = document.getElementById('backToTop');
-    if (!btn) return;
-    window.addEventListener('scroll', () => {
-        btn.classList.toggle('visible', window.scrollY > 600);
-    }, { passive: true });
-    btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-}
-
-/* Cursor glow */
-function setupCursorGlow() {
-    const glow = document.getElementById('cursorGlow');
-    if (!glow || prefersReducedMotion) return;
-    if (!window.matchMedia('(pointer: fine)').matches) return;
-
-    let raf;
-    window.addEventListener('mousemove', (e) => {
-        glow.style.opacity = '1';
-        cancelAnimationFrame(raf);
-        raf = requestAnimationFrame(() => {
-            glow.style.left = `${e.clientX}px`;
-            glow.style.top = `${e.clientY}px`;
-        });
+  if (form && formBtn) {
+    formInputs.forEach((input) => {
+      input.addEventListener('input', () => {
+        if (form.checkValidity()) formBtn.removeAttribute('disabled');
+        else formBtn.setAttribute('disabled', '');
+      });
     });
-    document.addEventListener('mouseleave', () => (glow.style.opacity = '0'));
+  }
 }
 
-/* Particle network */
-function setupParticles() {
-    const canvas = document.getElementById('particles');
-    if (!canvas || prefersReducedMotion) return;
-    const ctx = canvas.getContext('2d');
-    let w, h, particles, raf;
-    const isMobile = window.innerWidth < 768;
-
-    function resize() {
-        w = canvas.width = window.innerWidth;
-        h = canvas.height = window.innerHeight;
-        const count = Math.min(isMobile ? 28 : 70, Math.floor((w * h) / 16000));
-        particles = Array.from({ length: count }, () => ({
-            x: Math.random() * w,
-            y: Math.random() * h,
-            vx: (Math.random() - 0.5) * 0.4,
-            vy: (Math.random() - 0.5) * 0.4,
-            r: Math.random() * 1.6 + 0.6,
-        }));
-    }
-
-    function draw() {
-        ctx.clearRect(0, 0, w, h);
-        for (let i = 0; i < particles.length; i++) {
-            const p = particles[i];
-            p.x += p.vx;
-            p.y += p.vy;
-            if (p.x < 0 || p.x > w) p.vx *= -1;
-            if (p.y < 0 || p.y > h) p.vy *= -1;
-
-            ctx.beginPath();
-            ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-            ctx.fillStyle = 'rgba(167, 139, 250, 0.55)';
-            ctx.fill();
-
-            for (let j = i + 1; j < particles.length; j++) {
-                const q = particles[j];
-                const dx = p.x - q.x;
-                const dy = p.y - q.y;
-                const dist = Math.hypot(dx, dy);
-                if (dist < 120) {
-                    ctx.beginPath();
-                    ctx.moveTo(p.x, p.y);
-                    ctx.lineTo(q.x, q.y);
-                    ctx.strokeStyle = `rgba(167, 139, 250, ${0.12 * (1 - dist / 120)})`;
-                    ctx.lineWidth = 1;
-                    ctx.stroke();
-                }
-            }
-        }
-        raf = requestAnimationFrame(draw);
-    }
-
-    resize();
-    draw();
-    let resizeTimer;
-    window.addEventListener('resize', () => {
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(resize, 200);
-    });
+function syncFilterButtons(selectedFilter) {
+  document.querySelectorAll('[data-filter-btn]').forEach((btn) => {
+    const f = btn.dataset.filter || 'all';
+    btn.classList.toggle('active', f === selectedFilter);
+  });
 }
 
-/* Tilt */
-function setupTilt() {
-    if (prefersReducedMotion || !window.matchMedia('(pointer: fine)').matches) return;
-    document.querySelectorAll('.tilt').forEach((el) => {
-        el.style.transformStyle = 'preserve-3d';
-        el.addEventListener('mousemove', (e) => {
-            const r = el.getBoundingClientRect();
-            const px = (e.clientX - r.left) / r.width - 0.5;
-            const py = (e.clientY - r.top) / r.height - 0.5;
-            el.style.transform = `perspective(800px) rotateY(${px * 8}deg) rotateX(${-py * 8}deg)`;
-        });
-        el.addEventListener('mouseleave', () => {
-            el.style.transform = '';
-        });
-    });
+function filterProjects(selectedFilter) {
+  const items = document.querySelectorAll('[data-filter-item]');
+  items.forEach((item) => {
+    const cat = item.dataset.category;
+    const show = selectedFilter === 'all' || cat === selectedFilter;
+    item.classList.toggle('active', show);
+  });
 }
 
-/* Magnetic buttons */
-function setupMagnetic() {
-    if (prefersReducedMotion || !window.matchMedia('(pointer: fine)').matches) return;
-    document.querySelectorAll('.magnetic').forEach((el) => {
-        el.addEventListener('mousemove', (e) => {
-            const r = el.getBoundingClientRect();
-            const x = e.clientX - r.left - r.width / 2;
-            const y = e.clientY - r.top - r.height / 2;
-            el.style.transform = `translate(${x * 0.2}px, ${y * 0.3}px)`;
-        });
-        el.addEventListener('mouseleave', () => {
-            el.style.transform = '';
-        });
-    });
-}
+/* ---- GitHub projects ---- */
 
-/* Projects */
 function getFeaturedMap() {
-    const map = new Map();
-    (DATA.featuredLiveProjects || []).forEach((project) => map.set(project.name.toLowerCase(), project));
-    return map;
+  const map = new Map();
+  (DATA.featuredLiveProjects || []).forEach((p) => map.set(p.name.toLowerCase(), p));
+  return map;
 }
 
 function getCategory(repoName, language) {
-    const overrides = DATA.repoCategoryOverrides || {};
-    if (overrides[repoName]) return overrides[repoName];
-    if (!language) return 'web';
-    return LANGUAGE_CATEGORY_MAP[language] || 'web';
+  const overrides = DATA.repoCategoryOverrides || {};
+  if (overrides[repoName]) return overrides[repoName];
+  if (!language) return 'web';
+  return LANGUAGE_CATEGORY_MAP[language] || 'web';
 }
 
 function mergeWithFeatured(repos) {
-    const featuredMap = getFeaturedMap();
-    const excluded = new Set((DATA.excludedRepos || []).map((name) => name.toLowerCase()));
-    const merged = new Map();
+  const featuredMap = getFeaturedMap();
+  const excluded = new Set((DATA.excludedRepos || []).map((n) => n.toLowerCase()));
+  const merged = new Map();
 
-    repos
-        .filter((repo) => !repo.fork && !excluded.has(repo.name.toLowerCase()))
-        .forEach((repo) => {
-            const featured = featuredMap.get(repo.name.toLowerCase());
-            merged.set(repo.name.toLowerCase(), {
-                id: repo.id,
-                name: repo.name,
-                description: featured?.description || repo.description || 'No description available',
-                category: featured?.category || getCategory(repo.name, repo.language),
-                tech: featured?.tech || [repo.language || 'Unknown'].filter(Boolean),
-                github: featured?.github || repo.html_url,
-                live: featured?.live || repo.homepage || null,
-                stars: repo.stargazers_count,
-                forks: repo.forks_count,
-                updated: repo.updated_at,
-                featured: featured?.featured ?? false,
-            });
-        });
-
-    (DATA.featuredLiveProjects || []).forEach((project) => {
-        const key = project.name.toLowerCase();
-        if (!merged.has(key)) {
-            merged.set(key, {
-                id: key,
-                name: project.name,
-                description: project.description,
-                category: project.category,
-                tech: project.tech,
-                github: project.github,
-                live: project.live,
-                stars: 0,
-                forks: 0,
-                updated: new Date().toISOString(),
-                featured: project.featured ?? true,
-            });
-        }
+  repos
+    .filter((repo) => !repo.fork && !excluded.has(repo.name.toLowerCase()))
+    .forEach((repo) => {
+      const featured = featuredMap.get(repo.name.toLowerCase());
+      const cat = featured?.category || getCategory(repo.name, repo.language);
+      merged.set(repo.name.toLowerCase(), {
+        name: repo.name,
+        description: featured?.description || repo.description || 'Open-source project',
+        category: cat,
+        vcardCategory: VCARD_CATEGORY[cat] || 'web development',
+        github: featured?.github || repo.html_url,
+        live: featured?.live || repo.homepage || null,
+        updated: repo.updated_at,
+        featured: featured?.featured ?? false,
+      });
     });
 
-    return Array.from(merged.values()).sort((a, b) => {
-        if (a.featured !== b.featured) return a.featured ? -1 : 1;
-        return new Date(b.updated) - new Date(a.updated);
-    });
+  (DATA.featuredLiveProjects || []).forEach((project) => {
+    const key = project.name.toLowerCase();
+    if (!merged.has(key)) {
+      merged.set(key, {
+        name: project.name,
+        description: project.description,
+        category: project.category,
+        vcardCategory: VCARD_CATEGORY[project.category] || 'web development',
+        github: project.github,
+        live: project.live,
+        updated: new Date().toISOString(),
+        featured: project.featured ?? true,
+      });
+    }
+  });
+
+  return Array.from(merged.values()).sort((a, b) => {
+    if (a.featured !== b.featured) return a.featured ? -1 : 1;
+    return new Date(b.updated) - new Date(a.updated);
+  });
 }
 
 async function fetchAndDisplayProjects() {
-    const grid = document.getElementById('projectsGrid');
-    if (!grid) return;
-    grid.innerHTML = '<div class="loading-projects"><div class="spinner"></div><p>Loading projects from GitHub...</p></div>';
+  const list = document.getElementById('projectList');
+  if (!list) return;
 
-    try {
-        const response = await fetch(`${GITHUB_API_URL}?per_page=100`);
-        if (!response.ok) throw new Error('Failed to fetch repos');
-        const repos = await response.json();
-        allProjects = mergeWithFeatured(repos);
-        displayProjects(allProjects);
-        setupProjectFilters();
-    } catch (error) {
-        console.error('Error fetching GitHub repos:', error);
-        allProjects = (DATA.featuredLiveProjects || []).map((project) => ({
-            id: project.name,
-            name: project.name,
-            description: project.description,
-            category: project.category,
-            tech: project.tech,
-            github: project.github,
-            live: project.live,
-            stars: 0,
-            forks: 0,
-            updated: new Date().toISOString(),
-            featured: project.featured ?? true,
-        }));
-        displayProjects(allProjects);
-        setupProjectFilters();
-    }
+  try {
+    const response = await fetch(`${GITHUB_API_URL}?per_page=100`);
+    if (!response.ok) throw new Error('Failed to fetch');
+    const repos = await response.json();
+    allProjects = mergeWithFeatured(repos);
+    displayProjects(allProjects);
+  } catch (err) {
+    console.error(err);
+    allProjects = (DATA.featuredLiveProjects || []).map((p) => ({
+      name: p.name,
+      description: p.description,
+      category: p.category,
+      vcardCategory: VCARD_CATEGORY[p.category] || 'web development',
+      github: p.github,
+      live: p.live,
+      featured: p.featured ?? true,
+    }));
+    displayProjects(allProjects);
+  }
 }
 
 function displayProjects(projects) {
-    const grid = document.getElementById('projectsGrid');
-    if (!grid) return;
+  const list = document.getElementById('projectList');
+  if (!list) return;
 
-    if (projects.length === 0) {
-        grid.innerHTML = '<p class="no-projects">No projects found.</p>';
-        return;
-    }
+  if (!projects.length) {
+    list.innerHTML = '<li class="project-item active"><p>No projects found.</p></li>';
+    return;
+  }
 
-    grid.style.opacity = '0';
-    grid.innerHTML = projects.map((project) => createProjectCard(project)).join('');
-    requestAnimationFrame(() => (grid.style.opacity = '1'));
-
-    grid.querySelectorAll('.project-card').forEach((card, index) => {
-        card.classList.add('reveal');
-        card.style.transitionDelay = `${index * 50}ms`;
-        observeReveal(card);
-    });
+  list.innerHTML = projects.map((p) => createProjectItem(p)).join('');
 }
 
-function createProjectCard(project) {
-    const date = project.updated ? new Date(project.updated) : new Date();
-    const timeAgo = getTimeAgo(date);
-    const icon = CATEGORY_ICONS[project.category] || 'fa-code';
+function createProjectItem(project) {
+  const initial = project.name.charAt(0).toUpperCase();
+  const catClass = project.category === 'ai' ? 'cat-ai' : project.category === 'mobile' ? 'cat-mobile' : 'cat-web';
+  const href = project.live || project.github;
+  const label = project.vcardCategory || VCARD_CATEGORY[project.category] || 'web development';
 
-    return `
-        <article class="project-card${project.featured ? ' featured' : ''}" data-category="${project.category}">
-            <div class="project-card-header">
-                <span class="project-category">${CATEGORY_LABELS[project.category] || project.category.toUpperCase()}</span>
-                <span class="project-header-icon"><i class="fas ${icon}"></i></span>
-            </div>
-            <div class="project-card-body">
-                <h3 class="project-title">${escapeHtml(project.name)}</h3>
-                <p class="project-description">${escapeHtml(project.description)}</p>
-                <div class="project-tech">
-                    ${project.tech.map((tech) => `<span class="tech-tag">${escapeHtml(tech)}</span>`).join('')}
-                </div>
-                <p class="project-updated">Updated ${timeAgo}</p>
-                <div class="project-stats">
-                    <span><i class="fas fa-star"></i> ${project.stars || 0}</span>
-                    <span><i class="fas fa-code-branch"></i> ${project.forks || 0}</span>
-                </div>
-                <div class="project-links">
-                    <a href="${project.github}" target="_blank" rel="noopener noreferrer" class="project-link">
-                        <i class="fab fa-github"></i> Code
-                    </a>
-                    ${
-                        project.live
-                            ? `<a href="${project.live}" target="_blank" rel="noopener noreferrer" class="project-link">
-                        <i class="fas fa-arrow-up-right-from-square"></i> Live
-                    </a>`
-                            : ''
-                    }
-                </div>
-            </div>
-        </article>`;
+  return `
+    <li class="project-item active" data-filter-item data-category="${label}">
+      <a href="${href}" target="_blank" rel="noopener noreferrer">
+        <figure class="project-img">
+          <div class="project-item-icon-box">
+            <ion-icon name="eye-outline"></ion-icon>
+          </div>
+          <div class="project-placeholder ${catClass}">${escapeHtml(initial)}</div>
+        </figure>
+        <h3 class="project-title">${escapeHtml(project.name)}</h3>
+        <p class="project-category">${escapeHtml(label)}</p>
+      </a>
+    </li>`;
 }
 
-function getTimeAgo(date) {
-    const seconds = Math.floor((new Date() - date) / 1000);
-    const intervals = [
-        { label: 'year', seconds: 31536000 },
-        { label: 'month', seconds: 2592000 },
-        { label: 'week', seconds: 604800 },
-        { label: 'day', seconds: 86400 },
-        { label: 'hour', seconds: 3600 },
-        { label: 'minute', seconds: 60 },
-    ];
-    for (const interval of intervals) {
-        const count = Math.floor(seconds / interval.seconds);
-        if (count >= 1) return `${count} ${interval.label}${count > 1 ? 's' : ''} ago`;
-    }
-    return 'just now';
-}
+/* ---- GitHub stats ---- */
 
-function setupProjectFilters() {
-    const filterBtns = document.querySelectorAll('.filter-btn');
-    filterBtns.forEach((btn) => {
-        btn.addEventListener('click', () => {
-            filterBtns.forEach((b) => b.classList.remove('active'));
-            btn.classList.add('active');
-            const filter = btn.dataset.filter;
-            const filtered = filter === 'all' ? allProjects : allProjects.filter((p) => p.category === filter);
-            displayProjects(filtered);
-        });
-    });
-}
-
-/* GitHub stats */
 async function fetchGitHubStats() {
-    try {
-        const response = await fetch(GITHUB_API_URL);
-        if (!response.ok) throw new Error('Failed to fetch');
-        const repos = await response.json();
-        const excluded = new Set((DATA.excludedRepos || []).map((name) => name.toLowerCase()));
-        const nonForkRepos = repos.filter((repo) => !repo.fork && !excluded.has(repo.name.toLowerCase()));
+  try {
+    const response = await fetch(GITHUB_API_URL);
+    if (!response.ok) throw new Error('Failed');
+    const repos = await response.json();
+    const excluded = new Set((DATA.excludedRepos || []).map((n) => n.toLowerCase()));
+    const nonFork = repos.filter((r) => !r.fork && !excluded.has(r.name.toLowerCase()));
 
-        const stats = {
-            totalRepos: nonForkRepos.length,
-            totalStars: nonForkRepos.reduce((sum, repo) => sum + repo.stargazers_count, 0),
-            totalForks: nonForkRepos.reduce((sum, repo) => sum + repo.forks_count, 0),
-            languages: new Set(nonForkRepos.map((repo) => repo.language).filter(Boolean)).size,
-        };
+    const stats = {
+      totalRepos: nonFork.length,
+      totalStars: nonFork.reduce((s, r) => s + r.stargazers_count, 0),
+      totalForks: nonFork.reduce((s, r) => s + r.forks_count, 0),
+      languages: new Set(nonFork.map((r) => r.language).filter(Boolean)).size,
+    };
 
-        Object.entries(stats).forEach(([key, value]) => {
-            const el = document.getElementById(key);
-            if (el) {
-                el.dataset.target = value;
-                el.textContent = '0';
+    Object.entries(stats).forEach(([key, value]) => {
+      const el = document.getElementById(key);
+      if (el) {
+        el.dataset.target = value;
+        el.textContent = '0';
+      }
+    });
+
+    const statsPage = document.querySelector('[data-page="stats"]');
+    if (statsPage) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting && !statsAnimated) {
+              statsAnimated = true;
+              animateCounters();
+              observer.disconnect();
             }
-        });
-
-        const statsSection = document.getElementById('stats');
-        if (statsSection) {
-            const statsObserver = new IntersectionObserver(
-                (entries) => {
-                    entries.forEach((entry) => {
-                        if (entry.isIntersecting && !statsAnimated) {
-                            statsAnimated = true;
-                            animateCounters();
-                            statsObserver.unobserve(entry.target);
-                        }
-                    });
-                },
-                { threshold: 0.3 }
-            );
-            statsObserver.observe(statsSection);
-        }
-    } catch (error) {
-        console.error('Error fetching GitHub stats:', error);
+          });
+        },
+        { threshold: 0.2 }
+      );
+      observer.observe(statsPage);
     }
+  } catch (err) {
+    console.error(err);
+  }
 }
 
 function animateCounters() {
-    ['totalRepos', 'totalStars', 'totalForks', 'languages'].forEach((id) => {
-        const el = document.getElementById(id);
-        if (!el) return;
-        const target = parseInt(el.dataset.target, 10) || 0;
-        const duration = 1600;
-        const start = performance.now();
-        function update(currentTime) {
-            const progress = Math.min((currentTime - start) / duration, 1);
-            const eased = 1 - Math.pow(1 - progress, 3);
-            el.textContent = Math.floor(eased * target);
-            if (progress < 1) requestAnimationFrame(update);
-            else el.textContent = target;
-        }
-        requestAnimationFrame(update);
-    });
-}
-
-/* Reveal */
-function observeReveal(el) {
+  ['totalRepos', 'totalStars', 'totalForks', 'languages'].forEach((id) => {
+    const el = document.getElementById(id);
     if (!el) return;
-    const observer = new IntersectionObserver(
-        (entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    observer.unobserve(entry.target);
-                }
-            });
-        },
-        { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
-    );
-    observer.observe(el);
-}
-
-function setupScrollAnimations() {
-    const selectors = ['.reveal', '.section-head', '.stat-box'];
-    document.querySelectorAll(selectors.join(',')).forEach((el) => {
-        if (!el.classList.contains('reveal')) el.classList.add('reveal');
-        observeReveal(el);
-    });
-}
-
-/* Contact form */
-function setupFormHandling() {
-    const form = document.getElementById('contactForm');
-    if (!form) return;
-    const inputs = form.querySelectorAll('input, textarea');
-
-    inputs.forEach((input) => {
-        input.addEventListener('blur', () => validateField(input));
-        input.addEventListener('input', () => {
-            if (input.classList.contains('error')) validateField(input);
-        });
-    });
-
-    form.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        let isValid = true;
-        inputs.forEach((input) => {
-            if (!validateField(input)) isValid = false;
-        });
-        if (!isValid) return;
-
-        const submitBtn = form.querySelector('.btn-submit');
-        submitBtn.classList.add('loading');
-        submitBtn.disabled = true;
-
-        const accessKey = DATA.web3formsAccessKey;
-        const hasWeb3Forms = accessKey && accessKey !== 'YOUR_WEB3FORMS_ACCESS_KEY';
-
-        try {
-            if (hasWeb3Forms) {
-                const formData = new FormData(form);
-                formData.append('access_key', accessKey);
-                formData.append('subject', `Portfolio contact from ${formData.get('name')}`);
-                const response = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: formData });
-                const result = await response.json();
-                if (!result.success) throw new Error(result.message || 'Failed to send message');
-                showToast("Message sent! I'll get back to you soon.");
-                form.reset();
-            } else {
-                const mailtoLink = `mailto:${DATA.social?.email || 'jahidcric2000@gmail.com'}?subject=${encodeURIComponent('Portfolio Contact')}&body=${encodeURIComponent(
-                    `Name: ${form.name.value}\nEmail: ${form.email.value}\n\n${form.message.value}`
-                )}`;
-                window.location.href = mailtoLink;
-                showToast('Opening your email client…');
-            }
-        } catch (error) {
-            console.error('Contact form error:', error);
-            showToast('Could not send. Please email me directly.', true);
-        } finally {
-            submitBtn.classList.remove('loading');
-            submitBtn.disabled = false;
-        }
-    });
-}
-
-function validateField(field) {
-    const formGroup = field.closest('.form-group');
-    if (!formGroup) return true;
-    let isValid = true;
-    if (field.required && !field.value.trim()) {
-        isValid = false;
-    } else if (field.type === 'email' && field.value) {
-        isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(field.value);
+    const target = parseInt(el.dataset.target, 10) || 0;
+    const duration = 1400;
+    const start = performance.now();
+    function tick(now) {
+      const p = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.floor(eased * target);
+      if (p < 1) requestAnimationFrame(tick);
+      else el.textContent = target;
     }
-    formGroup.classList.toggle('has-error', !isValid);
-    field.classList.toggle('error', !isValid);
-    return isValid;
+    requestAnimationFrame(tick);
+  });
+}
+
+/* ---- Contact form ---- */
+
+function setupContactForm() {
+  const form = document.getElementById('contactForm');
+  if (!form) return;
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = form.querySelector('[data-form-btn]');
+    btn.setAttribute('disabled', '');
+
+    const accessKey = DATA.web3formsAccessKey;
+    const hasWeb3Forms = accessKey && accessKey !== 'YOUR_WEB3FORMS_ACCESS_KEY';
+
+    try {
+      if (hasWeb3Forms) {
+        const formData = new FormData(form);
+        formData.append('access_key', accessKey);
+        formData.append('subject', `Portfolio contact from ${formData.get('name')}`);
+        const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: formData });
+        const result = await res.json();
+        if (!result.success) throw new Error(result.message);
+        showToast("Message sent! I'll get back to you soon.");
+        form.reset();
+      } else {
+        const mailto = `mailto:${DATA.social?.email || 'jahidcric2000@gmail.com'}?subject=${encodeURIComponent('Portfolio Contact')}&body=${encodeURIComponent(
+          `Name: ${form.name.value}\nEmail: ${form.email.value}\n\n${form.message.value}`
+        )}`;
+        window.location.href = mailto;
+        showToast('Opening your email client…');
+      }
+    } catch (err) {
+      console.error(err);
+      showToast('Could not send. Please email me directly.', true);
+    } finally {
+      btn.removeAttribute('disabled');
+    }
+  });
 }
 
 function showToast(message, isError = false) {
-    const toast = document.getElementById('toast');
-    const toastMessage = document.getElementById('toastMessage');
-    if (!toast || !toastMessage) return;
-    toast.classList.toggle('toast-error', isError);
-    toastMessage.textContent = message;
-    toast.classList.add('visible');
-    setTimeout(() => {
-        toast.classList.remove('visible');
-        toast.classList.remove('toast-error');
-    }, 4000);
+  const toast = document.getElementById('toast');
+  const msg = document.getElementById('toastMessage');
+  if (!toast || !msg) return;
+  toast.classList.toggle('toast-error', isError);
+  msg.textContent = message;
+  toast.classList.add('visible');
+  setTimeout(() => {
+    toast.classList.remove('visible', 'toast-error');
+  }, 4000);
 }
-
-document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-    anchor.addEventListener('click', function (e) {
-        const href = this.getAttribute('href');
-        if (href !== '#' && document.querySelector(href)) {
-            e.preventDefault();
-            document.querySelector(href).scrollIntoView({ behavior: 'smooth' });
-        }
-    });
-});

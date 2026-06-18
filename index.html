@@ -2,353 +2,310 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Jahid Bappi — AI Engineer & Full Stack Developer</title>
-    <meta name="description"
-        content="Md. Jahidul Islam — AI Engineer, Full Stack Developer, and Database Specialist. Building scalable web apps, AI tools, and live products.">
-    <meta name="theme-color" content="#09090b">
-
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="Jahid Bappi — AI Engineer & Full Stack Developer">
-    <meta property="og:description" content="Building scalable web apps, AI tools, and live products.">
-    <meta property="og:url" content="https://jahidbappi.vercel.app">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="icon" href="assets/brand-icon.svg" type="image/svg+xml">
-
-    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jahid Bappi — AI Engineer & Full Stack Developer</title>
+  <meta name="description"
+    content="Md. Jahidul Islam — AI Engineer, Full Stack Developer, and Database Specialist. Portfolio powered by vCard layout.">
+  <meta name="theme-color" content="#0c0c0c">
+  <link rel="shortcut icon" href="assets/brand-icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/custom.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 
 <body>
-    <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
 
-    <div class="ambient" aria-hidden="true">
-        <canvas id="particles" class="particles"></canvas>
-        <div class="aurora aurora-1"></div>
-        <div class="aurora aurora-2"></div>
-        <div class="grid-overlay"></div>
-        <div class="noise"></div>
-        <div class="cursor-glow" id="cursorGlow"></div>
-    </div>
+  <main>
 
-    <div class="page-loader" id="pageLoader" aria-hidden="true">
-        <div class="loader-mark">
-            <img src="assets/brand-icon.svg" alt="" width="40" height="40">
+    <!-- SIDEBAR -->
+    <aside class="sidebar" data-sidebar>
+      <div class="sidebar-info">
+        <figure class="avatar-box">
+          <img src="assets/profile.jpg" alt="Md. Jahidul Islam" width="80">
+        </figure>
+        <div class="info-content">
+          <h1 class="name" title="Md. Jahidul Islam">Jahid Bappi</h1>
+          <p class="title">AI Engineer & Full Stack Developer</p>
         </div>
-    </div>
+        <button class="info_more-btn" data-sidebar-btn>
+          <span>Show Contacts</span>
+          <ion-icon name="chevron-down"></ion-icon>
+        </button>
+      </div>
 
-    <a href="#main" class="skip-link">Skip to content</a>
-
-    <header class="site-header">
-        <nav class="navbar" aria-label="Main navigation">
-            <div class="container nav-inner">
-                <a href="#hero" class="brand" aria-label="Jahid Bappi home">
-                    <span class="brand-mark">
-                        <img src="assets/brand-icon.svg" alt="" class="brand-icon" width="22" height="22">
-                    </span>
-                    <span class="brand-name">Jahid<span class="brand-dot">.</span></span>
-                </a>
-                <ul class="nav-menu" role="menubar">
-                    <li role="none"><a href="#about" role="menuitem">About</a></li>
-                    <li role="none"><a href="#skills" role="menuitem">Skills</a></li>
-                    <li role="none"><a href="#projects" role="menuitem">Work</a></li>
-                    <li role="none"><a href="#experience" role="menuitem">Journey</a></li>
-                    <li role="none"><a href="#contact" role="menuitem" class="nav-cta">Let's talk <i
-                                class="fas fa-arrow-right"></i></a></li>
-                </ul>
-                <button class="hamburger" aria-label="Toggle navigation menu" aria-expanded="false">
-                    <span></span><span></span><span></span>
-                </button>
+      <div class="sidebar-info_more">
+        <div class="separator"></div>
+        <ul class="contacts-list">
+          <li class="contact-item">
+            <div class="icon-box">
+              <ion-icon name="mail-outline"></ion-icon>
             </div>
-        </nav>
-        <div class="nav-backdrop" aria-hidden="true"></div>
-    </header>
-
-    <main id="main">
-        <section id="hero" class="hero">
-            <div class="container hero-layout">
-                <div class="hero-copy">
-                    <div class="status-pill reveal">
-                        <span class="status-dot"></span>
-                        Available for opportunities
-                    </div>
-                    <p class="eyebrow reveal">
-                        <i class="fas fa-sparkles"></i>
-                        AI Engineer · Full Stack · Database Specialist
-                    </p>
-                    <h1 class="hero-title reveal">
-                        Hi, I'm Jahid —<br>
-                        I build <span class="gradient-text" id="heroRole">systems that scale.</span>
-                    </h1>
-                    <p class="hero-lead reveal">
-                        Full-stack engineer crafting intelligent web applications, robust database
-                        architecture, and AI-powered tools — from live products like
-                        <a href="https://vibe-flow.vercel.app" target="_blank" rel="noopener">VibeFlow</a>
-                        to production-ready client work.
-                    </p>
-                    <div class="hero-stats" id="heroStats"></div>
-                    <div class="hero-actions reveal">
-                        <a href="#projects" class="btn btn-primary magnetic">
-                            <span>Explore my work</span>
-                            <i class="fas fa-arrow-right"></i>
-                        </a>
-                        <a href="#contact" class="btn btn-ghost magnetic">
-                            <i class="fas fa-paper-plane"></i>
-                            <span>Get in touch</span>
-                        </a>
-                    </div>
-                    <div class="hero-social reveal">
-                        <a href="https://github.com/jahidbappi" target="_blank" rel="noopener noreferrer"
-                            aria-label="GitHub"><i class="fab fa-github"></i></a>
-                        <a href="https://linkedin.com/in/jahidbappi" target="_blank" rel="noopener noreferrer"
-                            aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="https://medium.com/@jahidcric2000" target="_blank" rel="noopener noreferrer"
-                            aria-label="Medium"><i class="fab fa-medium"></i></a>
-                        <a href="https://twitter.com/jahidbappi_" target="_blank" rel="noopener noreferrer"
-                            aria-label="Twitter"><i class="fab fa-x-twitter"></i></a>
-                        <a href="mailto:jahidcric2000@gmail.com" aria-label="Email"><i
-                                class="fas fa-envelope"></i></a>
-                    </div>
-                </div>
-
-                <div class="hero-visual reveal">
-                    <div class="orbit" aria-hidden="true">
-                        <div class="orbit-ring orbit-ring-1"></div>
-                        <div class="orbit-ring orbit-ring-2"></div>
-                        <div class="orbit-ring orbit-ring-3"></div>
-                        <span class="orbit-icon" style="--angle:0deg"><i class="devicon-python-plain"></i></span>
-                        <span class="orbit-icon" style="--angle:60deg"><i class="devicon-react-original"></i></span>
-                        <span class="orbit-icon" style="--angle:120deg"><i class="devicon-tensorflow-original"></i></span>
-                        <span class="orbit-icon" style="--angle:180deg"><i class="devicon-nodejs-plain"></i></span>
-                        <span class="orbit-icon" style="--angle:240deg"><i class="devicon-postgresql-plain"></i></span>
-                        <span class="orbit-icon" style="--angle:300deg"><i class="devicon-docker-plain"></i></span>
-                    </div>
-                    <div class="portrait-wrap tilt">
-                        <div class="portrait-glow"></div>
-                        <img src="assets/profile.jpg" alt="Md. Jahidul Islam" class="portrait" width="300"
-                            height="300">
-                        <div class="portrait-lottie">
-                            <lottie-player src="assets/lottie/ai.json" background="transparent" speed="1" loop
-                                autoplay></lottie-player>
-                        </div>
-                        <div class="floating-badge badge-1"><i class="fas fa-code"></i> Clean code</div>
-                        <div class="floating-badge badge-2"><i class="fas fa-brain"></i> AI / ML</div>
-                        <div class="floating-badge badge-3"><i class="fas fa-database"></i> Databases</div>
-                    </div>
-                </div>
+            <div class="contact-info">
+              <p class="contact-title">Email</p>
+              <a href="mailto:jahidcric2000@gmail.com" class="contact-link">jahidcric2000@gmail.com</a>
             </div>
-
-            <a href="#about" class="scroll-hint" aria-label="Scroll to content">
-                <span>Scroll</span>
-                <i class="fas fa-chevron-down"></i>
+          </li>
+          <li class="contact-item">
+            <div class="icon-box">
+              <ion-icon name="globe-outline"></ion-icon>
+            </div>
+            <div class="contact-info">
+              <p class="contact-title">Portfolio</p>
+              <a href="https://jahidbappi.vercel.app" class="contact-link" target="_blank"
+                rel="noopener">jahidbappi.vercel.app</a>
+            </div>
+          </li>
+          <li class="contact-item">
+            <div class="icon-box">
+              <ion-icon name="logo-github"></ion-icon>
+            </div>
+            <div class="contact-info">
+              <p class="contact-title">GitHub</p>
+              <a href="https://github.com/jahidbappi" class="contact-link" target="_blank"
+                rel="noopener">github.com/jahidbappi</a>
+            </div>
+          </li>
+          <li class="contact-item">
+            <div class="icon-box">
+              <ion-icon name="location-outline"></ion-icon>
+            </div>
+            <div class="contact-info">
+              <p class="contact-title">Location</p>
+              <address>Bangladesh</address>
+            </div>
+          </li>
+        </ul>
+        <div class="separator"></div>
+        <ul class="social-list">
+          <li class="social-item">
+            <a href="https://github.com/jahidbappi" class="social-link" target="_blank" rel="noopener">
+              <ion-icon name="logo-github"></ion-icon>
             </a>
+          </li>
+          <li class="social-item">
+            <a href="https://linkedin.com/in/jahidbappi" class="social-link" target="_blank" rel="noopener">
+              <ion-icon name="logo-linkedin"></ion-icon>
+            </a>
+          </li>
+          <li class="social-item">
+            <a href="https://medium.com/@jahidcric2000" class="social-link" target="_blank" rel="noopener">
+              <ion-icon name="logo-medium"></ion-icon>
+            </a>
+          </li>
+          <li class="social-item">
+            <a href="https://twitter.com/jahidbappi_" class="social-link" target="_blank" rel="noopener">
+              <ion-icon name="logo-twitter"></ion-icon>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <div class="main-content">
+
+      <nav class="navbar">
+        <ul class="navbar-list">
+          <li class="navbar-item">
+            <button class="navbar-link active" data-nav-link>About</button>
+          </li>
+          <li class="navbar-item">
+            <button class="navbar-link" data-nav-link>Resume</button>
+          </li>
+          <li class="navbar-item">
+            <button class="navbar-link" data-nav-link>Portfolio</button>
+          </li>
+          <li class="navbar-item">
+            <button class="navbar-link" data-nav-link>Stats</button>
+          </li>
+          <li class="navbar-item">
+            <button class="navbar-link" data-nav-link>Contact</button>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- ABOUT -->
+      <article class="about active" data-page="about">
+        <header>
+          <h2 class="h2 article-title">About me</h2>
+        </header>
+
+        <section class="about-text">
+          <p id="aboutLead"></p>
+          <p id="aboutBody"></p>
         </section>
 
-        <div class="marquee" aria-hidden="true">
-            <div class="marquee-track" id="marqueeTrack"></div>
-        </div>
-
-        <section id="about" class="section about">
-            <div class="container">
-                <header class="section-head">
-                    <span class="section-tag"><i class="fas fa-user-astronaut"></i> 01 — About</span>
-                    <h2 class="section-title">Engineering with intent</h2>
-                    <p class="section-desc">Problem first. Code second.</p>
-                </header>
-                <div class="about-grid">
-                    <div class="about-prose reveal">
-                        <p>
-                            I'm <strong>Md. Jahidul Islam</strong> — an obsessed learner who builds full-stack web
-                            applications with React, Node.js, Django, and Flask, and designs database systems with
-                            Oracle, MySQL, PostgreSQL, and MongoDB.
-                        </p>
-                        <p>
-                            My work spans AI tools like <strong>code-reviewer-ai</strong>, live platforms deployed on
-                            Vercel, and client-facing business websites. I ship clean, maintainable code — and I love
-                            doing it.
-                        </p>
-                        <ul class="about-tags">
-                            <li><i class="fas fa-circle-check"></i> Production deployments</li>
-                            <li><i class="fas fa-circle-check"></i> Database architecture</li>
-                            <li><i class="fas fa-circle-check"></i> AI integrations</li>
-                            <li><i class="fas fa-circle-check"></i> Client web apps</li>
-                        </ul>
-                    </div>
-                    <div class="about-metrics" id="aboutMetrics"></div>
-                </div>
-            </div>
+        <section class="service">
+          <h3 class="h3 service-title">What I'm doing</h3>
+          <ul class="service-list" id="serviceList"></ul>
         </section>
 
-        <section id="skills" class="section skills">
-            <div class="container">
-                <header class="section-head center">
-                    <span class="section-tag"><i class="fas fa-layer-group"></i> 02 — Expertise</span>
-                    <h2 class="section-title">Tools I build with</h2>
-                    <p class="section-desc">Technologies across full-stack development, databases, and AI.</p>
-                </header>
-                <div class="skills-showcase">
-                    <div class="skills-grid" id="skillsGrid" aria-live="polite"></div>
-                    <div class="skills-focus" id="skillsFocus"></div>
-                </div>
+        <section class="service">
+          <h3 class="h3 service-title">Currently exploring</h3>
+          <ul class="skills-tags" id="focusTags"></ul>
+        </section>
+      </article>
+
+      <!-- RESUME -->
+      <article class="resume" data-page="resume">
+        <header>
+          <h2 class="h2 article-title">Resume</h2>
+        </header>
+
+        <section class="timeline">
+          <div class="title-wrapper">
+            <div class="icon-box">
+              <ion-icon name="ribbon-outline"></ion-icon>
             </div>
+            <h3 class="h3">Certifications</h3>
+          </div>
+          <ol class="timeline-list" id="certTimeline"></ol>
         </section>
 
-        <section id="projects" class="section projects">
-            <div class="container">
-                <header class="section-head">
-                    <span class="section-tag"><i class="fas fa-folder-open"></i> 03 — Selected Work</span>
-                    <h2 class="section-title">Things I've shipped</h2>
-                    <p class="section-desc">Pulled live from GitHub.</p>
-                </header>
-                <div class="project-filters" role="group" aria-label="Project filters">
-                    <button class="filter-btn active" data-filter="all"><i class="fas fa-grip"></i> All</button>
-                    <button class="filter-btn" data-filter="web"><i class="fas fa-globe"></i> Web</button>
-                    <button class="filter-btn" data-filter="ai"><i class="fas fa-brain"></i> AI</button>
-                    <button class="filter-btn" data-filter="mobile"><i class="fas fa-mobile-screen"></i> Mobile</button>
-                </div>
-                <div class="projects-grid projects-bento" id="projectsGrid"></div>
+        <section class="timeline">
+          <div class="title-wrapper">
+            <div class="icon-box">
+              <ion-icon name="book-outline"></ion-icon>
             </div>
+            <h3 class="h3">Experience</h3>
+          </div>
+          <ol class="timeline-list" id="experienceTimeline"></ol>
         </section>
 
-        <section id="experience" class="section experience">
-            <div class="container">
-                <header class="section-head center">
-                    <span class="section-tag"><i class="fas fa-route"></i> 04 — Journey</span>
-                    <h2 class="section-title">My experience</h2>
-                </header>
-                <div class="timeline" id="timeline"></div>
-            </div>
+        <section class="skill">
+          <h3 class="h3 skills-title">My skills</h3>
+          <ul class="skills-list content-card" id="skillsBars"></ul>
+        </section>
+      </article>
+
+      <!-- PORTFOLIO -->
+      <article class="portfolio" data-page="portfolio">
+        <header>
+          <h2 class="h2 article-title">Portfolio</h2>
+        </header>
+
+        <section class="projects">
+          <ul class="filter-list">
+            <li class="filter-item">
+              <button class="active" data-filter-btn data-filter="all">All</button>
+            </li>
+            <li class="filter-item">
+              <button data-filter-btn data-filter="web development">Web</button>
+            </li>
+            <li class="filter-item">
+              <button data-filter-btn data-filter="applications">AI</button>
+            </li>
+            <li class="filter-item">
+              <button data-filter-btn data-filter="web design">Mobile</button>
+            </li>
+          </ul>
+
+          <div class="filter-select-box">
+            <button class="filter-select" data-select>
+              <div class="select-value" data-selecct-value>All</div>
+              <div class="select-icon">
+                <ion-icon name="chevron-down"></ion-icon>
+              </div>
+            </button>
+            <ul class="select-list">
+              <li class="select-item"><button data-select-item data-filter="all">All</button></li>
+              <li class="select-item"><button data-select-item data-filter="web development">Web</button></li>
+              <li class="select-item"><button data-select-item data-filter="applications">AI</button></li>
+              <li class="select-item"><button data-select-item data-filter="web design">Mobile</button></li>
+            </ul>
+          </div>
+
+          <ul class="project-list" id="projectList">
+            <li class="project-item active project-loading">
+              <p>Loading projects from GitHub…</p>
+            </li>
+          </ul>
+        </section>
+      </article>
+
+      <!-- STATS (replaces Blog) -->
+      <article class="blog stats-page" data-page="stats">
+        <header>
+          <h2 class="h2 article-title">GitHub Stats</h2>
+        </header>
+
+        <section class="blog-posts">
+          <ul class="blog-posts-list stats-cards" id="statsCards">
+            <li class="blog-post-item stats-card">
+              <div class="blog-content stats-card-inner">
+                <div class="blog-meta"><p class="blog-category">Repositories</p></div>
+                <h3 class="h3 blog-item-title" id="totalRepos">0</h3>
+                <p class="blog-text">Open-source projects on GitHub</p>
+              </div>
+            </li>
+            <li class="blog-post-item stats-card">
+              <div class="blog-content stats-card-inner">
+                <div class="blog-meta"><p class="blog-category">Stars</p></div>
+                <h3 class="h3 blog-item-title" id="totalStars">0</h3>
+                <p class="blog-text">Total stars across repositories</p>
+              </div>
+            </li>
+            <li class="blog-post-item stats-card">
+              <div class="blog-content stats-card-inner">
+                <div class="blog-meta"><p class="blog-category">Forks</p></div>
+                <h3 class="h3 blog-item-title" id="totalForks">0</h3>
+                <p class="blog-text">Community forks and contributions</p>
+              </div>
+            </li>
+            <li class="blog-post-item stats-card">
+              <div class="blog-content stats-card-inner">
+                <div class="blog-meta"><p class="blog-category">Languages</p></div>
+                <h3 class="h3 blog-item-title" id="languages">0</h3>
+                <p class="blog-text">Programming languages in use</p>
+              </div>
+            </li>
+          </ul>
         </section>
 
-        <section id="certifications" class="section certifications">
-            <div class="container">
-                <header class="section-head center">
-                    <span class="section-tag"><i class="fas fa-award"></i> 05 — Credentials</span>
-                    <h2 class="section-title">Certifications</h2>
-                    <p class="section-desc">Continuous learning, validated.</p>
-                </header>
-                <div class="cert-grid" id="certGrid"></div>
-            </div>
+        <section class="about-text stats-note">
+          <p>Live data from <a href="https://github.com/jahidbappi" target="_blank" rel="noopener">@jahidbappi</a>.
+            Featured repos include VibeFlow, code-reviewer-ai, and more.</p>
         </section>
+      </article>
 
-        <section id="stats" class="section stats-section">
-            <div class="container">
-                <header class="section-head center">
-                    <span class="section-tag"><i class="fab fa-github"></i> 06 — Open Source</span>
-                    <h2 class="section-title">GitHub by the numbers</h2>
-                </header>
-                <div class="stats-grid">
-                    <div class="stat-box tilt">
-                        <span class="stat-icon"><i class="fas fa-book"></i></span>
-                        <h3 id="totalRepos">0</h3>
-                        <p>Repositories</p>
-                    </div>
-                    <div class="stat-box tilt">
-                        <span class="stat-icon"><i class="fas fa-star"></i></span>
-                        <h3 id="totalStars">0</h3>
-                        <p>Stars earned</p>
-                    </div>
-                    <div class="stat-box tilt">
-                        <span class="stat-icon"><i class="fas fa-code-branch"></i></span>
-                        <h3 id="totalForks">0</h3>
-                        <p>Forks</p>
-                    </div>
-                    <div class="stat-box tilt">
-                        <span class="stat-icon"><i class="fas fa-code"></i></span>
-                        <h3 id="languages">0</h3>
-                        <p>Languages</p>
-                    </div>
-                </div>
+      <!-- CONTACT -->
+      <article class="contact" data-page="contact">
+        <header>
+          <h2 class="h2 article-title">Contact</h2>
+        </header>
+
+        <section class="contact-form">
+          <h3 class="h3 form-title">Contact Form</h3>
+          <form class="form" data-form id="contactForm" novalidate>
+            <div class="input-wrapper">
+              <input type="text" name="name" class="form-input" placeholder="Full name" required data-form-input
+                autocomplete="name">
+              <input type="email" name="email" class="form-input" placeholder="Email address" required data-form-input
+                autocomplete="email">
             </div>
+            <textarea name="message" class="form-input" placeholder="Your Message" required data-form-input></textarea>
+            <button class="form-btn" type="submit" disabled data-form-btn>
+              <ion-icon name="paper-plane"></ion-icon>
+              <span>Send Message</span>
+            </button>
+          </form>
         </section>
+      </article>
 
-        <section id="contact" class="section contact">
-            <div class="container">
-                <div class="contact-shell">
-                    <div class="contact-intro">
-                        <span class="section-tag"><i class="fas fa-paper-plane"></i> 07 — Contact</span>
-                        <h2 class="section-title">Let's build something</h2>
-                        <p>Open to interesting projects, roles, and collaborations. Drop a message and I'll reply
-                            soon.</p>
-                        <div class="contact-lottie">
-                            <lottie-player src="assets/lottie/coding.json" background="transparent" speed="1" loop
-                                autoplay></lottie-player>
-                        </div>
-                        <ul class="contact-details">
-                            <li><i class="fas fa-envelope"></i><a
-                                    href="mailto:jahidcric2000@gmail.com">jahidcric2000@gmail.com</a></li>
-                            <li><i class="fas fa-location-dot"></i><span>Bangladesh</span></li>
-                            <li><i class="fab fa-github"></i><a href="https://github.com/jahidbappi" target="_blank"
-                                    rel="noopener">github.com/jahidbappi</a></li>
-                        </ul>
-                    </div>
-                    <form id="contactForm" class="contact-form" novalidate>
-                        <div class="form-group">
-                            <input type="text" id="name" name="name" required autocomplete="name" placeholder=" ">
-                            <label for="name">Name</label>
-                            <p class="error-msg">Please enter your name</p>
-                        </div>
-                        <div class="form-group">
-                            <input type="email" id="email" name="email" required autocomplete="email" placeholder=" ">
-                            <label for="email">Email</label>
-                            <p class="error-msg">Please enter a valid email</p>
-                        </div>
-                        <div class="form-group">
-                            <textarea id="message" name="message" rows="5" required placeholder=" "></textarea>
-                            <label for="message">Message</label>
-                            <p class="error-msg">Please enter your message</p>
-                        </div>
-                        <button type="submit" class="btn btn-primary btn-submit magnetic">
-                            <span class="btn-text">Send message <i class="fas fa-paper-plane"></i></span>
-                            <span class="btn-loading"><span class="spinner-sm"></span></span>
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer class="site-footer">
-        <div class="container footer-inner">
-            <div class="footer-brand">
-                <span class="brand-mark sm">
-                    <img src="assets/brand-icon.svg" alt="" class="brand-icon" width="18" height="18">
-                </span>
-                <div class="footer-text">
-                    <p class="footer-name">Md. Jahidul Islam</p>
-                    <p class="footer-quote">"First, solve the problem. Then, write the code."</p>
-                    <p class="footer-copy">&copy; 2026 · Designed & built with purpose</p>
-                </div>
-            </div>
-            <div class="footer-links">
-                <a href="https://github.com/jahidbappi" target="_blank" rel="noopener" aria-label="GitHub"><i
-                        class="fab fa-github"></i></a>
-                <a href="https://linkedin.com/in/jahidbappi" target="_blank" rel="noopener" aria-label="LinkedIn"><i
-                        class="fab fa-linkedin-in"></i></a>
-                <a href="https://medium.com/@jahidcric2000" target="_blank" rel="noopener" aria-label="Medium"><i
-                        class="fab fa-medium"></i></a>
-                <a href="https://twitter.com/jahidbappi_" target="_blank" rel="noopener" aria-label="Twitter"><i
-                        class="fab fa-x-twitter"></i></a>
-            </div>
-        </div>
-    </footer>
-
-    <button class="back-to-top" id="backToTop" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
-
-    <div class="toast" id="toast" role="alert" aria-live="polite">
-        <i class="fas fa-check-circle"></i>
-        <span id="toastMessage">Message sent successfully!</span>
     </div>
+  </main>
 
-    <script src="data.js"></script>
-    <script src="script.js"></script>
+  <div class="toast" id="toast" role="alert" aria-live="polite">
+    <span id="toastMessage">Message sent!</span>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="script.js"></script>
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>
 
 </html>
