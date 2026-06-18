@@ -22,8 +22,11 @@
     --gold-rgb: 251, 191, 36;
     --error: #f87171;
     --success: #34d399;
-    --font-display: 'Syne', system-ui, sans-serif;
-    --font-body: 'DM Sans', system-ui, sans-serif;
+    --font-display: 'Inter', system-ui, sans-serif;
+    --font-body: 'Inter', system-ui, sans-serif;
+    --weight-heading: 500;
+    --weight-emphasis: 600;
+    --weight-body: 400;
     --radius-sm: 8px;
     --radius-md: 14px;
     --radius-lg: 22px;
@@ -186,9 +189,9 @@ img {
     height: 42px;
     border-radius: 12px;
     font-family: var(--font-display);
-    font-weight: 800;
-    font-size: 0.85rem;
-    letter-spacing: -0.02em;
+    font-weight: var(--weight-emphasis);
+    font-size: 0.8rem;
+    letter-spacing: 0.04em;
     background: linear-gradient(135deg, rgba(var(--accent-rgb), 0.2), rgba(var(--accent-2-rgb), 0.12));
     border: 1px solid rgba(var(--accent-rgb), 0.35);
     color: var(--accent);
@@ -202,8 +205,9 @@ img {
 
 .brand-name {
     font-family: var(--font-display);
-    font-weight: 700;
-    font-size: 1.05rem;
+    font-weight: var(--weight-emphasis);
+    font-size: 0.95rem;
+    letter-spacing: -0.01em;
 }
 
 .nav-menu {
@@ -323,9 +327,9 @@ img {
 }
 
 .eyebrow {
-    font-size: 0.85rem;
-    font-weight: 600;
-    letter-spacing: 0.12em;
+    font-size: 0.78rem;
+    font-weight: var(--weight-body);
+    letter-spacing: 0.14em;
     text-transform: uppercase;
     color: var(--text-muted);
     margin-bottom: 1rem;
@@ -333,18 +337,21 @@ img {
 
 .hero-title {
     font-family: var(--font-display);
-    font-size: clamp(2.4rem, 5vw, 3.75rem);
-    font-weight: 800;
-    line-height: 1.08;
-    letter-spacing: -0.03em;
+    font-size: clamp(2rem, 4.2vw, 3rem);
+    font-weight: var(--weight-heading);
+    line-height: 1.2;
+    letter-spacing: -0.025em;
     margin-bottom: 1.25rem;
 }
 
+.hero-title .gradient-text {
+    font-weight: var(--weight-emphasis);
+}
+
 .gradient-text {
-    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 50%, var(--gold) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: var(--accent);
+    background: none;
+    -webkit-text-fill-color: unset;
 }
 
 .hero-lead {
@@ -590,20 +597,20 @@ img {
 
 .section-tag {
     display: inline-block;
-    font-size: 0.78rem;
-    font-weight: 600;
-    letter-spacing: 0.14em;
+    font-size: 0.72rem;
+    font-weight: var(--weight-body);
+    letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: var(--accent);
+    color: var(--text-muted);
     margin-bottom: 0.75rem;
 }
 
 .section-title {
     font-family: var(--font-display);
-    font-size: clamp(1.85rem, 3.5vw, 2.75rem);
-    font-weight: 800;
+    font-size: clamp(1.5rem, 2.8vw, 2rem);
+    font-weight: var(--weight-heading);
     letter-spacing: -0.02em;
-    line-height: 1.15;
+    line-height: 1.25;
     margin-bottom: 0.75rem;
 }
 
@@ -622,9 +629,9 @@ img {
 
 .about-quote {
     font-family: var(--font-display);
-    font-size: 1.35rem;
-    font-weight: 600;
-    line-height: 1.45;
+    font-size: 1.15rem;
+    font-weight: var(--weight-body);
+    line-height: 1.55;
     color: var(--text);
     border-left: 3px solid var(--accent);
     padding-left: 1.25rem;
@@ -688,14 +695,11 @@ img {
 .metric-value {
     display: block;
     font-family: var(--font-display);
-    font-size: 2.25rem;
-    font-weight: 800;
+    font-size: 1.85rem;
+    font-weight: var(--weight-emphasis);
     line-height: 1;
     margin-bottom: 0.35rem;
-    background: linear-gradient(135deg, var(--text), var(--accent));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: var(--text);
 }
 
 .metric-label {
@@ -743,8 +747,8 @@ img {
 
 .skill-panel-head h3 {
     font-family: var(--font-display);
-    font-size: 1.1rem;
-    font-weight: 700;
+    font-size: 1rem;
+    font-weight: var(--weight-emphasis);
 }
 
 .skill-item {
@@ -867,7 +871,7 @@ img {
     display: inline-block;
     align-self: flex-start;
     font-size: 0.68rem;
-    font-weight: 700;
+    font-weight: 600;
     letter-spacing: 0.1em;
     padding: 0.3rem 0.65rem;
     border-radius: 999px;
@@ -878,8 +882,8 @@ img {
 
 .project-title {
     font-family: var(--font-display);
-    font-size: 1.2rem;
-    font-weight: 700;
+    font-size: 1.05rem;
+    font-weight: var(--weight-emphasis);
     margin-bottom: 0.5rem;
     letter-spacing: -0.01em;
 }
@@ -1016,8 +1020,8 @@ img {
 
 .timeline-body h3 {
     font-family: var(--font-display);
-    font-size: 1.15rem;
-    font-weight: 700;
+    font-size: 1.05rem;
+    font-weight: var(--weight-emphasis);
     margin-bottom: 0.5rem;
 }
 
@@ -1067,12 +1071,9 @@ img {
 
 .stat-box h3 {
     font-family: var(--font-display);
-    font-size: 2.5rem;
-    font-weight: 800;
-    background: linear-gradient(135deg, var(--accent), var(--accent-2));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    font-size: 2rem;
+    font-weight: var(--weight-emphasis);
+    color: var(--text);
     margin-bottom: 0.35rem;
 }
 
@@ -1349,7 +1350,7 @@ img {
 
     .contact-shell { padding: 1.5rem; }
 
-    .hero-title { font-size: 2rem; }
+    .hero-title { font-size: 1.75rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
