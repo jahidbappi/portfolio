@@ -32,48 +32,47 @@ window.PORTFOLIO_DATA = {
     { value: '100%', label: 'Dedication' },
   ],
 
-  skills: [
+  skillGroups: [
     {
-      title: 'Programming',
-      icon: 'fa-laptop-code',
-      items: [
-        { name: 'Python', percent: 90 },
-        { name: 'JavaScript', percent: 92 },
-        { name: 'TypeScript', percent: 85 },
-        { name: 'C++', percent: 75 },
-      ],
+      title: 'Languages',
+      icon: 'fa-code',
+      accent: 'violet',
+      skills: ['Python', 'JavaScript', 'TypeScript', 'C++', 'C#', 'Java', 'Swift', 'PHP'],
     },
     {
-      title: 'Web Development',
-      icon: 'fa-globe',
-      items: [
-        { name: 'React', percent: 90 },
-        { name: 'Node.js', percent: 85 },
-        { name: 'HTML & CSS', percent: 95 },
-        { name: 'PHP', percent: 80 },
-      ],
+      title: 'Databases & ORMs',
+      icon: 'fa-database',
+      accent: 'cyan',
+      skills: ['Oracle', 'MySQL', 'PostgreSQL', 'MongoDB', 'Entity Framework'],
     },
     {
-      title: 'AI / Data',
+      title: 'Full-Stack Web',
+      icon: 'fa-layer-group',
+      accent: 'emerald',
+      featured: true,
+      skills: ['React', 'Node.js', 'Django', 'Flask', 'REST APIs', 'HTML & CSS'],
+    },
+    {
+      title: 'AI & Machine Learning',
       icon: 'fa-brain',
-      items: [
-        { name: 'AI Integrations', percent: 85 },
-        { name: 'NumPy & Pandas', percent: 82 },
-        { name: 'Data Analysis', percent: 80 },
-        { name: 'Research Tools', percent: 78 },
-      ],
+      accent: 'rose',
+      skills: ['TensorFlow', 'PyTorch', 'scikit-learn', 'Pandas', 'NumPy'],
     },
     {
-      title: 'Tools & Platforms',
-      icon: 'fa-tools',
-      items: [
-        { name: 'Git & GitHub', percent: 95 },
-        { name: 'Docker & Deployment', percent: 82 },
-        { name: 'VS Code & IDEs', percent: 95 },
-        { name: 'Linux', percent: 85 },
-      ],
+      title: 'DevOps & Cloud',
+      icon: 'fa-cloud',
+      accent: 'amber',
+      skills: ['AWS', 'Azure', 'Docker', 'Kubernetes', 'Vercel'],
+    },
+    {
+      title: 'Tools & IDEs',
+      icon: 'fa-wrench',
+      accent: 'slate',
+      skills: ['Git', 'VS Code', 'Cursor', 'Jupyter', 'Postman', 'Android Studio'],
     },
   ],
+
+  focusingOn: ['PyTorch', 'AWS Certification', 'Microservices'],
 
   experience: [
     {

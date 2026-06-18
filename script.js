@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setupScrollSpy();
     setupNavbarScroll();
     setupScrollAnimations();
-    setupSkillBars();
+    renderSkills();
 });
 
 function setupNavigation() {
@@ -371,27 +371,55 @@ function animateCounters() {
     });
 }
 
+function renderSkills() {
+    const grid = document.getElementById('skillsGrid');
+    const focus = document.getElementById('skillsFocus');
+    const groups = DATA.skillGroups || [];
+
+    if (grid && groups.length) {
+        grid.innerHTML = groups
+            .map((group, index) => {
+                const num = String(index + 1).padStart(2, '0');
+                const chips = group.skills
+                    .map((skill) => `<span class="skill-chip">${escapeHtml(skill)}</span>`)
+                    .join('');
+
+                return `
+                    <article class="skill-card${group.featured ? ' skill-card--featured' : ''} skill-card--${group.accent || 'default'} reveal">
+                        <div class="skill-card-top">
+                            <span class="skill-card-num">${num}</span>
+                            <span class="skill-card-icon"><i class="fas ${group.icon}"></i></span>
+                        </div>
+                        <h3 class="skill-card-title">${escapeHtml(group.title)}</h3>
+                        <p class="skill-card-count">${group.skills.length} technologies</p>
+                        <div class="skill-chip-list">${chips}</div>
+                    </article>
+                `;
+            })
+            .join('');
+
+        grid.querySelectorAll('.skill-card').forEach((card, i) => {
+            card.style.transitionDelay = `${i * 60}ms`;
+            observeReveal(card);
+        });
+    }
+
+    const focusing = DATA.focusingOn || [];
+    if (focus && focusing.length) {
+        focus.innerHTML = `
+            <div class="skills-focus-inner reveal">
+                <span class="skills-focus-label">Currently exploring</span>
+                <div class="skills-focus-chips">
+                    ${focusing.map((item) => `<span class="focus-chip">${escapeHtml(item)}</span>`).join('')}
+                </div>
+            </div>
+        `;
+        observeReveal(focus.querySelector('.skills-focus-inner'));
+    }
+}
+
 function setupSkillBars() {
-    const fills = document.querySelectorAll('.skill-fill');
-    if (!fills.length) return;
-
-    const observer = new IntersectionObserver(
-        (entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    const fill = entry.target;
-                    const width = fill.dataset.width || '0';
-                    fill.style.setProperty('--target-width', `${width}%`);
-                    fill.classList.add('animated');
-                    fill.style.width = `${width}%`;
-                    observer.unobserve(fill);
-                }
-            });
-        },
-        { threshold: 0.4 }
-    );
-
-    fills.forEach((fill) => observer.observe(fill));
+    /* skills rendered as chips via renderSkills() */
 }
 
 function observeReveal(el) {
@@ -412,7 +440,8 @@ function observeReveal(el) {
 function setupScrollAnimations() {
     const selectors = [
         '.metric-card',
-        '.skill-panel',
+        '.skill-card',
+        '.skills-focus-inner',
         '.timeline-item',
         '.stat-box',
         '.stack-card',
