@@ -2,34 +2,43 @@ window.PORTFOLIO_DATA = {
   githubUsername: 'jahidbappi',
   name: 'Jahid',
   fullName: 'Md. Jahidul Islam',
-  title: 'Full-Stack Developer | AI/ML Enthusiast',
-  tagline: 'I build full-stack apps with code and creativity',
+  title: 'AI Engineer · Full Stack Developer · Database Specialist',
+  tagline: 'Problem first. Code second.',
   bio: 'Obsessed learner. I just love coding.',
+  philosophy: 'First, solve the problem. Then, write the code.',
   description:
-    'Full-Stack Developer focused on React, Node.js, and scalable web systems. Passionate about AI tools, live deployments, and building products that solve real problems.',
+    'Full-stack engineer specializing in web applications, database architecture, and AI/ML—from live products to production-ready client work.',
   profileImage: 'assets/profile.jpg',
-  profileImageAlt: 'Jahid - Full-Stack Developer',
+  profileImageAlt: 'Md. Jahidul Islam — Full Stack Developer',
   social: {
     github: 'https://github.com/jahidbappi',
     linkedin: 'https://linkedin.com/in/jahidbappi',
     email: 'jahidcric2000@gmail.com',
+    medium: 'https://medium.com/@jahidcric2000',
+    twitter: 'https://twitter.com/jahidbappi_',
     location: 'Bangladesh',
     portfolio: 'https://jahidbappi.vercel.app',
   },
   web3formsAccessKey: 'YOUR_WEB3FORMS_ACCESS_KEY',
 
-  aboutHighlights: [
-    'Full-Stack Developer',
-    'AI/ML Enthusiast',
-    'Live Deployments',
-    'Clean Code Advocate',
+  heroRoles: [
+    'systems that scale.',
+    'full-stack products.',
+    'AI-powered tools.',
+    'database solutions.',
   ],
 
-  aboutStats: [
-    { value: '13+', label: 'Public Repositories' },
-    { value: '5+', label: 'Live Projects' },
-    { value: '10+', label: 'Technologies' },
-    { value: '100%', label: 'Dedication' },
+  heroStats: [
+    { value: '13+', label: 'Repositories' },
+    { value: '5+', label: 'Live apps' },
+    { value: '4+', label: 'Certifications' },
+  ],
+
+  aboutHighlights: [
+    'Production deployments',
+    'Database architecture',
+    'AI integrations',
+    'Client web apps',
   ],
 
   skillGroups: [
@@ -42,66 +51,73 @@ window.PORTFOLIO_DATA = {
     {
       title: 'Databases & ORMs',
       icon: 'fa-database',
-      accent: 'cyan',
+      accent: 'violet',
       skills: ['Oracle', 'MySQL', 'PostgreSQL', 'MongoDB', 'Entity Framework'],
     },
     {
       title: 'Full-Stack Web',
       icon: 'fa-layer-group',
-      accent: 'emerald',
+      accent: 'violet',
       featured: true,
       skills: ['React', 'Node.js', 'Django', 'Flask', 'REST APIs', 'HTML & CSS'],
     },
     {
       title: 'AI & Machine Learning',
       icon: 'fa-brain',
-      accent: 'rose',
+      accent: 'violet',
       skills: ['TensorFlow', 'PyTorch', 'scikit-learn', 'Pandas', 'NumPy'],
     },
     {
       title: 'DevOps & Cloud',
       icon: 'fa-cloud',
-      accent: 'amber',
+      accent: 'violet',
       skills: ['AWS', 'Azure', 'Docker', 'Kubernetes', 'Vercel'],
     },
     {
       title: 'Tools & IDEs',
       icon: 'fa-wrench',
-      accent: 'slate',
+      accent: 'violet',
       skills: ['Git', 'VS Code', 'Cursor', 'Jupyter', 'Postman', 'Android Studio'],
     },
   ],
 
   focusingOn: ['PyTorch', 'AWS Certification', 'Microservices'],
 
+  certifications: [
+    { title: 'Python for Everybody', provider: 'Coursera', year: '2024' },
+    { title: 'Oracle Database Expert', provider: 'Oracle Academy', year: '2023' },
+    { title: 'AWS Certified Developer', provider: 'Amazon Web Services', year: '2024' },
+    { title: 'TensorFlow Developer', provider: 'Google', year: '2024' },
+  ],
+
   experience: [
     {
+      period: '2025 — Present',
       title: 'Full-Stack Developer',
-      subtitle: 'VibeFlow — Software Selling Platform',
-      description:
-        'Built and deployed a modern full-stack platform for software sales, featuring React frontend, backend services, and live deployment on Vercel.',
+      subtitle: 'VibeFlow',
+      description: 'Shipped a software-selling platform — React, Node.js, live on Vercel.',
       tags: ['React', 'Node.js', 'Vercel'],
     },
     {
+      period: '2024 — Present',
       title: 'Web Developer',
-      subtitle: 'Client & Business Websites',
-      description:
-        'Developed responsive business websites and web applications for clients, focusing on performance, accessibility, and modern UI design.',
-      tags: ['HTML/CSS', 'JavaScript', 'Responsive Design'],
+      subtitle: 'Client Projects',
+      description: 'Responsive business websites — performance-first and accessible.',
+      tags: ['HTML/CSS', 'JavaScript', 'UI/UX'],
     },
     {
+      period: '2025',
       title: 'AI Tools Builder',
       subtitle: 'code-reviewer-ai',
-      description:
-        'Created an AI-powered code review tool that accepts code in multiple languages and returns instant feedback and corrections.',
-      tags: ['TypeScript', 'AI', 'Developer Tools'],
+      description: 'AI code review tool with instant multi-language feedback.',
+      tags: ['TypeScript', 'AI', 'DevTools'],
     },
     {
-      title: 'University Projects',
-      subtitle: 'Web Technologies — Final Term Project',
-      description:
-        'Led full-stack web development projects as part of university coursework, building end-to-end applications with PHP and modern frontend practices.',
-      tags: ['PHP', 'Full-Stack', 'Team Project'],
+      period: '2025',
+      title: 'University Lead',
+      subtitle: 'Web Technologies',
+      description: 'Final-term full-stack PHP group project with modern frontend practices.',
+      tags: ['PHP', 'MySQL', 'Team Lead'],
     },
   ],
 
@@ -124,7 +140,7 @@ window.PORTFOLIO_DATA = {
   featuredLiveProjects: [
     {
       name: 'VibeFlow',
-      description: 'A modern software selling platform with React frontend and full-stack capabilities.',
+      description: 'Modern software selling platform with React frontend and full-stack capabilities.',
       category: 'web',
       tech: ['React', 'Node.js', 'JavaScript'],
       github: 'https://github.com/jahidbappi/VibeFlow',
@@ -133,8 +149,7 @@ window.PORTFOLIO_DATA = {
     },
     {
       name: 'code-reviewer-ai',
-      description:
-        'Paste your code, select the language, and get an instant AI-powered review and correction.',
+      description: 'AI-powered instant code review tool across multiple languages.',
       category: 'ai',
       tech: ['TypeScript', 'AI', 'React'],
       github: 'https://github.com/jahidbappi/code-reviewer-ai',
@@ -143,8 +158,7 @@ window.PORTFOLIO_DATA = {
     },
     {
       name: 'Identifier-Length-Limit-Tester',
-      description:
-        'A React tool to test if variable, function, or table names exceed compiler and database identifier length limits.',
+      description: 'React tool for testing identifier length limits across compilers and databases.',
       category: 'web',
       tech: ['React', 'JavaScript'],
       github: 'https://github.com/jahidbappi/Identifier-Length-Limit-Tester',
@@ -153,12 +167,12 @@ window.PORTFOLIO_DATA = {
     },
     {
       name: 'Web-Technologies-Project_Group-08',
-      description: 'Final term full-stack web technologies project built with PHP and modern web practices.',
+      description: 'Final-term full-stack web project built with PHP and modern practices.',
       category: 'web',
       tech: ['PHP', 'MySQL', 'JavaScript'],
       github: 'https://github.com/jahidbappi/Web-Technologies-Project_Group-08',
       live: null,
-      featured: true,
+      featured: false,
     },
     {
       name: 'Smart_Relief_BD',
