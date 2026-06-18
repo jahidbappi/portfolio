@@ -4,509 +4,336 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Jahid - Full-Stack Developer | AI/ML Enthusiast</title>
+    <title>Jahid Bappi — Full-Stack Developer & AI Engineer</title>
     <meta name="description"
-        content="Portfolio of Md. Jahidul Islam - Full-Stack Developer specializing in React, Node.js, AI tools, and live web applications.">
+        content="Md. Jahidul Islam builds production-ready full-stack apps, AI tools, and live products. Portfolio of a developer who ships.">
+    <meta name="theme-color" content="#050608">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Syne:wght@600;700;800&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="icon" href="assets/profile.jpg" type="image/jpeg">
 </head>
 
 <body>
+    <div class="ambient" aria-hidden="true">
+        <div class="orb orb-a"></div>
+        <div class="orb orb-b"></div>
+        <div class="orb orb-c"></div>
+        <div class="noise"></div>
+    </div>
+
     <a href="#main" class="skip-link">Skip to content</a>
 
-    <nav class="navbar" aria-label="Main navigation">
-        <div class="container">
-            <div class="nav-brand">
-                <span class="logo-text">Jahid</span>
+    <header class="site-header">
+        <nav class="navbar" aria-label="Main navigation">
+            <div class="container nav-inner">
+                <a href="#hero" class="brand" aria-label="Jahid Bappi home">
+                    <span class="brand-mark">JB</span>
+                    <span class="brand-name">Jahid Bappi</span>
+                </a>
+                <ul class="nav-menu" role="menubar">
+                    <li role="none"><a href="#about" role="menuitem">About</a></li>
+                    <li role="none"><a href="#skills" role="menuitem">Skills</a></li>
+                    <li role="none"><a href="#projects" role="menuitem">Work</a></li>
+                    <li role="none"><a href="#experience" role="menuitem">Journey</a></li>
+                    <li role="none"><a href="#contact" role="menuitem" class="nav-cta">Let's talk</a></li>
+                </ul>
+                <button class="hamburger" aria-label="Toggle navigation menu" aria-expanded="false">
+                    <span></span><span></span><span></span>
+                </button>
             </div>
-            <ul class="nav-menu" role="menubar">
-                <li role="none"><a href="#hero" role="menuitem">Home</a></li>
-                <li role="none"><a href="#about" role="menuitem">About</a></li>
-                <li role="none"><a href="#skills" role="menuitem">Skills</a></li>
-                <li role="none"><a href="#projects" role="menuitem">Projects</a></li>
-                <li role="none"><a href="#experience" role="menuitem">Experience</a></li>
-                <li role="none"><a href="#contact" role="menuitem">Contact</a></li>
-            </ul>
-            <button class="hamburger" aria-label="Toggle navigation menu" aria-expanded="false">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-        </div>
-    </nav>
-    <div class="nav-backdrop" aria-hidden="true"></div>
+        </nav>
+        <div class="nav-backdrop" aria-hidden="true"></div>
+    </header>
 
     <main id="main">
         <section id="hero" class="hero">
-            <div class="stars-background"></div>
-            <div class="container">
-                <div class="hero-content">
-                    <span class="hero-label">Welcome to my portfolio</span>
-                    <h1 class="hero-title">Hi, I'm <span class="highlight">Jahid</span></h1>
-                    <p class="hero-subtitle">I build full-stack apps with code and creativity</p>
-                    <p class="hero-description">
-                        <strong>Full-Stack Developer</strong> &middot; <strong>AI/ML Enthusiast</strong> &middot;
-                        <strong>Product Builder</strong>
+            <div class="container hero-layout">
+                <div class="hero-copy">
+                    <div class="status-pill">
+                        <span class="status-dot"></span>
+                        Available for freelance & full-time roles
+                    </div>
+                    <p class="eyebrow">Full-Stack Developer · AI/ML Enthusiast</p>
+                    <h1 class="hero-title">
+                        I craft digital products<br>
+                        that <span class="gradient-text">ship to production.</span>
+                    </h1>
+                    <p class="hero-lead">
+                        Hey — I'm <strong>Md. Jahidul Islam</strong>. Obsessed learner, builder of live web apps,
+                        AI-powered tools, and full-stack systems from Bangladesh to the world.
                     </p>
-                    <p class="hero-bio">
-                        Full-Stack Developer focused on React, Node.js, and scalable web systems. Passionate about AI
-                        tools, live deployments, and building products that solve real problems.
-                    </p>
-                    <div class="hero-buttons">
+                    <div class="hero-actions">
                         <a href="#projects" class="btn btn-primary">
-                            <i class="fas fa-code"></i> View Projects
+                            <span>Explore my work</span>
+                            <i class="fas fa-arrow-right"></i>
                         </a>
-                        <a href="#contact" class="btn btn-secondary">
-                            <i class="fas fa-envelope"></i> Get In Touch
-                        </a>
+                        <a href="#contact" class="btn btn-ghost">Get in touch</a>
                     </div>
-                    <div class="hero-links">
+                    <div class="hero-social">
                         <a href="https://github.com/jahidbappi" target="_blank" rel="noopener noreferrer"
-                            class="social-link" aria-label="GitHub Profile">
-                            <i class="fab fa-github"></i>
-                        </a>
-                        <a href="https://vibe-flow.vercel.app" target="_blank" rel="noopener noreferrer"
-                            class="social-link" aria-label="VibeFlow Live Demo">
-                            <i class="fas fa-rocket"></i>
-                        </a>
+                            aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="https://linkedin.com/in/jahidbappi" target="_blank" rel="noopener noreferrer"
+                            aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="mailto:jahidcric2000@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
                     </div>
                 </div>
-                <div class="hero-visual">
-                    <div class="profile-image-container">
-                        <img src="assets/profile.jpg" alt="Jahid - Full-Stack Developer" class="profile-image">
-                        <div class="profile-ring"></div>
-                        <div class="profile-glow"></div>
+
+                <div class="hero-panel">
+                    <div class="portrait-wrap">
+                        <div class="portrait-ring"></div>
+                        <img src="assets/profile.jpg" alt="Md. Jahidul Islam" class="portrait" width="320" height="320">
+                        <div class="portrait-badge"><i class="fas fa-bolt"></i> Building live</div>
                     </div>
-                    <div class="floating-cards">
-                        <div class="floating-card">
-                            <div class="card-content">
-                                <i class="fas fa-code"></i>
-                                <p>Full-Stack</p>
+                    <div class="hero-stack">
+                        <div class="stack-card">
+                            <span class="stack-icon"><i class="fas fa-layer-group"></i></span>
+                            <div>
+                                <strong>Full-Stack</strong>
+                                <small>React · Node · PHP</small>
                             </div>
                         </div>
-                        <div class="floating-card">
-                            <div class="card-content">
-                                <i class="fas fa-brain"></i>
-                                <p>AI/ML</p>
+                        <div class="stack-card">
+                            <span class="stack-icon accent-ai"><i class="fas fa-wand-magic-sparkles"></i></span>
+                            <div>
+                                <strong>AI Tools</strong>
+                                <small>TypeScript · LLMs</small>
                             </div>
                         </div>
-                        <div class="floating-card">
-                            <div class="card-content">
-                                <i class="fas fa-globe"></i>
-                                <p>Web Apps</p>
+                        <div class="stack-card">
+                            <span class="stack-icon accent-live"><i class="fas fa-satellite-dish"></i></span>
+                            <div>
+                                <strong>Live Products</strong>
+                                <small>Vercel · Docker</small>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="scroll-indicator">
-                <div class="mouse">
-                    <div class="wheel"></div>
-                </div>
+            <a href="#about" class="scroll-hint" aria-label="Scroll to about section">
                 <span>Scroll</span>
-            </div>
+                <i class="fas fa-chevron-down"></i>
+            </a>
         </section>
 
-        <section id="about" class="about">
+        <section id="about" class="section about">
             <div class="container">
-                <div class="section-header">
-                    <span class="section-number">01</span>
-                    <h2 class="section-title">About Me</h2>
-                    <div class="section-divider"></div>
-                </div>
-                <div class="about-content">
-                    <div class="about-text">
+                <header class="section-head">
+                    <span class="section-tag">01 — About</span>
+                    <h2 class="section-title">The developer behind the code</h2>
+                    <p class="section-desc">Not just repos — real products, real deployments, real impact.</p>
+                </header>
+                <div class="about-grid">
+                    <div class="about-prose">
+                        <blockquote class="about-quote">
+                            "I just love coding." — and that's exactly what you'll see in every project I touch.
+                        </blockquote>
                         <p>
-                            I'm Md. Jahidul Islam, a full-stack developer who loves turning ideas into live,
-                            production-ready applications. My work spans React and Node.js web apps, AI-powered developer
-                            tools, and client-facing business websites.
+                            I'm a full-stack developer who gets energy from turning ideas into live applications.
+                            From <a href="https://vibe-flow.vercel.app" target="_blank" rel="noopener">VibeFlow</a>
+                            — a production software platform — to AI utilities like
+                            <strong>code-reviewer-ai</strong>, I build things people can actually use.
                         </p>
                         <p>
-                            From building <strong>VibeFlow</strong> — a modern software selling platform deployed on
-                            Vercel — to creating AI tools like <strong>code-reviewer-ai</strong>, I focus on shipping
-                            real products with clean architecture and thoughtful UX.
+                            My stack spans React, Node.js, TypeScript, Python, and PHP. I care about clean
+                            architecture, polished UI, and shipping fast without cutting corners on quality.
                         </p>
-                        <p>
-                            I'm an obsessed learner who continuously explores new technologies. Whether it's full-stack
-                            development, AI integrations, or deploying scalable systems, I believe in writing
-                            maintainable code and learning by building.
-                        </p>
-                        <div class="about-highlights">
-                            <div class="highlight-item">
-                                <i class="fas fa-check-circle"></i>
-                                <span>Full-Stack Developer</span>
-                            </div>
-                            <div class="highlight-item">
-                                <i class="fas fa-check-circle"></i>
-                                <span>AI/ML Enthusiast</span>
-                            </div>
-                            <div class="highlight-item">
-                                <i class="fas fa-check-circle"></i>
-                                <span>Live Deployments</span>
-                            </div>
-                            <div class="highlight-item">
-                                <i class="fas fa-check-circle"></i>
-                                <span>Clean Code Advocate</span>
-                            </div>
-                        </div>
+                        <ul class="about-tags">
+                            <li><i class="fas fa-check"></i> Production deployments</li>
+                            <li><i class="fas fa-check"></i> AI & automation</li>
+                            <li><i class="fas fa-check"></i> Client web apps</li>
+                            <li><i class="fas fa-check"></i> Always learning</li>
+                        </ul>
                     </div>
-                    <div class="about-stats">
-                        <div class="stat-card">
-                            <h3>13+</h3>
-                            <p>Public Repositories</p>
-                        </div>
-                        <div class="stat-card">
-                            <h3>5+</h3>
-                            <p>Live Projects</p>
-                        </div>
-                        <div class="stat-card">
-                            <h3>10+</h3>
-                            <p>Technologies</p>
-                        </div>
-                        <div class="stat-card">
-                            <h3>100%</h3>
-                            <p>Dedication</p>
-                        </div>
+                    <div class="about-metrics">
+                        <article class="metric-card">
+                            <span class="metric-value">13+</span>
+                            <span class="metric-label">Open-source repos</span>
+                        </article>
+                        <article class="metric-card highlight">
+                            <span class="metric-value">5+</span>
+                            <span class="metric-label">Live deployed apps</span>
+                        </article>
+                        <article class="metric-card">
+                            <span class="metric-value">10+</span>
+                            <span class="metric-label">Technologies mastered</span>
+                        </article>
+                        <article class="metric-card">
+                            <span class="metric-value">∞</span>
+                            <span class="metric-label">Curiosity & drive</span>
+                        </article>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="skills" class="skills">
+        <section id="skills" class="section skills">
             <div class="container">
-                <div class="section-header">
-                    <span class="section-number">02</span>
-                    <h2 class="section-title">Skills & Expertise</h2>
-                    <div class="section-divider"></div>
-                </div>
-                <div class="skills-grid">
-                    <div class="skill-category">
-                        <h3><i class="fas fa-laptop-code"></i> Programming</h3>
-                        <div class="skill-items">
-                            <div class="skill-item">
-                                <div class="skill-label"><span>Python</span><span class="skill-percent">90%</span></div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress" style="width: 90%"></div>
-                                </div>
-                            </div>
-                            <div class="skill-item">
-                                <div class="skill-label"><span>JavaScript</span><span class="skill-percent">92%</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress" style="width: 92%"></div>
-                                </div>
-                            </div>
-                            <div class="skill-item">
-                                <div class="skill-label"><span>TypeScript</span><span class="skill-percent">85%</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress" style="width: 85%"></div>
-                                </div>
-                            </div>
-                            <div class="skill-item">
-                                <div class="skill-label"><span>C++</span><span class="skill-percent">75%</span></div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress" style="width: 75%"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="skill-category">
-                        <h3><i class="fas fa-globe"></i> Web Development</h3>
-                        <div class="skill-items">
-                            <div class="skill-item">
-                                <div class="skill-label"><span>React</span><span class="skill-percent">90%</span></div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress" style="width: 90%"></div>
-                                </div>
-                            </div>
-                            <div class="skill-item">
-                                <div class="skill-label"><span>Node.js</span><span class="skill-percent">85%</span></div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress" style="width: 85%"></div>
-                                </div>
-                            </div>
-                            <div class="skill-item">
-                                <div class="skill-label"><span>HTML & CSS</span><span class="skill-percent">95%</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress" style="width: 95%"></div>
-                                </div>
-                            </div>
-                            <div class="skill-item">
-                                <div class="skill-label"><span>PHP</span><span class="skill-percent">80%</span></div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress" style="width: 80%"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="skill-category">
-                        <h3><i class="fas fa-brain"></i> AI / Data</h3>
-                        <div class="skill-items">
-                            <div class="skill-item">
-                                <div class="skill-label"><span>AI Integrations</span><span
-                                        class="skill-percent">85%</span></div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress" style="width: 85%"></div>
-                                </div>
-                            </div>
-                            <div class="skill-item">
-                                <div class="skill-label"><span>NumPy & Pandas</span><span
-                                        class="skill-percent">82%</span></div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress" style="width: 82%"></div>
-                                </div>
-                            </div>
-                            <div class="skill-item">
-                                <div class="skill-label"><span>Data Analysis</span><span
-                                        class="skill-percent">80%</span></div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress" style="width: 80%"></div>
-                                </div>
-                            </div>
-                            <div class="skill-item">
-                                <div class="skill-label"><span>Research Tools</span><span
-                                        class="skill-percent">78%</span></div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress" style="width: 78%"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="skill-category">
-                        <h3><i class="fas fa-tools"></i> Tools & Platforms</h3>
-                        <div class="skill-items">
-                            <div class="skill-item">
-                                <div class="skill-label"><span>Git & GitHub</span><span
-                                        class="skill-percent">95%</span></div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress" style="width: 95%"></div>
-                                </div>
-                            </div>
-                            <div class="skill-item">
-                                <div class="skill-label"><span>Docker & Deployment</span><span
-                                        class="skill-percent">82%</span></div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress" style="width: 82%"></div>
-                                </div>
-                            </div>
-                            <div class="skill-item">
-                                <div class="skill-label"><span>VS Code & IDEs</span><span
-                                        class="skill-percent">95%</span></div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress" style="width: 95%"></div>
-                                </div>
-                            </div>
-                            <div class="skill-item">
-                                <div class="skill-label"><span>Linux</span><span class="skill-percent">85%</span></div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress" style="width: 85%"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <header class="section-head center">
+                    <span class="section-tag">02 — Expertise</span>
+                    <h2 class="section-title">Skills I bring to every build</h2>
+                </header>
+                <div class="skills-bento">
+                    <article class="skill-panel">
+                        <div class="skill-panel-head"><i class="fas fa-terminal"></i><h3>Languages</h3></div>
+                        <div class="skill-item"><div class="skill-meta"><span>JavaScript / TypeScript</span><span>92%</span></div><div class="skill-track"><div class="skill-fill" data-width="92"></div></div></div>
+                        <div class="skill-item"><div class="skill-meta"><span>Python</span><span>90%</span></div><div class="skill-track"><div class="skill-fill" data-width="90"></div></div></div>
+                        <div class="skill-item"><div class="skill-meta"><span>C++ / Java</span><span>78%</span></div><div class="skill-track"><div class="skill-fill" data-width="78"></div></div></div>
+                    </article>
+                    <article class="skill-panel featured-skill">
+                        <div class="skill-panel-head"><i class="fas fa-code-branch"></i><h3>Full-Stack Web</h3></div>
+                        <div class="skill-item"><div class="skill-meta"><span>React & Node.js</span><span>90%</span></div><div class="skill-track"><div class="skill-fill" data-width="90"></div></div></div>
+                        <div class="skill-item"><div class="skill-meta"><span>HTML, CSS & PHP</span><span>88%</span></div><div class="skill-track"><div class="skill-fill" data-width="88"></div></div></div>
+                        <div class="skill-item"><div class="skill-meta"><span>REST APIs & Databases</span><span>85%</span></div><div class="skill-track"><div class="skill-fill" data-width="85"></div></div></div>
+                    </article>
+                    <article class="skill-panel">
+                        <div class="skill-panel-head"><i class="fas fa-brain"></i><h3>AI & Data</h3></div>
+                        <div class="skill-item"><div class="skill-meta"><span>AI Integrations</span><span>85%</span></div><div class="skill-track"><div class="skill-fill" data-width="85"></div></div></div>
+                        <div class="skill-item"><div class="skill-meta"><span>NumPy & Pandas</span><span>82%</span></div><div class="skill-track"><div class="skill-fill" data-width="82"></div></div></div>
+                        <div class="skill-item"><div class="skill-meta"><span>Data Analysis</span><span>80%</span></div><div class="skill-track"><div class="skill-fill" data-width="80"></div></div></div>
+                    </article>
+                    <article class="skill-panel">
+                        <div class="skill-panel-head"><i class="fas fa-cloud"></i><h3>DevOps & Tools</h3></div>
+                        <div class="skill-item"><div class="skill-meta"><span>Git & GitHub</span><span>95%</span></div><div class="skill-track"><div class="skill-fill" data-width="95"></div></div></div>
+                        <div class="skill-item"><div class="skill-meta"><span>Docker & Vercel</span><span>84%</span></div><div class="skill-track"><div class="skill-fill" data-width="84"></div></div></div>
+                        <div class="skill-item"><div class="skill-meta"><span>Linux & VS Code</span><span>88%</span></div><div class="skill-track"><div class="skill-fill" data-width="88"></div></div></div>
+                    </article>
                 </div>
             </div>
         </section>
 
-        <section id="projects" class="projects">
+        <section id="projects" class="section projects">
             <div class="container">
-                <div class="section-header">
-                    <span class="section-number">03</span>
-                    <h2 class="section-title">Featured Projects</h2>
-                    <div class="section-divider"></div>
-                </div>
-
+                <header class="section-head">
+                    <span class="section-tag">03 — Selected Work</span>
+                    <h2 class="section-title">Projects that define me</h2>
+                    <p class="section-desc">Pulled live from GitHub — filtered, featured, and ready to explore.</p>
+                </header>
                 <div class="project-filters" role="group" aria-label="Project filters">
                     <button class="filter-btn active" data-filter="all">All</button>
                     <button class="filter-btn" data-filter="web">Web</button>
                     <button class="filter-btn" data-filter="ai">AI</button>
                     <button class="filter-btn" data-filter="mobile">Mobile</button>
                 </div>
-
                 <div class="projects-grid" id="projectsGrid"></div>
             </div>
         </section>
 
-        <section id="experience" class="experience">
+        <section id="experience" class="section experience">
             <div class="container">
-                <div class="section-header">
-                    <span class="section-number">04</span>
-                    <h2 class="section-title">Experience & Achievements</h2>
-                    <div class="section-divider"></div>
-                </div>
+                <header class="section-head center">
+                    <span class="section-tag">04 — Journey</span>
+                    <h2 class="section-title">Where I've been building</h2>
+                </header>
                 <div class="timeline">
-                    <div class="timeline-item">
-                        <div class="timeline-marker"></div>
-                        <div class="timeline-content">
-                            <h3>Full-Stack Developer</h3>
-                            <p class="timeline-subtitle">VibeFlow — Software Selling Platform</p>
-                            <p>Built and deployed a modern full-stack platform for software sales, featuring React
-                                frontend, backend services, and live deployment on Vercel.</p>
-                            <div class="timeline-tags">
-                                <span>React</span>
-                                <span>Node.js</span>
-                                <span>Vercel</span>
-                            </div>
+                    <article class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-body">
+                            <time>2025 — Present</time>
+                            <h3>Full-Stack Developer · VibeFlow</h3>
+                            <p>Architected and shipped a modern software-selling platform — React frontend, backend services, live on Vercel.</p>
+                            <div class="pill-row"><span>React</span><span>Node.js</span><span>Vercel</span></div>
                         </div>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="timeline-marker"></div>
-                        <div class="timeline-content">
-                            <h3>Web Developer</h3>
-                            <p class="timeline-subtitle">Client & Business Websites</p>
-                            <p>Developed responsive business websites and web applications for clients, focusing on
-                                performance, accessibility, and modern UI design.</p>
-                            <div class="timeline-tags">
-                                <span>HTML/CSS</span>
-                                <span>JavaScript</span>
-                                <span>Responsive Design</span>
-                            </div>
+                    </article>
+                    <article class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-body">
+                            <time>2024 — Present</time>
+                            <h3>Web Developer · Client Projects</h3>
+                            <p>Built responsive business websites and web apps for clients — performance-first, accessible, and polished.</p>
+                            <div class="pill-row"><span>HTML/CSS</span><span>JavaScript</span><span>UI/UX</span></div>
                         </div>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="timeline-marker"></div>
-                        <div class="timeline-content">
-                            <h3>AI Tools Builder</h3>
-                            <p class="timeline-subtitle">code-reviewer-ai</p>
-                            <p>Created an AI-powered code review tool that accepts code in multiple languages and
-                                returns instant feedback and corrections.</p>
-                            <div class="timeline-tags">
-                                <span>TypeScript</span>
-                                <span>AI</span>
-                                <span>Developer Tools</span>
-                            </div>
+                    </article>
+                    <article class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-body">
+                            <time>2025</time>
+                            <h3>AI Tools Builder · code-reviewer-ai</h3>
+                            <p>Developed an AI-powered code review tool — paste code, pick a language, get instant intelligent feedback.</p>
+                            <div class="pill-row"><span>TypeScript</span><span>AI</span><span>DevTools</span></div>
                         </div>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="timeline-marker"></div>
-                        <div class="timeline-content">
-                            <h3>University Projects</h3>
-                            <p class="timeline-subtitle">Web Technologies — Final Term Project</p>
-                            <p>Led full-stack web development projects as part of university coursework, building
-                                end-to-end applications with PHP and modern frontend practices.</p>
-                            <div class="timeline-tags">
-                                <span>PHP</span>
-                                <span>Full-Stack</span>
-                                <span>Team Project</span>
-                            </div>
+                    </article>
+                    <article class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-body">
+                            <time>2025</time>
+                            <h3>University · Web Technologies</h3>
+                            <p>Led a final-term full-stack group project — end-to-end PHP application with modern frontend practices.</p>
+                            <div class="pill-row"><span>PHP</span><span>MySQL</span><span>Team Lead</span></div>
                         </div>
-                    </div>
+                    </article>
                 </div>
             </div>
         </section>
 
-        <section id="stats" class="github-stats">
+        <section id="stats" class="section stats-section">
             <div class="container">
-                <div class="section-header">
-                    <span class="section-number">05</span>
-                    <h2 class="section-title">GitHub Activity</h2>
-                    <div class="section-divider"></div>
-                </div>
+                <header class="section-head center">
+                    <span class="section-tag">05 — GitHub</span>
+                    <h2 class="section-title">Open source in motion</h2>
+                </header>
                 <div class="stats-grid">
-                    <div class="stat-box">
-                        <h3 id="totalRepos" data-target="0">0</h3>
-                        <p>Public Repositories</p>
-                    </div>
-                    <div class="stat-box">
-                        <h3 id="totalStars" data-target="0">0</h3>
-                        <p>Total Stars</p>
-                    </div>
-                    <div class="stat-box">
-                        <h3 id="totalForks" data-target="0">0</h3>
-                        <p>Total Forks</p>
-                    </div>
-                    <div class="stat-box">
-                        <h3 id="languages" data-target="0">0</h3>
-                        <p>Languages Used</p>
-                    </div>
+                    <div class="stat-box"><h3 id="totalRepos">0</h3><p>Repositories</p></div>
+                    <div class="stat-box"><h3 id="totalStars">0</h3><p>Stars earned</p></div>
+                    <div class="stat-box"><h3 id="totalForks">0</h3><p>Forks</p></div>
+                    <div class="stat-box"><h3 id="languages">0</h3><p>Languages</p></div>
                 </div>
             </div>
         </section>
 
-        <section id="contact" class="contact">
+        <section id="contact" class="section contact">
             <div class="container">
-                <div class="section-header">
-                    <span class="section-number">06</span>
-                    <h2 class="section-title">Let's Connect</h2>
-                    <div class="section-divider"></div>
-                </div>
-                <p class="contact-subtitle">I'm always interested in hearing about new projects and opportunities.</p>
-
-                <div class="contact-content">
-                    <div class="contact-info">
-                        <div class="contact-item">
-                            <i class="fas fa-envelope"></i>
-                            <div>
-                                <h4>Email</h4>
-                                <p><a href="mailto:jahidcric2000@gmail.com">jahidcric2000@gmail.com</a></p>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <div>
-                                <h4>Location</h4>
-                                <p>Bangladesh</p>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-code-branch"></i>
-                            <div>
-                                <h4>GitHub</h4>
-                                <p><a href="https://github.com/jahidbappi" target="_blank"
-                                        rel="noopener noreferrer">github.com/jahidbappi</a></p>
-                            </div>
-                        </div>
+                <div class="contact-shell">
+                    <div class="contact-intro">
+                        <span class="section-tag">06 — Contact</span>
+                        <h2 class="section-title">Let's build something remarkable.</h2>
+                        <p>Have a project, role, or idea? I'd love to hear from you. I reply to every genuine message.</p>
+                        <ul class="contact-details">
+                            <li><i class="fas fa-envelope"></i><a href="mailto:jahidcric2000@gmail.com">jahidcric2000@gmail.com</a></li>
+                            <li><i class="fas fa-location-dot"></i><span>Bangladesh</span></li>
+                            <li><i class="fab fa-github"></i><a href="https://github.com/jahidbappi" target="_blank" rel="noopener">github.com/jahidbappi</a></li>
+                        </ul>
                     </div>
-
-                    <div class="contact-form">
-                        <form id="contactForm" novalidate>
-                            <div class="form-group">
-                                <input type="text" id="name" name="name" placeholder=" " required autocomplete="name">
-                                <label for="name">Your Name</label>
-                                <p class="error-msg">Please enter your name</p>
-                            </div>
-                            <div class="form-group">
-                                <input type="email" id="email" name="email" placeholder=" " required
-                                    autocomplete="email">
-                                <label for="email">Your Email</label>
-                                <p class="error-msg">Please enter a valid email</p>
-                            </div>
-                            <div class="form-group">
-                                <textarea id="message" name="message" placeholder=" " rows="5" required></textarea>
-                                <label for="message">Your Message</label>
-                                <p class="error-msg">Please enter your message</p>
-                            </div>
-                            <button type="submit" class="btn btn-primary btn-submit">
-                                <span class="btn-text"><i class="fas fa-paper-plane"></i> Send Message</span>
-                                <span class="btn-loading"><span class="spinner-sm"></span></span>
-                            </button>
-                        </form>
-                    </div>
+                    <form id="contactForm" class="contact-form" novalidate>
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required autocomplete="name">
+                            <p class="error-msg">Please enter your name</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required autocomplete="email">
+                            <p class="error-msg">Please enter a valid email</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                            <p class="error-msg">Please enter your message</p>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-submit">
+                            <span class="btn-text">Send message <i class="fas fa-paper-plane"></i></span>
+                            <span class="btn-loading"><span class="spinner-sm"></span></span>
+                        </button>
+                    </form>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2026 Jahid. Full-Stack Developer | AI/ML Enthusiast</p>
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <div class="footer-brand">
+                <span class="brand-mark sm">JB</span>
+                <p>&copy; 2026 Md. Jahidul Islam. Crafted with purpose.</p>
+            </div>
             <div class="footer-links">
-                <a href="https://github.com/jahidbappi" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i
-                        class="fab fa-github"></i></a>
-                <a href="https://vibe-flow.vercel.app" target="_blank" rel="noopener noreferrer"
-                    aria-label="VibeFlow"><i class="fas fa-rocket"></i></a>
+                <a href="https://github.com/jahidbappi" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://linkedin.com/in/jahidbappi" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://jahidbappi.vercel.app" aria-label="Portfolio">Portfolio</a>
             </div>
         </div>
     </footer>

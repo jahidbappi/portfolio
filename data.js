@@ -11,9 +11,10 @@ window.PORTFOLIO_DATA = {
   profileImageAlt: 'Jahid - Full-Stack Developer',
   social: {
     github: 'https://github.com/jahidbappi',
-    linkedin: '#',
+    linkedin: 'https://linkedin.com/in/jahidbappi',
     email: 'jahidcric2000@gmail.com',
     location: 'Bangladesh',
+    portfolio: 'https://jahidbappi.vercel.app',
   },
   web3formsAccessKey: 'YOUR_WEB3FORMS_ACCESS_KEY',
 

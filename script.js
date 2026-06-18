@@ -29,11 +29,11 @@ document.addEventListener('DOMContentLoaded', () => {
     setupNavigation();
     fetchAndDisplayProjects();
     fetchGitHubStats();
-    generateStarBackground();
     setupFormHandling();
     setupScrollSpy();
     setupNavbarScroll();
     setupScrollAnimations();
+    setupSkillBars();
 });
 
 function setupNavigation() {
@@ -82,7 +82,7 @@ function setupNavbarScroll() {
     window.addEventListener(
         'scroll',
         () => {
-            navbar.classList.toggle('scrolled', window.scrollY > 50);
+            navbar.classList.toggle('scrolled', window.scrollY > 40);
         },
         { passive: true }
     );
@@ -100,15 +100,13 @@ function setupScrollSpy() {
                 if (entry.isIntersecting) {
                     const id = entry.target.getAttribute('id');
                     navLinks.forEach((link) => {
-                        link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+                        const href = link.getAttribute('href');
+                        link.classList.toggle('active', href === `#${id}`);
                     });
                 }
             });
         },
-        {
-            rootMargin: '-20% 0px -70% 0px',
-            threshold: 0,
-        }
+        { rootMargin: '-25% 0px -65% 0px', threshold: 0 }
     );
 
     sections.forEach((section) => observer.observe(section));
@@ -191,7 +189,6 @@ async function fetchAndDisplayProjects() {
 
         const repos = await response.json();
         allProjects = mergeWithFeatured(repos);
-
         displayProjects(allProjects);
         setupProjectFilters();
     } catch (error) {
@@ -225,14 +222,10 @@ function displayProjects(projects) {
 
     grid.innerHTML = projects.map((project) => createProjectCard(project)).join('');
 
-    document.querySelectorAll('.project-card').forEach((card, index) => {
-        card.style.opacity = '0';
-        card.style.transform = 'translateY(16px)';
-        card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-        setTimeout(() => {
-            card.style.opacity = '1';
-            card.style.transform = 'translateY(0)';
-        }, index * 40);
+    grid.querySelectorAll('.project-card').forEach((card, index) => {
+        card.classList.add('reveal');
+        card.style.transitionDelay = `${index * 50}ms`;
+        observeReveal(card);
     });
 }
 
@@ -241,7 +234,7 @@ function createProjectCard(project) {
     const timeAgo = getTimeAgo(date);
 
     return `
-        <div class="project-card${project.featured ? ' featured' : ''}" data-category="${project.category}">
+        <article class="project-card${project.featured ? ' featured' : ''}" data-category="${project.category}">
             <span class="project-category">${CATEGORY_LABELS[project.category] || project.category.toUpperCase()}</span>
             <h3 class="project-title">${escapeHtml(project.name)}</h3>
             <p class="project-description">${escapeHtml(project.description)}</p>
@@ -260,12 +253,12 @@ function createProjectCard(project) {
                 ${
                     project.live
                         ? `<a href="${project.live}" target="_blank" rel="noopener noreferrer" class="project-link">
-                    <i class="fas fa-external-link-alt"></i> Live
+                    <i class="fas fa-arrow-up-right-from-square"></i> Live
                 </a>`
                         : ''
                 }
             </div>
-        </div>
+        </article>
     `;
 }
 
@@ -315,27 +308,21 @@ async function fetchGitHubStats() {
             (repo) => !repo.fork && !excluded.has(repo.name.toLowerCase())
         );
 
-        const totalStars = nonForkRepos.reduce((sum, repo) => sum + repo.stargazers_count, 0);
-        const totalForks = nonForkRepos.reduce((sum, repo) => sum + repo.forks_count, 0);
-        const languages = new Set(nonForkRepos.map((repo) => repo.language).filter(Boolean));
-
         const stats = {
             totalRepos: nonForkRepos.length,
-            totalStars,
-            totalForks,
-            languages: languages.size,
+            totalStars: nonForkRepos.reduce((sum, repo) => sum + repo.stargazers_count, 0),
+            totalForks: nonForkRepos.reduce((sum, repo) => sum + repo.forks_count, 0),
+            languages: new Set(nonForkRepos.map((repo) => repo.language).filter(Boolean)).size,
         };
 
         Object.entries(stats).forEach(([key, value]) => {
-            const el = document.getElementById(
-                key === 'totalRepos'
-                    ? 'totalRepos'
-                    : key === 'totalStars'
-                      ? 'totalStars'
-                      : key === 'totalForks'
-                        ? 'totalForks'
-                        : 'languages'
-            );
+            const idMap = {
+                totalRepos: 'totalRepos',
+                totalStars: 'totalStars',
+                totalForks: 'totalForks',
+                languages: 'languages',
+            };
+            const el = document.getElementById(idMap[key]);
             if (el) {
                 el.dataset.target = value;
                 el.textContent = '0';
@@ -364,74 +351,80 @@ async function fetchGitHubStats() {
 }
 
 function animateCounters() {
-    const counters = [
-        { el: document.getElementById('totalRepos') },
-        { el: document.getElementById('totalStars') },
-        { el: document.getElementById('totalForks') },
-        { el: document.getElementById('languages') },
-    ];
-
-    counters.forEach(({ el }) => {
+    ['totalRepos', 'totalStars', 'totalForks', 'languages'].forEach((id) => {
+        const el = document.getElementById(id);
         if (!el) return;
+
         const target = parseInt(el.dataset.target, 10) || 0;
-        const duration = 1500;
+        const duration = 1600;
         const start = performance.now();
 
         function update(currentTime) {
-            const elapsed = currentTime - start;
-            const progress = Math.min(elapsed / duration, 1);
+            const progress = Math.min((currentTime - start) / duration, 1);
             const eased = 1 - Math.pow(1 - progress, 3);
             el.textContent = Math.floor(eased * target);
-
-            if (progress < 1) {
-                requestAnimationFrame(update);
-            } else {
-                el.textContent = target;
-            }
+            if (progress < 1) requestAnimationFrame(update);
+            else el.textContent = target;
         }
 
         requestAnimationFrame(update);
     });
 }
 
-function generateStarBackground() {
-    const starsContainer = document.querySelector('.stars-background');
-    if (!starsContainer) return;
+function setupSkillBars() {
+    const fills = document.querySelectorAll('.skill-fill');
+    if (!fills.length) return;
 
-    const isMobile = window.innerWidth <= 768;
-    const isSmall = window.innerWidth <= 480;
-    const starCount = isSmall ? 20 : isMobile ? 30 : 80;
+    const observer = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    const fill = entry.target;
+                    const width = fill.dataset.width || '0';
+                    fill.style.setProperty('--target-width', `${width}%`);
+                    fill.classList.add('animated');
+                    fill.style.width = `${width}%`;
+                    observer.unobserve(fill);
+                }
+            });
+        },
+        { threshold: 0.4 }
+    );
 
-    const fragment = document.createDocumentFragment();
-    for (let i = 0; i < starCount; i++) {
-        const star = document.createElement('div');
-        const size = Math.random() * 2 + 0.5;
-        star.style.cssText = `
-            position: absolute;
-            width: ${size}px;
-            height: ${size}px;
-            background: white;
-            border-radius: 50%;
-            left: ${Math.random() * 100}%;
-            top: ${Math.random() * 100}%;
-            opacity: ${Math.random() * 0.5 + 0.2};
-            ${isMobile ? '' : `animation: twinkle ${Math.random() * 4 + 2}s infinite ${Math.random() * 2}s;`}
-        `;
-        fragment.appendChild(star);
-    }
-    starsContainer.appendChild(fragment);
+    fills.forEach((fill) => observer.observe(fill));
+}
 
-    if (!document.querySelector('style[data-stars]')) {
-        const style = document.createElement('style');
-        style.setAttribute('data-stars', 'true');
-        style.textContent = `
-            @keyframes twinkle {
-                0%, 100% { opacity: 0.2; }
-                50% { opacity: 0.8; }
-            }
-        `;
-        document.head.appendChild(style);
-    }
+function observeReveal(el) {
+    const observer = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        },
+        { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+    );
+    observer.observe(el);
+}
+
+function setupScrollAnimations() {
+    const selectors = [
+        '.metric-card',
+        '.skill-panel',
+        '.timeline-item',
+        '.stat-box',
+        '.stack-card',
+        '.about-quote',
+        '.contact-shell',
+    ];
+
+    document.querySelectorAll(selectors.join(',')).forEach((el, index) => {
+        el.classList.add('reveal');
+        el.style.transitionDelay = `${(index % 4) * 80}ms`;
+        observeReveal(el);
+    });
 }
 
 function setupFormHandling() {
@@ -477,18 +470,18 @@ function setupFormHandling() {
 
                 const result = await response.json();
                 if (!result.success) throw new Error(result.message || 'Failed to send message');
-                showToast("Message sent successfully! I'll get back to you soon.");
+                showToast("Message sent! I'll get back to you soon.");
                 form.reset();
             } else {
-                const mailtoLink = `mailto:${DATA.social?.email || 'jahidbappi@gmail.com'}?subject=${encodeURIComponent('Portfolio Contact')}&body=${encodeURIComponent(
+                const mailtoLink = `mailto:${DATA.social?.email || 'jahidcric2000@gmail.com'}?subject=${encodeURIComponent('Portfolio Contact')}&body=${encodeURIComponent(
                     `Name: ${form.name.value}\nEmail: ${form.email.value}\n\n${form.message.value}`
                 )}`;
                 window.location.href = mailtoLink;
-                showToast('Opening your email client to send the message.');
+                showToast('Opening your email client…');
             }
         } catch (error) {
             console.error('Contact form error:', error);
-            showToast('Could not send message. Please email me directly.', true);
+            showToast('Could not send. Please email me directly.', true);
         } finally {
             submitBtn.classList.remove('loading');
             submitBtn.disabled = false;
@@ -510,7 +503,6 @@ function validateField(field) {
 
     formGroup.classList.toggle('has-error', !isValid);
     field.classList.toggle('error', !isValid);
-    field.classList.toggle('success', isValid && field.value.trim());
 
     return isValid;
 }
@@ -528,37 +520,6 @@ function showToast(message, isError = false) {
         toast.classList.remove('visible');
         toast.classList.remove('toast-error');
     }, 4000);
-}
-
-function setupScrollAnimations() {
-    const observer = new IntersectionObserver(
-        (entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                    observer.unobserve(entry.target);
-                }
-            });
-        },
-        {
-            threshold: 0.1,
-            rootMargin: '0px 0px -60px 0px',
-        }
-    );
-
-    setTimeout(() => {
-        document
-            .querySelectorAll('.skill-category, .stat-card, .timeline-content, .stat-box, .contact-item')
-            .forEach((el) => {
-                if (!el.style.opacity) {
-                    el.style.opacity = '0';
-                    el.style.transform = 'translateY(16px)';
-                    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-                    observer.observe(el);
-                }
-            });
-    }, 100);
 }
 
 document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
