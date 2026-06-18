@@ -12,7 +12,7 @@ window.PORTFOLIO_DATA = {
   social: {
     github: 'https://github.com/jahidbappi',
     linkedin: '#',
-    email: 'jahidbappi@gmail.com',
+    email: 'jahidcric2000@gmail.com',
     location: 'Bangladesh',
   },
   web3formsAccessKey: 'YOUR_WEB3FORMS_ACCESS_KEY',
