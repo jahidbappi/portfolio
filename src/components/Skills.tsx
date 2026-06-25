@@ -14,18 +14,18 @@ export function Skills() {
           description="Technologies I reach for when shipping production systems — grouped by responsibility, not proficiency theater."
         />
 
-        <Stagger className="mt-20 divide-y divide-[#1a1a1a] border-y border-[#1a1a1a]">
+        <Stagger className="mt-16 divide-y divide-[#ececec] border-y border-[#ececec] md:mt-20">
           {skillGroups.map((group) => (
             <StaggerItem key={group.id} className="grid gap-6 py-8 md:grid-cols-[180px_1fr] md:items-start md:gap-12 md:py-10">
               <div>
-                <p className="text-[0.9375rem] font-medium text-white">{group.label}</p>
-                <p className="mt-1 text-[0.8125rem] text-zinc-600">{group.summary}</p>
+                <p className="text-[0.9375rem] font-medium text-zinc-950">{group.label}</p>
+                <p className="mt-1 text-[0.8125rem] text-zinc-500">{group.summary}</p>
               </div>
               <div className="flex flex-wrap gap-2">
                 {group.skills.map((skill) => (
                   <span
                     key={skill}
-                    className="rounded-md border border-[#1a1a1a] bg-[#0a0a0a] px-3 py-1.5 text-[0.8125rem] text-zinc-300"
+                    className="rounded-md border border-[#ececec] bg-zinc-50 px-3 py-1.5 text-[0.8125rem] text-zinc-700"
                   >
                     {skill}
                   </span>

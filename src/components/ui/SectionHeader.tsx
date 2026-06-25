@@ -21,5 +21,5 @@ export function SectionHeader({ label, title, description, align = 'left', class
 }
 
 export function Divider() {
-  return <div className="h-px w-full bg-[#1a1a1a]" aria-hidden />;
+  return <div className="h-px w-full bg-[#ececec]" aria-hidden />;
 }

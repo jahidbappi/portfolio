@@ -19,7 +19,7 @@ export function Contact() {
   };
 
   return (
-    <section id="contact" className="section border-t border-[#1a1a1a]">
+    <section id="contact" className="section border-t border-[#ececec]">
       <div className="container-main">
         <div className="mx-auto max-w-3xl text-center">
           <Reveal>
@@ -30,7 +30,7 @@ export function Contact() {
             </p>
             <a
               href={`mailto:${site.social.email}`}
-              className="nav-link mt-8 inline-flex items-center gap-2 text-[0.9375rem] text-white"
+              className="nav-link mt-8 inline-flex items-center gap-2 text-[0.9375rem] text-zinc-950"
             >
               {site.social.email}
               <ArrowUpRight className="h-4 w-4" />

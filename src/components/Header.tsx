@@ -37,17 +37,17 @@ export function Header() {
     <>
       <header
         className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
-          scrolled || open ? 'border-b border-[#1a1a1a] bg-[#050505]/90 backdrop-blur-xl' : ''
+          scrolled || open ? 'border-b border-[#ececec] bg-white/80 backdrop-blur-xl' : ''
         }`}
       >
         <div className="container-main flex h-[4.25rem] items-center justify-between">
-          <Link href="#home" className="text-[0.9375rem] font-semibold tracking-[-0.02em] text-white">
+          <Link href="#home" className="text-[0.9375rem] font-semibold tracking-[-0.02em] text-zinc-950">
             {site.name}
           </Link>
 
           <nav className="hidden items-center gap-9 md:flex" aria-label="Main">
             {links.map((l) => (
-              <Link key={l.href} href={l.href} className="nav-link text-[0.8125rem] text-zinc-500 transition-colors hover:text-white">
+              <Link key={l.href} href={l.href} className="nav-link text-[0.8125rem] text-zinc-500 transition-colors hover:text-zinc-950">
                 {l.label}
               </Link>
             ))}
@@ -66,8 +66,8 @@ export function Header() {
             aria-expanded={open}
             onClick={() => setOpen(!open)}
           >
-            <span className={`absolute h-px w-5 bg-white transition-all ${open ? 'rotate-45' : '-translate-y-[5px]'}`} />
-            <span className={`absolute h-px w-5 bg-white transition-all ${open ? '-rotate-45' : 'translate-y-[5px]'}`} />
+            <span className={`absolute h-px w-5 bg-zinc-950 transition-all ${open ? 'rotate-45' : '-translate-y-[5px]'}`} />
+            <span className={`absolute h-px w-5 bg-zinc-950 transition-all ${open ? '-rotate-45' : 'translate-y-[5px]'}`} />
           </button>
         </div>
       </header>
@@ -79,7 +79,7 @@ export function Header() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={transition}
-            className="fixed inset-0 z-40 bg-[#050505]/98 backdrop-blur-md md:hidden"
+            className="fixed inset-0 z-40 bg-white/98 backdrop-blur-md md:hidden"
           >
             <nav className="container-main flex h-full flex-col justify-center gap-2 pt-20">
               {links.map((l, i) => (
@@ -91,7 +91,7 @@ export function Header() {
                 >
                   <Link
                     href={l.href}
-                    className="block py-4 text-3xl font-semibold tracking-[-0.03em] text-white"
+                    className="block py-4 text-3xl font-semibold tracking-[-0.03em] text-zinc-950"
                     onClick={() => setOpen(false)}
                   >
                     {l.label}

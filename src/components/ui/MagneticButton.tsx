@@ -27,9 +27,9 @@ export function MagneticButton({ children, className = '', href, onClick, varian
 
   const base = `inline-flex items-center justify-center gap-2 rounded-lg font-medium ${sizes[size]}`;
   const variants = {
-    primary: 'bg-white text-black hover:bg-zinc-100',
-    secondary: 'border border-[#2a2a2a] bg-transparent text-zinc-200 hover:border-zinc-500 hover:bg-white/[0.03]',
-    ghost: 'text-zinc-400 hover:text-white',
+    primary: 'bg-zinc-950 text-white hover:bg-zinc-800',
+    secondary: 'border border-[#e0e0e0] bg-white text-zinc-800 hover:border-zinc-400 hover:bg-zinc-50',
+    ghost: 'text-zinc-500 hover:text-zinc-950',
   };
 
   const handleMove = (e: React.MouseEvent) => {

@@ -134,9 +134,9 @@ export const featuredProject: ProjectCaseStudy = {
   impact: 'Live production platform serving real users with modern UX and deploy-ready architecture.',
   tech: ['React', 'Node.js', 'JavaScript', 'Vercel'],
   github: 'https://github.com/jahidbappi/VibeFlow',
-  live: 'https://vibe-flow.vercel.app',
-  image: '/assets/projects/vibeflow.jpg',
-  imageAlt: 'VibeFlow software marketplace interface',
+  live: 'https://vibeflow.tech',
+  image: '/assets/projects/vibeflow.png',
+  imageAlt: 'VibeFlow on-demand creative and dev service landing page',
 };
 
 export const projects: ProjectCaseStudy[] = [

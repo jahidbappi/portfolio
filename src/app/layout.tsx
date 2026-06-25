@@ -32,7 +32,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`}>
       <head>
         <link rel="icon" href="/assets/brand-icon.svg" type="image/svg+xml" />
-        <meta name="theme-color" content="#09090b" />
+        <meta name="theme-color" content="#ffffff" />
       </head>
       <body className="font-sans">
         <Header />
