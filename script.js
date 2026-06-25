@@ -4,6 +4,7 @@ const DATA = window.PORTFOLIO_DATA || {};
 const API = `https://api.github.com/users/${DATA.githubUsername || 'jahidbappi'}/repos`;
 
 let projects = [];
+let activeFilter = 'all';
 let statsDone = false;
 
 const LANG_MAP = {
@@ -215,6 +216,16 @@ function mergeRepos(repos) {
   });
 }
 
+function countMobileApps() {
+  return (DATA.mobileGroups || []).reduce((n, g) => n + g.projects.length, 0);
+}
+
+function appInitials(name) {
+  const words = name.replace(/[^a-zA-Z0-9\s]/g, ' ').trim().split(/\s+/).filter(Boolean);
+  if (words.length >= 2) return (words[0][0] + words[1][0]).toUpperCase();
+  return name.slice(0, 2).toUpperCase();
+}
+
 async function fetchProjects() {
   try {
     const res = await fetch(`${API}?per_page=100`);
@@ -226,24 +237,37 @@ async function fetchProjects() {
       tech: p.tech, github: p.github, live: p.live, featured: p.featured ?? true,
     }));
   }
-  renderProjects(projects);
+  renderWork(activeFilter);
 }
 
-function renderProjects(list) {
+function renderWork(filter = 'all') {
+  activeFilter = filter;
+  renderProjects(projects, filter);
+  renderMobileShowcase(filter);
+}
+
+function renderProjects(list, filter = 'all') {
   const grid = $('#workGrid');
   if (!grid) return;
-  if (!list.length) {
+
+  const showGrid = filter === 'all' || filter === 'web' || filter === 'ai';
+  grid.hidden = !showGrid;
+  if (!showGrid) return;
+
+  const filtered = list.filter(p => filter === 'all' || p.cat === filter);
+  if (!filtered.length) {
     grid.innerHTML = '<div class="work-loading">No projects found.</div>';
     return;
   }
-  grid.innerHTML = list.map(p => `
+
+  grid.innerHTML = filtered.map(p => `
     <article class="project${p.featured ? ' featured' : ''}" data-cat="${p.cat}">
       <span class="project-cat ${p.cat}">${p.cat.toUpperCase()}</span>
       <h3>${esc(p.name)}</h3>
       <p>${esc(p.desc)}</p>
       <div class="project-tags">${(p.tech || []).map(t => `<span>${esc(t)}</span>`).join('')}</div>
       <div class="project-links">
-        <a href="${p.github}" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> Code</a>
+        ${p.github ? `<a href="${p.github}" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> Code</a>` : ''}
         ${p.live ? `<a href="${p.live}" target="_blank" rel="noopener"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live</a>` : ''}
       </div>
     </article>
@@ -251,15 +275,68 @@ function renderProjects(list) {
   observeReveal(grid.querySelectorAll('.project'));
 }
 
+function renderMobileShowcase(filter = 'all') {
+  const wrap = $('#mobileShowcase');
+  const groups = DATA.mobileGroups || [];
+  if (!wrap || !groups.length) return;
+
+  const showMobile = filter === 'all' || filter === 'mobile';
+  wrap.hidden = !showMobile;
+  if (!showMobile) return;
+
+  const total = countMobileApps();
+  const compact = filter === 'mobile';
+
+  wrap.innerHTML = `
+    <div class="mobile-showcase-head${compact ? ' solo' : ''}">
+      <div class="mobile-showcase-intro">
+        <span class="mobile-badge"><i class="fa-brands fa-google-play"></i> Google Play</span>
+        <h3>${compact ? 'Android apps I built' : 'Published on Google Play'}</h3>
+        <p>${total} live Android apps — business platforms, games, and utilities shipped to production.</p>
+      </div>
+      <div class="mobile-showcase-stats">
+        ${groups.map(g => `
+          <div class="mobile-stat">
+            <span class="mobile-stat-num">${g.projects.length}</span>
+            <span class="mobile-stat-lbl">${esc(g.label)}</span>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+    ${groups.map(g => `
+      <section class="mobile-group" data-reveal>
+        <div class="mobile-group-head">
+          <div class="mobile-group-icon ${g.id}"><i class="fa-solid ${g.icon}"></i></div>
+          <div>
+            <h4>${esc(g.label)}</h4>
+            <span>${g.projects.length} app${g.projects.length === 1 ? '' : 's'}</span>
+          </div>
+        </div>
+        <div class="mobile-apps-grid">
+          ${g.projects.map(p => `
+            <a class="mobile-app-card" href="${p.play}" target="_blank" rel="noopener">
+              <div class="mobile-app-icon ${g.id}">${esc(appInitials(p.name))}</div>
+              <div class="mobile-app-body">
+                <h5>${esc(p.name)}</h5>
+                <p>${esc(p.description)}</p>
+              </div>
+              <span class="mobile-app-link" aria-hidden="true"><i class="fa-brands fa-google-play"></i></span>
+            </a>
+          `).join('')}
+        </div>
+      </section>
+    `).join('')}
+  `;
+
+  observeReveal(wrap.querySelectorAll('[data-reveal]'));
+}
+
 function setupFilters() {
   $$('.filter').forEach(btn => {
     btn.addEventListener('click', () => {
       $$('.filter').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
-      const f = btn.dataset.f;
-      $$('.project').forEach(card => {
-        card.style.display = f === 'all' || card.dataset.cat === f ? '' : 'none';
-      });
+      renderWork(btn.dataset.f);
     });
   });
 }

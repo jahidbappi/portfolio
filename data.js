@@ -30,7 +30,7 @@ window.PORTFOLIO_DATA = {
 
   heroStats: [
     { value: '13+', label: 'Repositories' },
-    { value: '5+', label: 'Live apps' },
+    { value: '29+', label: 'Play Store apps' },
     { value: '4+', label: 'Certifications' },
   ],
 
@@ -182,6 +182,59 @@ window.PORTFOLIO_DATA = {
       github: 'https://github.com/jahidbappi/Smart_Relief_BD',
       live: null,
       featured: false,
+    },
+  ],
+
+  mobileGroups: [
+    {
+      id: 'business',
+      label: 'Business & Service Apps',
+      icon: 'fa-briefcase',
+      projects: [
+        { name: 'Ditto Frame', description: 'Professional video recording booking service for weddings, birthday.', play: 'https://play.google.com/store/apps/details?id=com.dittorecordingslimited.dittoframe' },
+        { name: 'Solvify -H H Solutions', description: 'Office admin services. Order, track, PDFs. No permissions, no data collection.', play: 'https://play.google.com/store/apps/details?id=com.hhsolutionsltd.solvofy' },
+        { name: 'Ditto Coffee LTD', description: 'Premium coffee ordering with instant PDF receipts. Private, offline, and simple.', play: 'https://play.google.com/store/apps/details?id=com.dittocoffeemanchesterlimited.dittocoffee' },
+        { name: 'Kouakio LTD', description: 'Your complete health and safety product catalog and service ordering app.', play: 'https://play.google.com/store/apps/details?id=com.kouakioltd.kouakiohealth' },
+        { name: 'Farorote Consultancy', description: 'IT consulting services app — browse services, book consultations.', play: 'https://play.google.com/store/apps/details?id=com.faroroteltd.faroroteconsultancy' },
+        { name: 'PRIMEPICK Traders Delivery', description: 'Professional delivery requests with instant PDF summaries. Safe and reliable.', play: 'https://play.google.com/store/apps/details?id=com.primepicktradersltd.primepickdelivery' },
+        { name: 'Primepick Traders', description: 'Curated tech and lifestyle essentials with concierge service.', play: 'https://play.google.com/store/apps/details?id=com.primepicktradersltd.primepicktraders' },
+        { name: 'CBN Barbers', description: 'Premium mobile barber services. Book haircuts and grooming at your door.', play: 'https://play.google.com/store/apps/details?id=com.cbnmobilebarberltd.cbnbarbers' },
+        { name: 'ERWG Homes', description: 'Explore projects, order services, and connect with real estate development.', play: 'https://play.google.com/store/apps/details?id=com.erwgoedhomesltd.erwghomes' },
+        { name: 'Clarion Flow', description: 'Professional bookkeeping and payroll services for UK businesses.', play: 'https://play.google.com/store/apps/details?id=com.clarionpayrollserviceslimited.clarionflow' },
+        { name: 'Noyan Wholesale', description: 'Wholesale textiles by NOYAN LIMITED. Browse products.', play: 'https://play.google.com/store/apps/details?id=com.noyanlimited.noyanwholesale' },
+        { name: 'DORL Cars', description: 'Browse vehicles, book test drives, and order services from Dickens of Wrexham.', play: 'https://play.google.com/store/apps/details?id=com.dickensofwrexhamlimited.dorlcars' },
+        { name: 'CDM Music', description: 'Browse music and video catalog, order services, and get PDF confirmations.', play: 'https://play.google.com/store/apps/details?id=com.cdmmusiclimited.cdmmusic' },
+        { name: 'SNL Wheelz', description: 'Curated used vehicles and simple service orders in a privacy-first app.', play: 'https://play.google.com/store/apps/details?id=com.solonwlimited.snlwheelz' },
+        { name: 'Crafts and More', description: 'Handmade food, craft drinks, and more. Browse the menu, no account required.', play: 'https://play.google.com/store/apps/details?id=com.handmadeandmoreltd.craftandmore' },
+        { name: 'Bottin Consult', description: 'Boutique legal app: services, orders, on-device PDFs, and firm insights.', play: 'https://play.google.com/store/apps/details?id=com.bottincreekconsultingltd.bottinconsult' },
+        { name: 'Aurelio Decor', description: 'Wholesale furniture, carpets & lighting — browse, order drafts & PDFs on-device.', play: 'https://play.google.com/store/apps/details?id=com.goldenblindsltd.aureliodecor' },
+        { name: 'Baseonix', description: 'Browse Baseonix catalog, build requests, export PDFs on your device.', play: 'https://play.google.com/store/apps/details?id=com.archibaseltd.baseonix' },
+      ],
+    },
+    {
+      id: 'games',
+      label: 'Games',
+      icon: 'fa-gamepad',
+      projects: [
+        { name: '3Patti Octro:Fortune Card', description: 'Buy intel and master card-stacking in our mini-game. Perfect your timing now!', play: 'https://play.google.com/store/apps/details?id=net.octrogame.patticard' },
+        { name: 'Jhandi Munda King', description: 'Jhandi Munda King is back — the classic dice game you know and love!', play: 'https://play.google.com/store/apps/details?id=net.mdipbnt.jhandimunda.king' },
+        { name: 'Teen Patti Bodhi-Lucky Ace', description: 'Download Teen Patti Bodhi now and start your lucky journey!', play: 'https://play.google.com/store/apps/details?id=net.luckybodhi.lucky.ace' },
+        { name: 'Whimsy Balloon Link Puzzle', description: 'Link matching balloons to clear the board.', play: 'https://play.google.com/store/apps/details?id=com.whimsy.balloon.link.puzzle' },
+        { name: 'Critter Burst Tile Bash', description: 'Chain matching tiles for powerful bomb blasts.', play: 'https://play.google.com/store/apps/details?id=com.critter.burst.tile.bash' },
+        { name: 'Puzzle Adventure', description: 'Embark on a wonderful adventure with jigsaw puzzles.', play: 'https://play.google.com/store/apps/details?id=com.yx.puzzle.adv' },
+        { name: 'Link Level Up', description: 'Keep linking and level up!', play: 'https://play.google.com/store/apps/details?id=com.yx.link.level.up' },
+        { name: 'Twist Bolt', description: 'Just twist the bolts!', play: 'https://play.google.com/store/apps/details?id=com.yx.twist.bolt' },
+        { name: 'Bubble Fruit Zap', description: 'Embark on a fruit matching quest.', play: 'https://play.google.com/store/apps/details?id=com.yx.bubble.fruit.zap' },
+      ],
+    },
+    {
+      id: 'utility',
+      label: 'Utilities & Tools',
+      icon: 'fa-wrench',
+      projects: [
+        { name: 'Antivirus Spark', description: 'Virus scanning, junk cleaning, and photo & video management.', play: 'https://play.google.com/store/apps/details?id=com.avsparklabs.mobile.sec' },
+        { name: 'Hypno Clock', description: 'Relax with a swinging pocket watch and ambient breathing sessions.', play: 'https://play.google.com/store/apps/details?id=com.app.hypnoclock' },
+      ],
     },
   ],
 };
