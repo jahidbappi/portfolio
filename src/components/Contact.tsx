@@ -1,13 +1,13 @@
 'use client';
 
 import { FormEvent, useState } from 'react';
-import { ArrowUpRight, Mail } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 import { site } from '@/lib/data';
 import { MagneticButton } from './ui/MagneticButton';
 import { Reveal } from './ui/Reveal';
 
 export function Contact() {
-  const [status, setStatus] = useState<'idle' | 'sent' | 'error'>('idle');
+  const [status, setStatus] = useState<'idle' | 'sent'>('idle');
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -19,62 +19,53 @@ export function Contact() {
   };
 
   return (
-    <section id="contact" className="py-24 md:py-32">
-      <div className="mx-auto max-w-6xl px-6 lg:px-8">
-        <div className="grid gap-12 rounded-3xl border border-zinc-800 bg-zinc-900/20 p-8 md:p-14 lg:grid-cols-2 lg:gap-20">
+    <section id="contact" className="section border-t border-[#1a1a1a]">
+      <div className="container-main">
+        <div className="mx-auto max-w-3xl text-center">
           <Reveal>
-            <p className="text-sm font-medium uppercase tracking-[0.2em] text-zinc-500">Contact</p>
-            <h2 className="mt-4 text-[clamp(2rem,4vw,3rem)] font-semibold leading-tight tracking-[-0.03em] text-white">
-              Let&apos;s build something remarkable.
-            </h2>
-            <p className="mt-6 text-lg text-zinc-400">
-              Open to full-time roles, contract work, and ambitious product collaborations.
+            <p className="eyebrow">Contact</p>
+            <h2 className="display-lg mt-5">Let&apos;s work together.</h2>
+            <p className="body-lg mx-auto mt-6 max-w-lg">
+              Open to engineering roles, contract builds, and product collaborations.
             </p>
             <a
               href={`mailto:${site.social.email}`}
-              className="nav-link mt-8 inline-flex items-center gap-2 text-zinc-300 hover:text-white"
+              className="nav-link mt-8 inline-flex items-center gap-2 text-[0.9375rem] text-white"
             >
-              <Mail className="h-4 w-4" />
               {site.social.email}
               <ArrowUpRight className="h-4 w-4" />
             </a>
-            <p className="mt-4 text-sm text-zinc-500">{site.social.location}</p>
           </Reveal>
 
-          <Reveal delay={0.08}>
-            <form onSubmit={handleSubmit} className="space-y-5">
+          <Reveal delay={0.08} className="mt-16 text-left">
+            <form onSubmit={handleSubmit} className="space-y-8">
               <label className="block">
-                <span className="mb-2 block text-sm text-zinc-500">Name</span>
-                <input
-                  name="name"
-                  required
-                  autoComplete="name"
-                  className="w-full rounded-xl border border-zinc-800 bg-[#09090b] px-4 py-3 text-sm text-white outline-none transition-colors focus:border-zinc-600"
-                />
+                <span className="meta">Name</span>
+                <input name="name" required autoComplete="name" className="input-field mt-3" placeholder="Your name" />
               </label>
               <label className="block">
-                <span className="mb-2 block text-sm text-zinc-500">Email</span>
+                <span className="meta">Email</span>
                 <input
                   name="email"
                   type="email"
                   required
                   autoComplete="email"
-                  className="w-full rounded-xl border border-zinc-800 bg-[#09090b] px-4 py-3 text-sm text-white outline-none transition-colors focus:border-zinc-600"
+                  className="input-field mt-3"
+                  placeholder="you@company.com"
                 />
               </label>
               <label className="block">
-                <span className="mb-2 block text-sm text-zinc-500">Message</span>
+                <span className="meta">Message</span>
                 <textarea
                   name="message"
                   required
                   rows={4}
-                  className="w-full resize-y rounded-xl border border-zinc-800 bg-[#09090b] px-4 py-3 text-sm text-white outline-none transition-colors focus:border-zinc-600"
+                  className="input-field mt-3 resize-none"
+                  placeholder="Tell me about the project"
                 />
               </label>
-              <MagneticButton className="w-full">Send message</MagneticButton>
-              {status === 'sent' && (
-                <p className="text-sm text-emerald-400">Opening your email client…</p>
-              )}
+              <MagneticButton className="w-full sm:w-auto">Send message</MagneticButton>
+              {status === 'sent' && <p className="text-[0.8125rem] text-zinc-500">Opening your email client…</p>}
             </form>
           </Reveal>
         </div>

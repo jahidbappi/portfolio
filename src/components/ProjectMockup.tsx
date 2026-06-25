@@ -3,40 +3,73 @@
 import { ProjectCaseStudy } from '@/lib/data';
 import { cn } from '@/lib/utils';
 
-const palettes: Record<string, string> = {
-  vibeflow: 'from-violet-600/30 via-zinc-900 to-zinc-950',
-  'code-reviewer-ai': 'from-blue-600/25 via-zinc-900 to-zinc-950',
-  'identifier-tester': 'from-emerald-600/20 via-zinc-900 to-zinc-950',
-  'smart-relief': 'from-rose-600/20 via-zinc-900 to-zinc-950',
-  'mobile-portfolio': 'from-amber-600/20 via-zinc-900 to-zinc-950',
+const accents: Record<string, { bg: string; accent: string }> = {
+  vibeflow: { bg: '#0c0a14', accent: '#8b5cf6' },
+  'code-reviewer-ai': { bg: '#080c14', accent: '#3b82f6' },
+  'identifier-tester': { bg: '#081410', accent: '#10b981' },
+  'smart-relief': { bg: '#140808', accent: '#f43f5e' },
+  'mobile-portfolio': { bg: '#141008', accent: '#f59e0b' },
 };
 
-export function ProjectMockup({ project, className }: { project: ProjectCaseStudy; className?: string }) {
-  const gradient = palettes[project.slug] ?? 'from-zinc-700/30 via-zinc-900 to-zinc-950';
+export function ProjectMockup({
+  project,
+  className,
+  featured = false,
+}: {
+  project: ProjectCaseStudy;
+  className?: string;
+  featured?: boolean;
+}) {
+  const theme = accents[project.slug] ?? { bg: '#0a0a0a', accent: '#737373' };
 
   return (
     <div
-      className={cn(
-        'relative aspect-[16/10] overflow-hidden rounded-xl border border-zinc-800 bg-zinc-950',
-        className,
-      )}
+      className={cn('overflow-hidden rounded-xl border border-[#1a1a1a]', featured ? 'rounded-2xl' : '', className)}
+      style={{ backgroundColor: theme.bg }}
     >
-      <div className={cn('absolute inset-0 bg-gradient-to-br', gradient)} />
-      <div className="absolute inset-0 opacity-20" style={{
-        backgroundImage: 'linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px)',
-        backgroundSize: '24px 24px',
-      }} />
-      <div className="absolute inset-x-6 top-6 rounded-lg border border-zinc-700/60 bg-zinc-900/80 p-4 backdrop-blur-sm">
-        <div className="mb-3 flex gap-1.5">
-          <span className="h-2 w-2 rounded-full bg-zinc-600" />
-          <span className="h-2 w-2 rounded-full bg-zinc-600" />
-          <span className="h-2 w-2 rounded-full bg-zinc-600" />
-        </div>
-        <p className="text-xs font-medium uppercase tracking-wider text-zinc-500">{project.category}</p>
-        <p className="mt-1 text-lg font-semibold text-white">{project.name}</p>
+      <div className="flex items-center gap-2 border-b border-white/[0.06] px-4 py-3">
+        <span className="h-2 w-2 rounded-full bg-zinc-700" />
+        <span className="h-2 w-2 rounded-full bg-zinc-700" />
+        <span className="h-2 w-2 rounded-full bg-zinc-700" />
+        <span className="ml-3 truncate font-mono text-[10px] text-zinc-600">
+          {project.live?.replace('https://', '') ?? project.github?.replace('https://github.com/', '') ?? project.name}
+        </span>
       </div>
-      <div className="absolute bottom-6 left-6 right-6">
-        <p className="text-sm leading-relaxed text-zinc-400 line-clamp-2">{project.solution}</p>
+
+      <div className={cn('relative p-6 md:p-8', featured ? 'min-h-[320px] md:min-h-[420px]' : 'min-h-[240px] md:min-h-[280px]')}>
+        <div
+          className="absolute inset-0 opacity-[0.07]"
+          style={{
+            backgroundImage: `radial-gradient(circle at 30% 20%, ${theme.accent}, transparent 50%)`,
+          }}
+        />
+
+        <div className="relative">
+          <p className="meta">{project.category}</p>
+          <p className="mt-3 text-2xl font-semibold tracking-[-0.03em] text-white md:text-3xl">{project.name}</p>
+        </div>
+
+        <div className="relative mt-8 space-y-3">
+          {[project.problem, project.solution].map((line, i) => (
+            <div key={i} className="flex gap-3">
+              <span className="mt-2 h-px w-6 shrink-0" style={{ backgroundColor: theme.accent }} />
+              <p className="text-[0.8125rem] leading-relaxed text-zinc-400">{line}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className="absolute bottom-6 left-6 right-6 md:bottom-8 md:left-8 md:right-8">
+          <div className="flex flex-wrap gap-2">
+            {project.tech.slice(0, 4).map((t) => (
+              <span
+                key={t}
+                className="rounded border border-white/[0.08] bg-black/20 px-2 py-0.5 font-mono text-[10px] text-zinc-400"
+              >
+                {t}
+              </span>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );

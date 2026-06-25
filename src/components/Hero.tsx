@@ -1,140 +1,99 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { ArrowDown, ArrowUpRight, Download, Github, Linkedin, Mail, Twitter } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 import Image from 'next/image';
-import { heroStats, site } from '@/lib/data';
+import { site } from '@/lib/data';
 import { fadeUp, stagger, transition } from '@/lib/utils';
 import { MagneticButton } from './ui/MagneticButton';
 
-const socials = [
-  { href: site.social.github, icon: Github, label: 'GitHub' },
-  { href: site.social.linkedin, icon: Linkedin, label: 'LinkedIn' },
-  { href: site.social.twitter, icon: Twitter, label: 'Twitter' },
-  { href: `mailto:${site.social.email}`, icon: Mail, label: 'Email' },
-];
-
 type GitHubStats = { repos: number; stars: number };
+
+const socials = [
+  { label: 'GitHub', href: site.social.github },
+  { label: 'LinkedIn', href: site.social.linkedin },
+  { label: 'Email', href: `mailto:${site.social.email}` },
+];
 
 export function Hero({ stats }: { stats: GitHubStats }) {
   return (
-    <section id="home" className="relative overflow-hidden pt-32 pb-24 md:pt-40 md:pb-32">
-      <div className="pointer-events-none absolute inset-0">
-        <div className="absolute left-1/2 top-0 h-[520px] w-[720px] -translate-x-1/2 rounded-full bg-white/[0.02] blur-3xl" />
-        <div
-          className="absolute inset-0 opacity-[0.35]"
-          style={{
-            backgroundImage: `linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)`,
-            backgroundSize: '72px 72px',
-            maskImage: 'radial-gradient(ellipse 70% 60% at 50% 0%, black, transparent)',
-          }}
-        />
-      </div>
+    <section id="home" className="relative overflow-hidden pt-[7.5rem] pb-20 md:pt-36 md:pb-28">
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-[min(70vh,640px)] bg-[radial-gradient(ellipse_60%_50%_at_50%_-10%,rgba(255,255,255,0.06),transparent)]" />
 
-      <div className="relative mx-auto max-w-6xl px-6 lg:px-8">
-        <motion.div initial="hidden" animate="visible" variants={stagger} className="max-w-4xl">
-          <motion.div variants={fadeUp} transition={transition} className="mb-8 inline-flex items-center gap-2 rounded-full border border-zinc-800 bg-zinc-900/60 px-4 py-1.5">
-            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-            <span className="text-xs font-medium tracking-wide text-zinc-300">{site.availability}</span>
+      <div className="container-main relative">
+        <div className="grid items-end gap-16 lg:grid-cols-[1fr_340px] lg:gap-20">
+          <motion.div initial="hidden" animate="visible" variants={stagger}>
+            <motion.div variants={fadeUp} transition={transition} className="mb-10 inline-flex items-center gap-2.5">
+              <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+              <span className="text-[0.8125rem] text-zinc-400">{site.availability}</span>
+            </motion.div>
+
+            <motion.p variants={fadeUp} transition={transition} className="text-[0.8125rem] text-zinc-500">
+              {site.fullName}
+            </motion.p>
+
+            <motion.h1 variants={fadeUp} transition={transition} className="display-xl mt-4 max-w-[14ch]">
+              Products engineered for production.
+            </motion.h1>
+
+            <motion.p variants={fadeUp} transition={transition} className="body-lg mt-8 max-w-xl">
+              {site.description}
+            </motion.p>
+
+            <motion.div variants={fadeUp} transition={transition} className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center">
+              <MagneticButton href="#work" size="lg">
+                View projects
+              </MagneticButton>
+              <MagneticButton href={site.resumeUrl} variant="secondary" size="lg">
+                Download resume
+              </MagneticButton>
+            </motion.div>
+
+            <motion.div variants={fadeUp} transition={transition} className="mt-12 flex flex-wrap items-center gap-x-6 gap-y-2">
+              {socials.map((s) => (
+                <a
+                  key={s.label}
+                  href={s.href}
+                  target={s.label !== 'Email' ? '_blank' : undefined}
+                  rel={s.label !== 'Email' ? 'noopener noreferrer' : undefined}
+                  className="nav-link inline-flex items-center gap-1 text-[0.8125rem] text-zinc-500 transition-colors hover:text-white"
+                >
+                  {s.label}
+                  <ArrowUpRight className="h-3 w-3" />
+                </a>
+              ))}
+            </motion.div>
           </motion.div>
 
-          <motion.p variants={fadeUp} transition={transition} className="mb-4 text-sm font-medium uppercase tracking-[0.2em] text-zinc-500">
-            {site.fullName}
-          </motion.p>
-
-          <motion.h1
-            variants={fadeUp}
-            transition={transition}
-            className="text-[clamp(2.75rem,7vw,5.5rem)] font-semibold leading-[1.02] tracking-[-0.04em] text-white"
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ ...transition, delay: 0.15 }}
+            className="hidden lg:block"
           >
-            I build products
-            <br />
-            <span className="text-zinc-500">that ship to production.</span>
-          </motion.h1>
-
-          <motion.p
-            variants={fadeUp}
-            transition={transition}
-            className="mt-8 max-w-2xl text-lg leading-relaxed text-zinc-400 md:text-xl"
-          >
-            {site.description}
-          </motion.p>
-
-          <motion.div variants={fadeUp} transition={transition} className="mt-10 flex flex-wrap items-center gap-4">
-            <MagneticButton href="#work">
-              View Projects
-              <ArrowDown className="h-4 w-4" />
-            </MagneticButton>
-            <MagneticButton href={site.resumeUrl} variant="secondary">
-              Download Resume
-              <Download className="h-4 w-4" />
-            </MagneticButton>
+            <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-[#1a1a1a] bg-[#0a0a0a]">
+              <Image src={site.profileImage} alt={site.fullName} fill className="object-cover" sizes="340px" priority />
+            </div>
           </motion.div>
-
-          <motion.div variants={fadeUp} transition={transition} className="mt-10 flex items-center gap-3">
-            {socials.map(({ href, icon: Icon, label }) => (
-              <a
-                key={label}
-                href={href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={label}
-                className="flex h-10 w-10 items-center justify-center rounded-full border border-zinc-800 text-zinc-400 transition-all duration-200 hover:scale-105 hover:border-zinc-600 hover:text-white"
-              >
-                <Icon className="h-4 w-4" />
-              </a>
-            ))}
-          </motion.div>
-        </motion.div>
+        </div>
 
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ ...transition, delay: 0.2 }}
-          className="mt-20 grid gap-px overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-800 md:grid-cols-4"
+          transition={{ ...transition, delay: 0.22 }}
+          className="mt-20 grid gap-px border border-[#1a1a1a] bg-[#1a1a1a] sm:grid-cols-2 lg:grid-cols-4"
         >
-          {heroStats.map((s) => (
-            <div key={s.label} className="bg-[#09090b] px-6 py-5">
-              <p className="text-2xl font-semibold tracking-tight text-white">{s.value}</p>
-              <p className="mt-1 text-sm text-zinc-500">{s.label}</p>
+          {[
+            { value: stats.repos, label: 'GitHub repositories' },
+            { value: stats.stars, label: 'Stars earned' },
+            { value: '29', label: 'Play Store apps' },
+            { value: site.focus[0], label: 'Current focus' },
+          ].map((item) => (
+            <div key={item.label} className="bg-[#050505] px-6 py-7 md:px-8">
+              <p className="text-2xl font-semibold tracking-[-0.03em] text-white">{item.value}</p>
+              <p className="mt-2 text-[0.8125rem] text-zinc-500">{item.label}</p>
             </div>
           ))}
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ ...transition, delay: 0.28 }}
-          className="mt-6 flex flex-col gap-6 rounded-2xl border border-zinc-800 bg-zinc-900/30 p-6 md:flex-row md:items-center md:justify-between"
-        >
-          <div className="flex items-center gap-4">
-            <div className="relative h-14 w-14 overflow-hidden rounded-full ring-1 ring-zinc-700">
-              <Image src={site.profileImage} alt={site.fullName} fill className="object-cover" sizes="56px" />
-            </div>
-            <div>
-              <p className="text-sm font-medium text-white">Currently focused on</p>
-              <p className="text-sm text-zinc-500">{site.focus.join(' · ')}</p>
-            </div>
-          </div>
-          <div className="flex gap-8 text-sm">
-            <div>
-              <p className="font-medium text-white">{stats.repos}</p>
-              <p className="text-zinc-500">GitHub repos</p>
-            </div>
-            <div>
-              <p className="font-medium text-white">{stats.stars}</p>
-              <p className="text-zinc-500">Stars earned</p>
-            </div>
-            <a
-              href={site.social.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="nav-link inline-flex items-center gap-1 self-center text-zinc-400 hover:text-white"
-            >
-              View GitHub
-              <ArrowUpRight className="h-3.5 w-3.5" />
-            </a>
-          </div>
         </motion.div>
       </div>
     </section>

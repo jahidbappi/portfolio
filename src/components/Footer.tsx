@@ -2,10 +2,10 @@ import { site } from '@/lib/data';
 
 export function Footer() {
   return (
-    <footer className="border-t border-zinc-800/80 py-10">
-      <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-4 px-6 text-sm text-zinc-500 md:flex-row md:items-center lg:px-8">
+    <footer className="border-t border-[#1a1a1a] py-12">
+      <div className="container-main flex flex-col gap-3 text-[0.8125rem] text-zinc-600 md:flex-row md:items-center md:justify-between">
         <p>© {new Date().getFullYear()} {site.fullName}</p>
-        <p>Designed & engineered with precision</p>
+        <p>{site.social.location}</p>
       </div>
     </footer>
   );

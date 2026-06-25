@@ -10,20 +10,25 @@ type Props = {
   href?: string;
   onClick?: () => void;
   variant?: 'primary' | 'secondary' | 'ghost';
+  size?: 'md' | 'lg';
 };
 
-export function MagneticButton({ children, className = '', href, onClick, variant = 'primary' }: Props) {
+export function MagneticButton({ children, className = '', href, onClick, variant = 'primary', size = 'md' }: Props) {
   const ref = useRef<HTMLAnchorElement & HTMLButtonElement>(null);
   const x = useMotionValue(0);
   const y = useMotionValue(0);
-  const sx = useSpring(x, { stiffness: 300, damping: 20 });
-  const sy = useSpring(y, { stiffness: 300, damping: 20 });
+  const sx = useSpring(x, { stiffness: 280, damping: 22 });
+  const sy = useSpring(y, { stiffness: 280, damping: 22 });
 
-  const base =
-    'inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-medium transition-colors duration-200';
+  const sizes = {
+    md: 'h-11 px-5 text-sm',
+    lg: 'h-12 px-6 text-sm',
+  };
+
+  const base = `inline-flex items-center justify-center gap-2 rounded-lg font-medium ${sizes[size]}`;
   const variants = {
-    primary: 'bg-white text-black hover:bg-zinc-200',
-    secondary: 'border border-zinc-700 bg-zinc-900 text-zinc-100 hover:border-zinc-500 hover:bg-zinc-800',
+    primary: 'bg-white text-black hover:bg-zinc-100',
+    secondary: 'border border-[#2a2a2a] bg-transparent text-zinc-200 hover:border-zinc-500 hover:bg-white/[0.03]',
     ghost: 'text-zinc-400 hover:text-white',
   };
 
@@ -31,8 +36,8 @@ export function MagneticButton({ children, className = '', href, onClick, varian
     const el = ref.current;
     if (!el) return;
     const rect = el.getBoundingClientRect();
-    x.set((e.clientX - rect.left - rect.width / 2) * 0.15);
-    y.set((e.clientY - rect.top - rect.height / 2) * 0.15);
+    x.set((e.clientX - rect.left - rect.width / 2) * 0.12);
+    y.set((e.clientY - rect.top - rect.height / 2) * 0.12);
   };
 
   const reset = () => {
@@ -52,7 +57,7 @@ export function MagneticButton({ children, className = '', href, onClick, varian
         className={cls}
         onMouseMove={handleMove}
         onMouseLeave={reset}
-        whileTap={{ scale: 0.98 }}
+        whileTap={{ scale: 0.985 }}
         transition={transition}
       >
         {children}
@@ -69,7 +74,7 @@ export function MagneticButton({ children, className = '', href, onClick, varian
       className={cls}
       onMouseMove={handleMove}
       onMouseLeave={reset}
-      whileTap={{ scale: 0.98 }}
+      whileTap={{ scale: 0.985 }}
       transition={transition}
     >
       {children}
