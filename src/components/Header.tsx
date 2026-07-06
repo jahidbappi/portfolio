@@ -2,10 +2,11 @@
 
 import Link from 'next/link';
 import { AnimatePresence, motion } from 'framer-motion';
+import { Menu, X } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { site } from '@/lib/data';
 import { transition } from '@/lib/utils';
-import { MagneticButton } from './ui/MagneticButton';
+import { ThemeToggle } from './ThemeToggle';
 
 const links = [
   { href: '#about', label: 'About' },
@@ -37,38 +38,41 @@ export function Header() {
     <>
       <header
         className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
-          scrolled || open ? 'border-b border-[#ececec] bg-white/80 backdrop-blur-xl' : ''
+          scrolled || open ? 'border-b border-line bg-header backdrop-blur-xl' : ''
         }`}
       >
-        <div className="container-main flex h-[4.25rem] items-center justify-between">
-          <Link href="#home" className="text-[0.9375rem] font-semibold tracking-[-0.02em] text-zinc-950">
+        <div className="container-main flex h-[4.25rem] items-center justify-between gap-3">
+          <Link
+            href="#home"
+            className="min-w-0 truncate text-[0.9375rem] font-semibold tracking-[-0.02em] text-ink"
+          >
             {site.name}
           </Link>
 
           <nav className="hidden items-center gap-9 md:flex" aria-label="Main">
             {links.map((l) => (
-              <Link key={l.href} href={l.href} className="nav-link text-[0.8125rem] text-zinc-500 transition-colors hover:text-zinc-950">
+              <Link key={l.href} href={l.href} className="nav-link text-[0.8125rem] text-muted transition-colors hover:text-ink">
                 {l.label}
               </Link>
             ))}
           </nav>
 
           <div className="hidden md:block">
-            <MagneticButton href="#contact" variant="secondary" size="md" className="!h-9 !px-4 !text-xs">
-              Contact
-            </MagneticButton>
+            <ThemeToggle />
           </div>
 
-          <button
-            type="button"
-            className="relative z-[60] flex h-10 w-10 items-center justify-center md:hidden"
-            aria-label={open ? 'Close menu' : 'Open menu'}
-            aria-expanded={open}
-            onClick={() => setOpen(!open)}
-          >
-            <span className={`absolute h-px w-5 bg-zinc-950 transition-all ${open ? 'rotate-45' : '-translate-y-[5px]'}`} />
-            <span className={`absolute h-px w-5 bg-zinc-950 transition-all ${open ? '-rotate-45' : 'translate-y-[5px]'}`} />
-          </button>
+          <div className="flex shrink-0 items-center gap-2.5 md:hidden">
+            <ThemeToggle className="h-11 w-11 shrink-0" />
+            <button
+              type="button"
+              className="focus-ring relative z-[60] flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border border-line bg-surface text-ink transition-colors hover:border-line-strong hover:text-ink"
+              aria-label={open ? 'Close menu' : 'Open menu'}
+              aria-expanded={open}
+              onClick={() => setOpen(!open)}
+            >
+              {open ? <X className="h-5 w-5" aria-hidden /> : <Menu className="h-5 w-5" aria-hidden />}
+            </button>
+          </div>
         </div>
       </header>
 
@@ -79,7 +83,7 @@ export function Header() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={transition}
-            className="fixed inset-0 z-40 bg-white/98 backdrop-blur-md md:hidden"
+            className="fixed inset-0 z-40 bg-overlay backdrop-blur-md md:hidden"
           >
             <nav className="container-main flex h-full flex-col justify-center gap-2 pt-20">
               {links.map((l, i) => (
@@ -91,23 +95,13 @@ export function Header() {
                 >
                   <Link
                     href={l.href}
-                    className="block py-4 text-3xl font-semibold tracking-[-0.03em] text-zinc-950"
+                    className="block py-4 text-3xl font-semibold tracking-[-0.03em] text-ink"
                     onClick={() => setOpen(false)}
                   >
                     {l.label}
                   </Link>
                 </motion.div>
               ))}
-              <motion.div
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ ...transition, delay: links.length * 0.04 }}
-                className="mt-10"
-              >
-                <MagneticButton href="#contact" className="w-full" onClick={() => setOpen(false)}>
-                  Get in touch
-                </MagneticButton>
-              </motion.div>
             </nav>
           </motion.div>
         )}

@@ -4,10 +4,10 @@ export const site = {
   title: 'Full-Stack Engineer & AI Builder',
   tagline: 'Problem first. Code second.',
   description:
-    'Full-stack engineer shipping production web apps, AI tools, and 29+ Android products — from architecture to deployment.',
+    'Full-stack engineer based in Bangladesh — web applications, AI integrations, and 50+ Android apps on Google Play.',
   githubUsername: 'jahidbappi',
   profileImage: '/assets/profile.jpg',
-  resumeUrl: 'https://github.com/jahidbappi',
+  resumeUrl: '/resume',
   social: {
     github: 'https://github.com/jahidbappi',
     linkedin: 'https://linkedin.com/in/jahidbappi',
@@ -20,11 +20,17 @@ export const site = {
   availability: 'Open to full-time & contract roles',
 };
 
+/** Static display values for hero GitHub metrics (portfolio-facing). */
+export const heroGitHubStats = {
+  repos: '70+',
+  stars: '180+',
+} as const;
+
 export const heroStats = [
-  { value: '13+', label: 'Open-source repos' },
-  { value: '29+', label: 'Play Store apps' },
+  { value: heroGitHubStats.repos, label: 'Open-source repos' },
+  { value: '50+', label: 'Play Store apps' },
   { value: '5+', label: 'Live web products' },
-  { value: '4+', label: 'Certifications' },
+  { value: '5+', label: 'Certifications' },
 ];
 
 export const aboutBento = [
@@ -68,7 +74,7 @@ export const aboutBento = [
     id: 'mobile',
     index: '06',
     title: 'Mobile development',
-    body: '29 published Android apps across business, games, and utilities — Kotlin, privacy-first architecture, Play Store production.',
+    body: '50+ published Android apps across business, games, and utilities — Kotlin, privacy-first architecture, Play Store production.',
     span: 'md:col-span-3',
   },
 ];
@@ -123,24 +129,68 @@ export type ProjectCaseStudy = {
 };
 
 export const featuredProject: ProjectCaseStudy = {
-  slug: 'vibeflow',
-  name: 'VibeFlow',
-  category: 'web',
+  slug: 'kiln-ml',
+  name: 'Kiln',
+  category: 'ai',
   featured: true,
   problem:
-    'Independent software creators needed a polished storefront without building commerce infrastructure from scratch.',
+    'ML engineers lack a single reproducible harness to compare classical and deep models across tabular, vision, and detection tasks on real public data.',
   solution:
-    'Designed and shipped a full-stack software marketplace — React frontend, Node.js API, catalog management, and Vercel deployment pipeline.',
-  impact: 'Live production platform serving real users with modern UX and deploy-ready architecture.',
-  tech: ['React', 'Node.js', 'JavaScript', 'Vercel'],
-  github: 'https://github.com/jahidbappi/VibeFlow',
-  live: 'https://vibeflow.tech',
-  image: '/assets/projects/vibeflow.png',
-  imageAlt: 'VibeFlow on-demand creative and dev service landing page',
+    'Built a unified benchmark platform — typed Python CLI, 4 evaluation tracks, committed leaderboards, Colab GPU workflows, and a live Next.js results site.',
+  impact:
+    '20+ models benchmarked across sklearn, Keras, and YOLO with documented methodology and one-command reproducibility (seed=42).',
+  tech: ['Python', 'scikit-learn', 'Keras', 'YOLO', 'Next.js'],
+  github: 'https://github.com/jahidbappi/kiln-ml',
+  live: 'https://kiln-ml.vercel.app',
+  image: '/assets/projects/kiln.png',
+  imageAlt: 'Kiln ML benchmark leaderboards dashboard',
 };
 
 export const projects: ProjectCaseStudy[] = [
   featuredProject,
+  {
+    slug: 'iris',
+    name: 'Iris',
+    category: 'ai',
+    problem: 'Developers needed a production-grade multimodal AI studio combining voice and vision without cloud-only lock-in.',
+    solution:
+      'Shipped a real-time voice+vision AI studio with Next.js, Web Speech API, and local Ollama models (LLaVA, llama3.1).',
+    impact: 'Live multimodal product at iris-puce.vercel.app with local OSS inference path.',
+    tech: ['Next.js', 'TypeScript', 'Ollama'],
+    github: 'https://github.com/jahidbappi/iris',
+    live: 'https://iris-puce.vercel.app',
+    image: '/assets/projects/kiln.png',
+    imageAlt: 'Iris multimodal AI studio',
+  },
+  {
+    slug: 'mosaic-rag',
+    name: 'Mosaic RAG',
+    category: 'ai',
+    problem: 'RAG systems are hard to compare fairly without rigorous retrieval benchmarks on public datasets.',
+    solution:
+      'Built a multimodal RAG evaluation harness with hybrid retrieval ablations and published SciFact benchmark results.',
+    impact: '76.7% hybrid MRR vs 73.5% BM25 baseline on SciFact (MiniLM, n=50).',
+    tech: ['Python', 'BGE/MiniLM', 'Next.js'],
+    github: 'https://github.com/jahidbappi/mosaic-rag',
+    live: 'https://mosaic-rag.vercel.app',
+    image: '/assets/projects/kiln.png',
+    imageAlt: 'Mosaic RAG benchmark harness',
+  },
+  {
+    slug: 'vibeflow',
+    name: 'VibeFlow',
+    category: 'web',
+    problem:
+      'Independent software creators needed a polished storefront without building commerce infrastructure from scratch.',
+    solution:
+      'Designed and shipped a full-stack software marketplace — React frontend, Node.js API, catalog management, and Vercel deployment pipeline.',
+    impact: 'Live production platform serving real users with modern UX and deploy-ready architecture.',
+    tech: ['React', 'Node.js', 'JavaScript', 'Vercel'],
+    github: 'https://github.com/jahidbappi/VibeFlow',
+    live: 'https://vibeflow.tech',
+    image: '/assets/projects/vibeflow.png',
+    imageAlt: 'VibeFlow on-demand creative and dev service landing page',
+  },
   {
     slug: 'code-reviewer-ai',
     name: 'code-reviewer-ai',
@@ -182,7 +232,7 @@ export const projects: ProjectCaseStudy[] = [
     name: 'Android Product Suite',
     category: 'mobile',
     problem: 'Businesses needed native Android apps with ordering, PDF generation, and privacy-first offline flows.',
-    solution: 'Shipped 29 production apps across business services, games, and utilities on Google Play.',
+    solution: 'Shipped 50+ production apps across business services, games, and utilities on Google Play.',
     impact: 'Live apps spanning barber booking, real estate, legal services, wholesale, and casual games.',
     tech: ['Android', 'Kotlin', 'Google Play'],
     live: 'https://play.google.com/store/apps/dev?id=8676252920896812364',
@@ -196,38 +246,26 @@ export const mobileGroups = [
     id: 'business',
     label: 'Business & Service',
     projects: [
-      { name: 'Ditto Frame', play: 'https://play.google.com/store/apps/details?id=com.dittorecordingslimited.dittoframe' },
-      { name: 'Solvify', play: 'https://play.google.com/store/apps/details?id=com.hhsolutionsltd.solvofy' },
+      { name: 'Primepick Traders', play: 'https://play.google.com/store/apps/details?id=com.primepicktradersltd.primepicktraders' },
       { name: 'Ditto Coffee', play: 'https://play.google.com/store/apps/details?id=com.dittocoffeemanchesterlimited.dittocoffee' },
       { name: 'Kouakio LTD', play: 'https://play.google.com/store/apps/details?id=com.kouakioltd.kouakiohealth' },
-      { name: 'Farorote Consultancy', play: 'https://play.google.com/store/apps/details?id=com.faroroteltd.faroroteconsultancy' },
       { name: 'PRIMEPICK Delivery', play: 'https://play.google.com/store/apps/details?id=com.primepicktradersltd.primepickdelivery' },
-      { name: 'Primepick Traders', play: 'https://play.google.com/store/apps/details?id=com.primepicktradersltd.primepicktraders' },
-      { name: 'CBN Barbers', play: 'https://play.google.com/store/apps/details?id=com.cbnmobilebarberltd.cbnbarbers' },
-      { name: 'ERWG Homes', play: 'https://play.google.com/store/apps/details?id=com.erwgoedhomesltd.erwghomes' },
-      { name: 'Clarion Flow', play: 'https://play.google.com/store/apps/details?id=com.clarionpayrollserviceslimited.clarionflow' },
       { name: 'Noyan Wholesale', play: 'https://play.google.com/store/apps/details?id=com.noyanlimited.noyanwholesale' },
       { name: 'DORL Cars', play: 'https://play.google.com/store/apps/details?id=com.dickensofwrexhamlimited.dorlcars' },
       { name: 'CDM Music', play: 'https://play.google.com/store/apps/details?id=com.cdmmusiclimited.cdmmusic' },
-      { name: 'SNL Wheelz', play: 'https://play.google.com/store/apps/details?id=com.solonwlimited.snlwheelz' },
-      { name: 'Crafts and More', play: 'https://play.google.com/store/apps/details?id=com.handmadeandmoreltd.craftandmore' },
-      { name: 'Bottin Consult', play: 'https://play.google.com/store/apps/details?id=com.bottincreekconsultingltd.bottinconsult' },
       { name: 'Aurelio Decor', play: 'https://play.google.com/store/apps/details?id=com.goldenblindsltd.aureliodecor' },
       { name: 'Baseonix', play: 'https://play.google.com/store/apps/details?id=com.archibaseltd.baseonix' },
+      { name: 'Solvify', play: 'https://play.google.com/store/apps/details?id=com.hhsolutionsltd.solvofy' },
     ],
   },
   {
     id: 'games',
     label: 'Games',
     projects: [
-      { name: '3Patti Octro', play: 'https://play.google.com/store/apps/details?id=net.octrogame.patticard' },
-      { name: 'Jhandi Munda King', play: 'https://play.google.com/store/apps/details?id=net.mdipbnt.jhandimunda.king' },
-      { name: 'Teen Patti Bodhi', play: 'https://play.google.com/store/apps/details?id=net.luckybodhi.lucky.ace' },
       { name: 'Whimsy Balloon Puzzle', play: 'https://play.google.com/store/apps/details?id=com.whimsy.balloon.link.puzzle' },
-      { name: 'Critter Burst', play: 'https://play.google.com/store/apps/details?id=com.critter.burst.tile.bash' },
+      { name: 'Jhandi Munda King', play: 'https://play.google.com/store/apps/details?id=net.mdipbnt.jhandimunda.king' },
       { name: 'Puzzle Adventure', play: 'https://play.google.com/store/apps/details?id=com.yx.puzzle.adv' },
       { name: 'Link Level Up', play: 'https://play.google.com/store/apps/details?id=com.yx.link.level.up' },
-      { name: 'Twist Bolt', play: 'https://play.google.com/store/apps/details?id=com.yx.twist.bolt' },
       { name: 'Bubble Fruit Zap', play: 'https://play.google.com/store/apps/details?id=com.yx.bubble.fruit.zap' },
     ],
   },
@@ -240,6 +278,12 @@ export const mobileGroups = [
     ],
   },
 ];
+
+/** Featured apps shown in the Mobile Apps section. */
+export const mobileAppCount = mobileGroups.reduce((sum, group) => sum + group.projects.length, 0);
+
+/** Total live Play Store apps (user-facing copy). */
+export const playStoreAppCount = 50;
 
 export const timeline = [
   {
@@ -273,23 +317,16 @@ export const timeline = [
   {
     year: '2024',
     type: 'milestone',
-    title: 'Certifications · AWS & TensorFlow',
-    description: 'AWS Certified Developer and Google TensorFlow Developer credentials earned.',
-    tags: ['AWS', 'TensorFlow'],
+    title: 'Certifications · AWS Developer',
+    description: 'AWS Certified Developer credential earned.',
+    tags: ['AWS'],
   },
   {
     year: '2023 — 2024',
     type: 'education',
     title: 'Computer Science Foundations',
     description: 'Deepened expertise in algorithms, databases, and software engineering principles.',
-    tags: ['Oracle', 'Python', 'C++'],
-  },
-  {
-    year: '2023',
-    type: 'milestone',
-    title: 'Oracle Database Expert',
-    description: 'Oracle Academy certification — database architecture and SQL mastery.',
-    tags: ['Oracle', 'SQL'],
+    tags: ['Python', 'C++', 'SQL'],
   },
   {
     year: 'Now',
@@ -300,9 +337,37 @@ export const timeline = [
   },
 ];
 
-export const certifications = [
+export type Certification = {
+  title: string;
+  provider: string;
+  year?: string;
+  url?: string;
+};
+
+export const certifications: Certification[] = [
+  {
+    title: 'Master ChatGPT: Transform Your Life With AI Chatbots',
+    provider: 'Dhruv Rathee Academy',
+    year: '2025',
+    url: 'https://academy.dhruvrathee.com/chatgpt',
+  },
   { title: 'AWS Certified Developer', provider: 'Amazon Web Services', year: '2024' },
-  { title: 'TensorFlow Developer', provider: 'Google', year: '2024' },
-  { title: 'Python for Everybody', provider: 'Coursera', year: '2024' },
-  { title: 'Oracle Database Expert', provider: 'Oracle Academy', year: '2023' },
+  {
+    title: '100 Days of Code: The Complete Python Pro Bootcamp',
+    provider: 'Udemy',
+    year: '2024',
+    url: 'https://www.udemy.com/course/100-days-of-code/?couponCode=MT260622G1',
+  },
+  {
+    title: 'CS50: Introduction to Computer Science',
+    provider: 'Harvard University',
+    year: '2023',
+    url: 'https://pll.harvard.edu/course/cs50-introduction-computer-science',
+  },
+  {
+    title: 'Terence Tao Teaches Mathematical Thinking',
+    provider: 'MasterClass',
+    year: '2022',
+    url: 'https://www.masterclass.com/classes/terence-tao-teaches-mathematical-thinking',
+  },
 ];

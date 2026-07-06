@@ -25,11 +25,11 @@ export function MagneticButton({ children, className = '', href, onClick, varian
     lg: 'h-12 px-6 text-sm',
   };
 
-  const base = `inline-flex items-center justify-center gap-2 rounded-lg font-medium ${sizes[size]}`;
+  const base = `focus-ring inline-flex items-center justify-center gap-2 rounded-lg font-medium transition-colors ${sizes[size]}`;
   const variants = {
-    primary: 'bg-zinc-950 text-white hover:bg-zinc-800',
-    secondary: 'border border-[#e0e0e0] bg-white text-zinc-800 hover:border-zinc-400 hover:bg-zinc-50',
-    ghost: 'text-zinc-500 hover:text-zinc-950',
+    primary: 'bg-btn-primary text-btn-primary hover:bg-btn-primary-hover',
+    secondary: 'border border-line-strong bg-btn-secondary text-secondary hover:bg-btn-secondary-hover hover:text-ink',
+    ghost: 'text-muted hover:text-ink',
   };
 
   const handleMove = (e: React.MouseEvent) => {

@@ -1,19 +1,17 @@
 import type { Metadata } from 'next';
 import { GeistMono } from 'geist/font/mono';
 import { GeistSans } from 'geist/font/sans';
-import { Footer } from '@/components/Footer';
-import { Header } from '@/components/Header';
 import './globals.css';
 
 export const metadata: Metadata = {
   title: 'Jahid Bappi — Full-Stack Engineer & AI Builder',
   description:
-    'Md. Jahidul Islam builds production web apps, AI tools, and 29+ Android products. Full-stack engineer specializing in React, Node.js, and system design.',
+    'Md. Jahidul Islam builds production web apps, AI tools, and 50+ Android products. Full-stack engineer specializing in React, Node.js, and system design.',
   metadataBase: new URL('https://jahidbappi.vercel.app'),
   openGraph: {
     title: 'Jahid Bappi — Full-Stack Engineer & AI Builder',
     description:
-      'Production web apps, AI tools, and 29+ Android products shipped to real users.',
+      'Production web apps, AI tools, and 50+ Android products shipped to real users.',
     url: 'https://jahidbappi.vercel.app',
     siteName: 'Jahid Bappi',
     locale: 'en_US',
@@ -22,22 +20,23 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Jahid Bappi — Full-Stack Engineer & AI Builder',
-    description: 'Production web apps, AI tools, and 29+ Android products.',
+    description: 'Production web apps, AI tools, and 50+ Android products.',
   },
   robots: { index: true, follow: true },
 };
 
+const themeScript = `(function(){try{var t=localStorage.getItem('theme');var d=t==='dark'||(t!=='light'&&window.matchMedia('(prefers-color-scheme: dark)').matches);document.documentElement.classList.toggle('dark',d);document.querySelector('meta[name="theme-color"]')?.setAttribute('content',d?'#09090b':'#ffffff')}catch(e){}})()`;
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`}>
+    <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`} suppressHydrationWarning>
       <head>
         <link rel="icon" href="/assets/brand-icon.svg" type="image/svg+xml" />
         <meta name="theme-color" content="#ffffff" />
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
-      <body className="font-sans">
-        <Header />
-        <main>{children}</main>
-        <Footer />
+      <body className="bg-canvas font-sans text-ink">
+        {children}
       </body>
     </html>
   );

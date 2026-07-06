@@ -14,12 +14,12 @@ export function SectionHeader({ label, title, description, align = 'left', class
   return (
     <Reveal className={`max-w-3xl ${alignClass} ${className}`}>
       <p className="eyebrow">{label}</p>
-      <h2 className={`display-lg mt-5 ${align === 'center' ? 'mx-auto' : ''}`}>{title}</h2>
-      {description && <p className={`body-lg mt-6 ${align === 'center' ? 'mx-auto max-w-2xl' : 'max-w-2xl'}`}>{description}</p>}
+      <h2 className={`display-lg mt-3 ${align === 'center' ? 'mx-auto' : ''}`}>{title}</h2>
+      {description && <p className={`body-lg mt-4 ${align === 'center' ? 'mx-auto max-w-2xl' : 'max-w-2xl'}`}>{description}</p>}
     </Reveal>
   );
 }
 
 export function Divider() {
-  return <div className="h-px w-full bg-[#ececec]" aria-hidden />;
+  return <div className="h-px w-full bg-line" aria-hidden />;
 }

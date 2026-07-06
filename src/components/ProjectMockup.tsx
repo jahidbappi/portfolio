@@ -15,9 +15,10 @@ export function ProjectImage({
   return (
     <div
       className={cn(
-        'group relative overflow-hidden rounded-2xl border border-[#ececec] bg-zinc-50 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_24px_48px_-24px_rgba(0,0,0,0.18)]',
+        'group relative overflow-hidden rounded-2xl border border-line bg-surface-muted',
         className,
       )}
+      style={{ boxShadow: 'var(--shadow-soft)' }}
     >
       <Image
         src={src}

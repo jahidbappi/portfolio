@@ -6,7 +6,7 @@ import { Stagger, StaggerItem } from './ui/Reveal';
 
 export function About() {
   return (
-    <section id="about" className="section border-t border-[#ececec]">
+    <section id="about" className="section">
       <div className="container-main">
         <SectionHeader
           label="About"
@@ -14,15 +14,15 @@ export function About() {
           description="I approach engineering as product work — clarity of problem, restraint in solution, precision in execution."
         />
 
-        <Stagger className="mt-16 grid gap-3 md:mt-20 md:grid-cols-6">
+        <Stagger className="mt-8 grid gap-3 md:mt-10 md:grid-cols-6">
           {aboutBento.map((card) => (
             <StaggerItem
               key={card.id}
-              className={`card card-hover p-7 md:p-8 ${card.span} ${card.featured ? 'md:min-h-[260px] bg-zinc-50' : ''}`}
+              className={`card card-hover p-5 md:p-6 ${card.span} ${card.featured ? 'md:min-h-[220px] bg-surface-muted' : ''}`}
             >
               <p className="meta">{card.index}</p>
-              <h3 className="mt-4 text-lg font-semibold tracking-[-0.02em] text-zinc-950 md:text-xl">{card.title}</h3>
-              <p className={`mt-3 text-[0.9375rem] leading-[1.65] text-zinc-600 ${card.featured ? 'max-w-md' : ''}`}>
+              <h3 className="mt-3 text-lg font-semibold tracking-[-0.02em] text-ink md:text-xl">{card.title}</h3>
+              <p className={`mt-2.5 text-[0.9375rem] leading-[1.65] text-secondary ${card.featured ? 'max-w-md' : ''}`}>
                 {card.body}
               </p>
             </StaggerItem>
