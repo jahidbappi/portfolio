@@ -14,8 +14,9 @@ function iconFor(play: string) {
 }
 
 export function MobileApps() {
-  const [active, setActive] = useState(mobileGroups[0].id);
-  const group = mobileGroups.find((g) => g.id === active)!;
+  const visibleGroups = mobileGroups.filter((group) => group.projects.length > 0);
+  const [active, setActive] = useState(visibleGroups[0].id);
+  const group = visibleGroups.find((g) => g.id === active)!;
 
   return (
     <Reveal className="mt-10 md:mt-12">
@@ -29,7 +30,7 @@ export function MobileApps() {
         </p>
 
         <div className="mt-7 flex gap-2 overflow-x-auto pb-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-          {mobileGroups.map((g) => (
+          {visibleGroups.map((g) => (
             <button
               key={g.id}
               type="button"

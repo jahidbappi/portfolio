@@ -259,17 +259,6 @@ export const mobileGroups = [
     ],
   },
   {
-    id: 'games',
-    label: 'Games',
-    projects: [
-      { name: 'Whimsy Balloon Puzzle', play: 'https://play.google.com/store/apps/details?id=com.whimsy.balloon.link.puzzle' },
-      { name: 'Jhandi Munda King', play: 'https://play.google.com/store/apps/details?id=net.mdipbnt.jhandimunda.king' },
-      { name: 'Puzzle Adventure', play: 'https://play.google.com/store/apps/details?id=com.yx.puzzle.adv' },
-      { name: 'Link Level Up', play: 'https://play.google.com/store/apps/details?id=com.yx.link.level.up' },
-      { name: 'Bubble Fruit Zap', play: 'https://play.google.com/store/apps/details?id=com.yx.bubble.fruit.zap' },
-    ],
-  },
-  {
     id: 'utility',
     label: 'Utilities',
     projects: [
