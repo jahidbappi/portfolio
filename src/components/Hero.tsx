@@ -96,7 +96,7 @@ export function Hero({ stats }: { stats: HeroGitHubStats }) {
           {[
             { value: stats.repos, label: 'GitHub repositories' },
             { value: stats.stars, label: 'Stars earned' },
-            { value: `${playStoreAppCount}+`, label: 'Play Store apps' },
+            { value: `${playStoreAppCount}+`, label: 'Apps & games on Google Play' },
             { value: site.focus[0], label: 'Current focus' },
           ].map((item) => (
             <div key={item.label} className="bg-surface px-4 py-4 md:px-5">

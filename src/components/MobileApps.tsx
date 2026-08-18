@@ -23,10 +23,10 @@ export function MobileApps() {
       <div>
         <p className="meta">Mobile</p>
         <h3 className="mt-3 text-2xl font-semibold tracking-[-0.03em] text-ink md:text-3xl">
-          {playStoreAppCount}+ Android apps in production
+          {playStoreAppCount}+ apps & games in production
         </h3>
         <p className="body-md mt-3 max-w-2xl">
-          Business platforms, games, and utilities — shipped to Google Play with privacy-first, offline-capable architecture.
+          Business platforms, games, and utilities — a sample of 200+ apps and games on Google Play, built with privacy-first, offline-capable architecture.
         </p>
 
         <div className="mt-7 flex gap-2 overflow-x-auto pb-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
