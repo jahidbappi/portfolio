@@ -4,7 +4,7 @@ export const site = {
   title: 'Full-Stack Engineer & AI Builder',
   tagline: 'Problem first. Code second.',
   description:
-    'Full-stack engineer based in Bangladesh — web applications, AI integrations, and 50+ Android apps on Google Play.',
+    'Full-stack engineer based in Bangladesh — web applications, AI integrations, and 200+ Android apps on Google Play.',
   githubUsername: 'jahidbappi',
   profileImage: '/assets/profile.jpg',
   resumeUrl: '/resume',
@@ -28,7 +28,7 @@ export const heroGitHubStats = {
 
 export const heroStats = [
   { value: heroGitHubStats.repos, label: 'Open-source repos' },
-  { value: '50+', label: 'Play Store apps' },
+  { value: '200+', label: 'Play Store apps' },
   { value: '5+', label: 'Live web products' },
   { value: '5+', label: 'Certifications' },
 ];
@@ -74,7 +74,7 @@ export const aboutBento = [
     id: 'mobile',
     index: '06',
     title: 'Mobile development',
-    body: '50+ published Android apps across business, games, and utilities — Kotlin, privacy-first architecture, Play Store production.',
+    body: '200+ published Android apps across business, games, and utilities — Kotlin, privacy-first architecture, Play Store production.',
     span: 'md:col-span-3',
   },
 ];
@@ -232,7 +232,7 @@ export const projects: ProjectCaseStudy[] = [
     name: 'Android Product Suite',
     category: 'mobile',
     problem: 'Businesses needed native Android apps with ordering, PDF generation, and privacy-first offline flows.',
-    solution: 'Shipped 50+ production apps across business services, games, and utilities on Google Play.',
+    solution: 'Shipped 200+ production apps across business services, games, and utilities on Google Play.',
     impact: 'Live apps spanning barber booking, real estate, legal services, wholesale, and casual games.',
     tech: ['Android', 'Kotlin', 'Google Play'],
     live: 'https://play.google.com/store/apps/dev?id=8676252920896812364',
@@ -272,7 +272,7 @@ export const mobileGroups = [
 export const mobileAppCount = mobileGroups.reduce((sum, group) => sum + group.projects.length, 0);
 
 /** Total live Play Store apps (user-facing copy). */
-export const playStoreAppCount = 50;
+export const playStoreAppCount = 200;
 
 export const timeline = [
   {
