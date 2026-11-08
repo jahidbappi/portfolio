@@ -4,14 +4,14 @@ import { GeistSans } from 'geist/font/sans';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'Jahid Bappi — Full-Stack Engineer & AI Builder',
+  title: 'Jahid Bappi — Full Stack Software Developer',
   description:
-    'Md. Jahidul Islam builds production web apps, AI tools, and 200+ Android apps and games on Google Play. Full-stack engineer specializing in React, Node.js, and system design.',
+    'Md. Jahidul Islam builds production web apps, AI tools, and 50+ Android apps and games on Google Play. Full-stack engineer specializing in React, Node.js, and system design.',
   metadataBase: new URL('https://jahidbappi.vercel.app'),
   openGraph: {
-    title: 'Jahid Bappi — Full-Stack Engineer & AI Builder',
+    title: 'Jahid Bappi — Full Stack Software Developer',
     description:
-      'Production web apps, AI tools, and 200+ Android apps and games shipped on Google Play.',
+      'Production web apps, AI tools, and 50+ Android apps and games shipped on Google Play.',
     url: 'https://jahidbappi.vercel.app',
     siteName: 'Jahid Bappi',
     locale: 'en_US',
@@ -19,8 +19,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Jahid Bappi — Full-Stack Engineer & AI Builder',
-    description: 'Production web apps, AI tools, and 200+ Android apps and games on Google Play.',
+    title: 'Jahid Bappi — Full Stack Software Developer',
+    description: 'Production web apps, AI tools, and 50+ Android apps and games on Google Play.',
   },
   robots: { index: true, follow: true },
 };

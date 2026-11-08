@@ -32,12 +32,12 @@ export type ResumeEducation = {
 };
 
 export const resumeSummary =
-  'AI engineer and full-stack developer based in Bangladesh with production experience shipping web platforms, multimodal AI applications, and 200+ Android apps and games on Google Play. Built Iris (real-time voice+vision AI studio), Mosaic RAG (benchmarked retrieval evaluation), and Kiln (unified ML/CV benchmark platform). AWS Certified Developer with strengths in React, Next.js, Node.js, Python, and practical LLM/RAG integrations from prototype to Vercel deployment.';
+  'AI engineer and full-stack developer based in Bangladesh with production experience shipping web platforms, multimodal AI applications, and 50+ Android apps and games on Google Play. Built Iris (real-time voice+vision AI studio), Mosaic RAG (benchmarked retrieval evaluation), and Kiln (unified ML/CV benchmark platform). Strengths in React, Next.js, Node.js, Python, and practical LLM/RAG integrations from prototype to Vercel deployment.';
 
 export const resumeContact = {
   name: site.fullName,
   displayName: site.name,
-  title: 'AI Engineer · Full-Stack Developer',
+  title: 'Full Stack Software Developer',
   email: site.social.email,
   github: site.social.github.replace('https://', ''),
   linkedin: site.social.linkedin.replace('https://', ''),
@@ -61,7 +61,7 @@ export const resumeExperience: ResumeExperience[] = [
   {
     role: 'Full-Stack Developer',
     organization: 'VibeFlow',
-    period: '2025 – Present',
+    period: 'Apr 2026 – Present',
     bullets: [
       'Designed and deployed a production software marketplace serving users at vibeflow.tech.',
       'Built React frontend, Node.js API, product catalog management, and Vercel CI/CD pipeline.',
@@ -93,8 +93,8 @@ export const resumeExperience: ResumeExperience[] = [
     organization: 'Independent',
     period: '2023 – Present',
     bullets: [
-      'Published 200+ production Android apps and games on Google Play across business and utilities.',
-      'Built Kotlin apps with privacy-first, offline-first architecture for booking, real estate, wholesale, and legal services.',
+      'Published 50+ production Android apps and games on Google Play across business and utilities.',
+      'Built React Native and Expo apps with privacy-first, offline-first architecture for booking, real estate, wholesale, and legal services.',
       'Managed Play Store releases, client branding, and production maintenance for international business clients.',
     ],
   },
@@ -176,7 +176,7 @@ export const resumeSkills: ResumeSkillGroup[] = [
   },
   {
     label: 'Mobile',
-    skills: ['Android', 'Kotlin', 'Google Play', 'Offline-first', 'Privacy-first UX'],
+    skills: ['Android', 'React Native', 'Expo', 'Google Play', 'Offline-first', 'Privacy-first UX'],
   },
 ];
 

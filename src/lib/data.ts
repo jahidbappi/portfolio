@@ -1,10 +1,10 @@
 export const site = {
   name: 'Jahid Bappi',
   fullName: 'Md. Jahidul Islam',
-  title: 'Full-Stack Engineer & AI Builder',
+  title: 'Full Stack Software Developer',
   tagline: 'Problem first. Code second.',
   description:
-    'Full-stack engineer based in Bangladesh — web applications, AI integrations, and 200+ Android apps and games on Google Play.',
+    'Full-stack engineer based in Bangladesh — web applications, AI integrations, and 50+ Android apps and games on Google Play.',
   githubUsername: 'jahidbappi',
   profileImage: '/assets/profile.jpg',
   resumeUrl: '/resume',
@@ -22,15 +22,15 @@ export const site = {
 
 /** Static display values for hero GitHub metrics (portfolio-facing). */
 export const heroGitHubStats = {
-  repos: '70+',
-  stars: '180+',
+  repos: '15+',
+  stars: '0',
 } as const;
 
 export const heroStats = [
   { value: heroGitHubStats.repos, label: 'Open-source repos' },
-  { value: '200+', label: 'Apps & games on Google Play' },
+  { value: '50+', label: 'Apps & games on Google Play' },
   { value: '5+', label: 'Live web products' },
-  { value: '5+', label: 'Certifications' },
+  { value: '4', label: 'Certifications' },
 ];
 
 export const aboutBento = [
@@ -74,7 +74,7 @@ export const aboutBento = [
     id: 'mobile',
     index: '06',
     title: 'Mobile development',
-    body: '200+ published Android apps and games across business and utilities — Kotlin, privacy-first architecture, apps & games in production on Google Play.',
+    body: '50+ published Android apps and games across business and utilities — React Native and Expo, privacy-first architecture, apps & games in production on Google Play.',
     span: 'md:col-span-3',
   },
 ];
@@ -96,7 +96,7 @@ export const skillGroups = [
     id: 'mobile',
     label: 'Mobile',
     summary: 'Android production',
-    skills: ['Android', 'Kotlin', 'Google Play', 'Privacy-first UX', 'Offline-first'],
+    skills: ['Android', 'React Native', 'Expo', 'Google Play', 'Privacy-first UX', 'Offline-first'],
   },
   {
     id: 'ai',
@@ -232,10 +232,10 @@ export const projects: ProjectCaseStudy[] = [
     name: 'Android Product Suite',
     category: 'mobile',
     problem: 'Businesses needed native Android apps and games with ordering, PDF generation, and privacy-first offline flows.',
-    solution: 'Shipped 200+ production apps and games across business services and utilities on Google Play.',
-    impact: '200+ live apps and games on Google Play — barber booking, real estate, legal services, wholesale, and casual games.',
-    tech: ['Android', 'Kotlin', 'Google Play'],
-    live: 'https://play.google.com/store/apps/dev?id=8676252920896812364',
+    solution: 'Shipped 50+ production apps and games across business services and utilities on Google Play.',
+    impact: '50+ live apps and games on Google Play — barber booking, real estate, legal services, wholesale, and casual games.',
+    tech: ['React Native', 'Expo', 'Google Play'],
+    live: 'https://play.google.com/store/apps/details?id=com.primepicktradersltd.primepicktraders',
     image: '/assets/projects/mobile-suite.jpg',
     imageAlt: 'Android apps and games on Google Play',
   },
@@ -272,11 +272,11 @@ export const mobileGroups = [
 export const mobileAppCount = mobileGroups.reduce((sum, group) => sum + group.projects.length, 0);
 
 /** Total live Play Store apps (user-facing copy). */
-export const playStoreAppCount = 200;
+export const playStoreAppCount = 50;
 
 export const timeline = [
   {
-    year: '2025 — Present',
+    year: '2026 — Present',
     type: 'work',
     title: 'Full-Stack Developer · VibeFlow',
     description: 'Shipped a production software-selling platform — React, Node.js, live on Vercel.',
@@ -302,13 +302,6 @@ export const timeline = [
     title: 'Web Developer · Client Projects',
     description: 'Delivered responsive business websites — performance-first, accessible, production-ready.',
     tags: ['JavaScript', 'UI/UX'],
-  },
-  {
-    year: '2024',
-    type: 'milestone',
-    title: 'Certifications · AWS Developer',
-    description: 'AWS Certified Developer credential earned.',
-    tags: ['AWS'],
   },
   {
     year: '2023 — 2024',
@@ -340,7 +333,6 @@ export const certifications: Certification[] = [
     year: '2025',
     url: 'https://academy.dhruvrathee.com/chatgpt',
   },
-  { title: 'AWS Certified Developer', provider: 'Amazon Web Services', year: '2024' },
   {
     title: '100 Days of Code: The Complete Python Pro Bootcamp',
     provider: 'Udemy',

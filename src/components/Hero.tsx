@@ -91,11 +91,10 @@ export function Hero({ stats }: { stats: HeroGitHubStats }) {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ ...transition, delay: 0.22 }}
-          className="mt-10 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-line bg-line lg:grid-cols-4"
+          className="mt-10 grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-3"
         >
           {[
             { value: stats.repos, label: 'GitHub repositories' },
-            { value: stats.stars, label: 'Stars earned' },
             { value: `${playStoreAppCount}+`, label: 'Apps & games on Google Play' },
             { value: site.focus[0], label: 'Current focus' },
           ].map((item) => (
