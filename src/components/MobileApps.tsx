@@ -26,7 +26,7 @@ export function MobileApps() {
           {playStoreAppCount}+ apps & games in production
         </h3>
         <p className="body-md mt-3 max-w-2xl">
-          Business platforms, games, and utilities — a sample of 200+ apps and games on Google Play, built with privacy-first, offline-capable architecture.
+          Business platforms, games, and utilities — a sample of 50+ apps and games on Google Play, built with privacy-first, offline-capable architecture.
         </p>
 
         <div className="mt-7 flex gap-2 overflow-x-auto pb-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
